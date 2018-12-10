@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<Estacionamientos>
+  <Estacionamiento Id ="1">
+    <descripcion>Edificio Recalada</descripcion>
+    <calle>Av Congreso</calle>
+    <altura>3924</altura>
+    <datosAdicionales>Edificio residencial</datosAdicionales>
+    <idBarrio>1</idBarrio>
+  </Estacionamiento>
+  <Estacionamiento Id = "2">
+    <descripcion>Edificio Canal</descripcion>
+    <calle>Av Cabildo</calle>
+    <altura>2112</altura>
+    <datosAdicionales>Edificio residencial</datosAdicionales>
+    <idBarrio>1</idBarrio>
+  </Estacionamiento>
+  <Estacionamiento Id ="3">
+    <descripcion>Estacionamiento Maipu</descripcion>
+    <calle>Av Maipu</calle>
+    <altura>900</altura>
+    <datosAdicionales>Estacionamiento privado</datosAdicionales>
+    <idBarrio>1</idBarrio>
+  </Estacionamiento>
+</Estacionamientos>
