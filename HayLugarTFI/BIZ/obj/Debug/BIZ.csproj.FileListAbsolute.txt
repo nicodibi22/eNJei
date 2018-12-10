@@ -9,3 +9,16 @@ C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\BIZ\bin\Debug
 C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\BIZ\obj\Debug\BIZ.csprojResolveAssemblyReference.cache
 C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\BIZ\obj\Debug\BIZ.dll
 C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\BIZ\obj\Debug\BIZ.pdb
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\bin\Debug\BIZ.dll
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\bin\Debug\BIZ.pdb
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\bin\Debug\DAL.dll
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\bin\Debug\DAL.pdb
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\obj\Debug\BIZ.csprojAssemblyReference.cache
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\obj\Debug\BIZ.csproj.CoreCompileInputs.cache
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\obj\Debug\BIZ.csproj.CopyComplete
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\obj\Debug\BIZ.dll
+C:\Users\Nico\eNJei\HayLugarTFI\BIZ\obj\Debug\BIZ.pdb

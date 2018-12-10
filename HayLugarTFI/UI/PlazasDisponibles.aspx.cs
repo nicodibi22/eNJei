@@ -29,6 +29,12 @@ namespace UI
                         DataTable dt = this.GetData(query);
                         rptMarkers.DataSource = dt;
                         rptMarkers.DataBind();
+
+                        if (dt.Rows.Count == 0)
+                        {
+                            lblErrorMapa.Text = "No se encuentran plazas disponibles";
+                        }
+
                     }
                 }
                 catch (Exception)
