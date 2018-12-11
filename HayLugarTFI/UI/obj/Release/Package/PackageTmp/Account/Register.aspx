@@ -54,4 +54,5 @@
             </div>
         </div>
     </div>
+                    <asp:Label runat="server" id="lblErrorMail"></asp:Label>
 </asp:Content>

@@ -7,3 +7,10 @@ C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\bin\Relea
 C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\obj\Release\DAL.dll
 C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\obj\Release\DAL.pdb
 C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\DAL\bin\Release\DAL.dll
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\DAL\bin\Release\DAL.pdb
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\DAL\obj\Release\DAL.dll
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\DAL\obj\Release\DAL.pdb

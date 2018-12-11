@@ -9,3 +9,14 @@ C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\BIZ\bin\Relea
 C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\BIZ\obj\Release\BIZ.csprojResolveAssemblyReference.cache
 C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\BIZ\obj\Release\BIZ.dll
 C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\BIZ\obj\Release\BIZ.pdb
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\BIZ.dll
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\BIZ.pdb
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\DAL.dll
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\DAL.pdb
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.csprojResolveAssemblyReference.cache
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.dll
+C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.pdb
