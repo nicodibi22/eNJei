@@ -33,7 +33,7 @@ namespace UI.Account
 
                 // Esto no cuenta los errores de inicio de sesión hacia el bloqueo de cuenta
                 // Para habilitar los errores de contraseña para desencadenar el bloqueo, cambie a shouldLockout: true
-                var result = signinManager.PasswordSignIn(Email.Text, password.Text, RememberMe.Checked, shouldLockout: false);
+                var result = signinManager.PasswordSignIn(Email.Text, txtPassword.Text, RememberMe.Checked, shouldLockout: false);
 
                 switch (result)
                 {
@@ -45,7 +45,7 @@ namespace UI.Account
                         Response.Redirect("/Account/Lockout");
                         break;
                     case SignInStatus.RequiresVerification:
-                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}", 
+                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}",
                                                         Request.QueryString["ReturnUrl"],
                                                         RememberMe.Checked),
                                           true);

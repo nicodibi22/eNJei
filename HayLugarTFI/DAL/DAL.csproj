@@ -66,6 +66,7 @@
     <Compile Include="DALTipoEstadia.cs" />
     <Compile Include="DALTipoInfraccion.cs" />
     <Compile Include="DALUtilities.cs" />
+    <Compile Include="DALVehiculo.cs" />
     <Compile Include="DALZona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -22,7 +22,8 @@
 		                                            <asp:Repeater ID="rptMarkers" runat="server">
 		                                            <ItemTemplate>
 				                                                {
-				                                                    "title": '<%# Eval("descripcion") %>',
+				                                                    "title": "Precio: " + '<%# Eval("descripcion") %>' + "\nDirección: "
+                                                                        + '<%# Eval("calle") %>' + " " + '<%# Eval("altura") %>',
 				                                                    "lat": '<%# Eval("latitud") %>',
 				                                                    "lng": '<%# Eval("longitud") %>',
                                                                     "description": '<%# Eval("datosAdicionales") %>'

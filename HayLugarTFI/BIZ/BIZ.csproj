@@ -57,6 +57,7 @@
     <Compile Include="BIZTipoEstadia.cs" />
     <Compile Include="BIZTipoInfraccion.cs" />
     <Compile Include="BIZUtilities.cs" />
+    <Compile Include="BIZVehiculo.cs" />
     <Compile Include="BIZZona.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
