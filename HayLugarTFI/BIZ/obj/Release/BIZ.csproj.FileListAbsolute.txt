@@ -15,8 +15,6 @@ C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\DAL.dll
 C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
 C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
 C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\DAL.pdb
-C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
-C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
 C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.csprojResolveAssemblyReference.cache
 C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.dll
 C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.pdb

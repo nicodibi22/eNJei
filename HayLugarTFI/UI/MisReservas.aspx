@@ -1,42 +1,51 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MisReservas.aspx.cs" Inherits="UI.MisReservas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-    
-            <%-- GV- CSSyJS - INICIO --%>
+    <%-- GV- CSSyJS - INICIO --%>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/0.1.0/css/footable.min.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/0.1.0/js/footable.min.js"></script>
         <script type="text/javascript">
             $(function () {
-                $('[id*=gvReserva]').footable();
-            });
-        </script>
-
-    <script type="text/javascript">
-            $(function () {
                 $('[id*=gvReservasPendientes]').footable();
             });
         </script>
 
+            <script type="text/javascript">
+                var prm = Sys.WebForms.PageRequestManager.getInstance();
+                prm.add_endRequest(function () {
+                    $(function () {
+                        $('[id*=gvReservasPendientes]').footable();
+                    });
+                });
+        </script>
     <%-- GV- CSSyJS - FIN --%>
 
 
-    <%--<script src="js/myJS.js" type="text/javascript"></script>--%>
-    
-    <script type="text/javascript">
-        function mostrar() {
-
-            div = document.getElementById('divBotones');
-            div.style.display = '';
-        }
-    </script>
+        <script src="js/myJS.js" type="text/javascript"></script>
         <script type="text/javascript">
-            var prm = Sys.WebForms.PageRequestManager.getInstance();
-            prm.add_endRequest(function () {
-                $(function () {
-                    $('[id*=gvReserva]').footable();
+                var prm = Sys.WebForms.PageRequestManager.getInstance();
+                prm.add_endRequest(function () {
+
+
+                    //agregar una nueva columna con todo el texto 
+                    //contenido en las columnas de la grilla 
+                    // contains de Jquery es CaseSentive, por eso a minúscula
+                    $(".footeable tr:has(td.filtro)").each(function () {
+                        var t = $(this).text().toLowerCase();
+                        $("<td class='indexColumn'></td>")
+                        .hide().text(t).appendTo(this);
+                    });
+                    //Agregar el comportamiento al texto (se selecciona por el ID) 
+                    $("#texto").keyup(function () {
+                        var s = $(this).val().toLowerCase().split(" ");
+                        $(".footeable tr:hidden").show();
+                        $.each(s, function () {
+                            $(".footeable tr:visible .indexColumn:not(:contains('"
+                            + this + "'))").parent().hide();
+                        });
+                    });
+
                 });
-            });
         </script>
 
         <div id="tabs-1">
@@ -67,7 +76,7 @@
 
                             <asp:BoundField DataField="descBarrio" HeaderText="Barrio" />
 
-                            <asp:BoundField DataField="UserName" HeaderText="Reservado por" />
+                            <asp:BoundField DataField="UserName" ItemStyle-CssClass="filtro" HeaderText="Reservado por" />
 
                             <asp:CommandField HeaderText="" EditText="Cancelar Reserva" ShowEditButton="true" ShowCancelButton="false" />
 
