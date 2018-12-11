@@ -15,7 +15,8 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarDatos();
+            if(!Page.IsPostBack)
+                cargarDatos();
         }
 
         private void cargarDatos()
@@ -24,6 +25,9 @@ namespace UI
             {
                 gvDatosPersonales.DataSource = BIZ.BIZDatosPersonales.SelectByIdUsr(User.Identity.GetUserId());
                 gvDatosPersonales.DataBind();
+
+                //gvVehiculo.DataSource = BIZVehiculo.SelectByIdUsr(User.Identity.GetUserId());
+                //gvVehiculo.DataBind();
 
                 if (gvDatosPersonales.Rows.Count > 0)
                 {
@@ -57,7 +61,7 @@ namespace UI
             pnlTab1.Visible = false;
             pnlTab2.Visible = true;
 
-            txtAliasEmp.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[0].Text.ToString();
+            txtAliasEmp.Text = ((Label)gvDatosPersonales.Rows[e.NewEditIndex].FindControl("lblNroReg")).Text; //gvDatosPersonales.Rows[e.NewEditIndex].Cells[0].Text.ToString();
             ddlTipoDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[1].Text.ToString();
             txtNumeroDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[2].Text.ToString();
             txtEmail.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[3].Text.ToString();
@@ -66,6 +70,7 @@ namespace UI
             //txtAliasEmp.Text = ((Label)gvDatosPersonales.Rows[e.NewEditIndex].FindControl("lblAliasEmp")).Text;
 
             e.Cancel = true;
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
 
         }
 
@@ -78,7 +83,7 @@ namespace UI
         {
             try
             {
-                BIZDatosPersonales.Update(Convert.ToInt32(lblAliasEmp.Text), User.Identity.GetUserId(), ddlTipoDocumento.SelectedValue, txtNumeroDocumento.Text, txtEmail.Text, txtNroTelefono.Text, ddltipotelefono.SelectedValue, txtAliasEmp.Text);
+                BIZDatosPersonales.Update(Convert.ToInt32(txtAliasEmp.Text), User.Identity.GetUserId(), ddlTipoDocumento.SelectedValue, txtNumeroDocumento.Text, txtEmail.Text, txtNroTelefono.Text, ddltipotelefono.SelectedValue, txtAliasEmp.Text);
                 txtNumeroDocumento.Text = "";
                 txtEmail.Text = "";
                 txtNroTelefono.Text = "";
@@ -87,7 +92,7 @@ namespace UI
                 pnlTab1.Visible = true;
                 cargarDatos();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 Response.Redirect("ErrorDB.aspx");
             }
@@ -99,6 +104,16 @@ namespace UI
             {
                 args.IsValid = BIZUtilites.ValidaCuit(txtNumeroDocumento.Text);
             }
+
+        }
+
+        protected void gvVehiculo_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void gvVehiculo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
 
         }
     }

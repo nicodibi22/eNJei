@@ -1,16 +1,5 @@
-C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\bin\Debug\DAL.dll
-C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\bin\Debug\DAL.pdb
-C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
-C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
-C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
-C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
-C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
-C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\obj\Debug\DAL.dll
-C:\Users\JEISOLO\documents\visual studio 2015\Projects\HayLugarTFI\DAL\obj\Debug\DAL.pdb
 C:\Users\Nico\eNJei\HayLugarTFI\DAL\bin\Debug\DAL.dll
 C:\Users\Nico\eNJei\HayLugarTFI\DAL\bin\Debug\DAL.pdb
-C:\Users\Nico\eNJei\HayLugarTFI\DAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
-C:\Users\Nico\eNJei\HayLugarTFI\DAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
 C:\Users\Nico\eNJei\HayLugarTFI\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
 C:\Users\Nico\eNJei\HayLugarTFI\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\Nico\eNJei\HayLugarTFI\DAL\obj\Debug\DAL.csproj.CopyComplete

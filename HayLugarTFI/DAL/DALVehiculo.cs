@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Data.Common;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 
 namespace DAL
 {
@@ -50,20 +51,30 @@ namespace DAL
 			return returnValue;
 		}
 
-		/// <summary>
-		/// Actualiza registros de la tabla Vehiculo.
-		/// </summary>
-		/// <param name="idVehiculo"></param>
-		/// <param name="userId"></param>
-		/// <param name="marca"></param>
-		/// <param name="modelo"></param>
-		/// <param name="patente"></param>
-		/// <remarks>
-		/// </remarks>
-		/// <history>
-		/// 	[JEISOLO]	10/12/2018 21:34:16
-		/// </history>
-		public static void Update(decimal idVehiculo, string userId, string marca, string modelo, string patente)
+        public static DataSet SelectByIdUsr(string idUsr)
+        {
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("VehiculoSelectByIdUsr");
+
+            myDatabase.AddInParameter(myCommand, "@idUsr", DbType.String, idUsr);
+
+            return myDatabase.ExecuteDataSet(myCommand);
+        }
+
+        /// <summary>
+        /// Actualiza registros de la tabla Vehiculo.
+        /// </summary>
+        /// <param name="idVehiculo"></param>
+        /// <param name="userId"></param>
+        /// <param name="marca"></param>
+        /// <param name="modelo"></param>
+        /// <param name="patente"></param>
+        /// <remarks>
+        /// </remarks>
+        /// <history>
+        /// 	[JEISOLO]	10/12/2018 21:34:16
+        /// </history>
+        public static void Update(decimal idVehiculo, string userId, string marca, string modelo, string patente)
 		{
 			Database myDatabase = DatabaseFactory.CreateDatabase();
 			DbCommand myCommand = myDatabase.GetStoredProcCommand("VehiculoUpdate");

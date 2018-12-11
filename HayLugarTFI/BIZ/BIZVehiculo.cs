@@ -74,5 +74,17 @@ namespace BIZ
             }
         }
 
+        public static DataSet SelectByIdUsr(string idUsr)
+        {
+            try
+            {
+                return DALVehiculo.SelectByIdUsr(idUsr);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
