@@ -86,7 +86,7 @@
             <br />
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:Panel ID="pnl" runat="server">
+                    <asp:Panel ID="pnlTab3" runat="server">
                         <br />
                         <hr />
                             <h4>Vehículo</h4>
@@ -107,7 +107,7 @@
 
                         <asp:TemplateField  Visible="false" HeaderText = "Id" ItemStyle-HorizontalAlign="Right">
                             <ItemTemplate>
-                                <asp:Label ID="lblNroReg" Visible="false" style="width: 45px;" Text='<%#Eval("nroReg")%>' runat="server" ></asp:Label>
+                                <asp:Label ID="lblNroReg" Visible="false" style="width: 45px;" Text='<%#Eval("idVehiculo")%>' runat="server" ></asp:Label>
                             </ItemTemplate>                    
                         </asp:TemplateField>                            
 
@@ -212,10 +212,16 @@
 							    <h4>Modificar vehiculo</h4>
 							    <hr />
 
-							    <div class="form-group">
-								    <asp:Label runat="server" Visible="false" ID="Label1" CssClass="col-md-2 control-label">Marca</asp:Label>
+                            <div class="form-group">
+								    <asp:Label runat="server" Visible="false" ID="Label3" CssClass="col-md-2 control-label">Nombre y Apellido</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Visible="false" ID="TextBox1" size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Visible="false" ID="txtIdVehiculo" size="80" CssClass="textAreaBoxInputs" />
+								    </div>
+							    </div>
+							    <div class="form-group">
+								    <asp:Label runat="server" ID="Label1" CssClass="col-md-2 control-label">Marca</asp:Label>
+								    <div class="col-md-10">
+									    <asp:TextBox runat="server"  ID="txtMarca" size="80" CssClass="textAreaBoxInputs" />
 								    </div>
 							    </div>
 
@@ -223,20 +229,20 @@
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="Label6" CssClass="col-md-2 control-label">Modelo</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="true" ID="TextBox4" size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="true" ID="txtModelo" size="80" CssClass="textAreaBoxInputs" />
 								    </div>
 							    </div>
                             <div class="form-group">
 								    <asp:Label runat="server" ID="Label2" CssClass="col-md-2 control-label">Patente</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="true" ID="TextBox2" size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="true" ID="txtPatente" size="80" CssClass="textAreaBoxInputs" />
 								    </div>
 							    </div>
                         <br /><br />                            
                         <div class="form-group">
 				            <div class="col-md-10">
-                                <asp:Button ID="Button1" CssClass="btn btn-default" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
-                                <asp:Button ID="Button2" CssClass="btn btn-default" ValidationGroup="ValCuentaCorriente" runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
+                                <asp:Button ID="btnCancelarVehiculo" CssClass="btn btn-default" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelarVehiculo_Click" />
+                                <asp:Button ID="btnConfirmarVehiculo" CssClass="btn btn-default" ValidationGroup="ValCuentaCorriente" runat="server" Text=" : Confirmar :" OnClick="btnConfirmarVehiculo_Click" />
                             </div>
                         </div>
                     </div>

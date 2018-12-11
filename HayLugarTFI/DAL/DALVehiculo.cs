@@ -38,8 +38,8 @@ namespace DAL
 		/// </history>
 		public static int Insert(string userId, string marca, string modelo, string patente)
 		{
-			Database myDatabase = DatabaseFactory.CreateDatabase();
-			DbCommand myCommand = myDatabase.GetStoredProcCommand("VehiculoInsert");
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("VehiculoInsert");
 
 			myDatabase.AddInParameter(myCommand,"@userId", DbType.String, userId);
 			myDatabase.AddInParameter(myCommand,"@marca", DbType.String, marca);
@@ -76,8 +76,8 @@ namespace DAL
         /// </history>
         public static void Update(decimal idVehiculo, string userId, string marca, string modelo, string patente)
 		{
-			Database myDatabase = DatabaseFactory.CreateDatabase();
-			DbCommand myCommand = myDatabase.GetStoredProcCommand("VehiculoUpdate");
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("VehiculoUpdate");
 
 			myDatabase.AddInParameter(myCommand,"@idVehiculo", DbType.Decimal, idVehiculo);
 			myDatabase.AddInParameter(myCommand,"@userId", DbType.String, userId);

@@ -26,8 +26,8 @@ namespace UI
                 gvDatosPersonales.DataSource = BIZ.BIZDatosPersonales.SelectByIdUsr(User.Identity.GetUserId());
                 gvDatosPersonales.DataBind();
 
-                //gvVehiculo.DataSource = BIZVehiculo.SelectByIdUsr(User.Identity.GetUserId());
-                //gvVehiculo.DataBind();
+                gvVehiculo.DataSource = BIZVehiculo.SelectByIdUsr(User.Identity.GetUserId());
+                gvVehiculo.DataBind();
 
                 if (gvDatosPersonales.Rows.Count > 0)
                 {
@@ -41,6 +41,10 @@ namespace UI
                     //Adds THEAD and TBODY to GridView.
                     gvDatosPersonales.HeaderRow.TableSection = TableRowSection.TableHeader;
 
+                }
+                if (Context.User.IsInRole("Propietario"))
+                {
+                    pnlTab3.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -59,6 +63,7 @@ namespace UI
         protected void gvDatosPersonales_RowEditing(object sender, GridViewEditEventArgs e)
         {
             pnlTab1.Visible = false;
+            pnlTab3.Visible = false;
             pnlTab2.Visible = true;
 
             txtAliasEmp.Text = ((Label)gvDatosPersonales.Rows[e.NewEditIndex].FindControl("lblNroReg")).Text; //gvDatosPersonales.Rows[e.NewEditIndex].Cells[0].Text.ToString();
@@ -89,7 +94,9 @@ namespace UI
                 txtNroTelefono.Text = "";
                 txtAliasEmp.Text = "";
                 pnlTab2.Visible = false;
+                pnlTab3.Visible = true;
                 pnlTab1.Visible = true;
+                pnlVehiculo.Visible = false;
                 cargarDatos();
             }
             catch (Exception ex)
@@ -109,12 +116,48 @@ namespace UI
 
         protected void gvVehiculo_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            pnlTab1.Visible = false;
+            pnlTab3.Visible = false;
+            pnlVehiculo.Visible = true;
 
+            txtIdVehiculo.Text = ((Label)gvVehiculo.Rows[e.NewEditIndex].FindControl("lblNroReg")).Text;
+            txtMarca.Text = gvVehiculo.Rows[e.NewEditIndex].Cells[0].Text.ToString();
+            txtModelo.Text = gvVehiculo.Rows[e.NewEditIndex].Cells[1].Text.ToString();
+            txtPatente.Text = gvVehiculo.Rows[e.NewEditIndex].Cells[2].Text.ToString();
+            
+            e.Cancel = true;
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
         }
 
         protected void gvVehiculo_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
+        }
+
+        protected void btnCancelarVehiculo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/MisDatosPersonales.aspx");
+        }
+
+        protected void btnConfirmarVehiculo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BIZVehiculo.Update(int.Parse(txtIdVehiculo.Text), User.Identity.GetUserId(), txtMarca.Text, txtModelo.Text, txtPatente.Text);
+                txtNumeroDocumento.Text = "";
+                txtEmail.Text = "";
+                txtNroTelefono.Text = "";
+                txtAliasEmp.Text = "";
+                pnlTab2.Visible = false;
+                pnlTab3.Visible = true;
+                pnlTab1.Visible = true;
+                pnlVehiculo.Visible = false;
+                cargarDatos();
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("ErrorDB.aspx");
+            }
         }
     }
 }
