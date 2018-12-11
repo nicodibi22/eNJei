@@ -142,7 +142,9 @@ namespace UI
             pnlTab2.Visible = true;
 
             txtIdPlaza.Text = gvPlaza.Rows[e.NewEditIndex].Cells[0].Text.ToString();
-            txtdescEstacionamiento.Text = gvPlaza.Rows[e.NewEditIndex].Cells[1].Text.ToString();
+            //txtdescEstacionamiento.Text = gvPlaza.Rows[e.NewEditIndex].Cells[1].Text.ToString();
+            txtdescEstacionamiento.Text = ((Label)gvPlaza.Rows[e.NewEditIndex].FindControl("lblTarifa")).Text.Substring(1);
+
             txtCalle.Text = gvPlaza.Rows[e.NewEditIndex].Cells[2].Text.ToString();
             txtAltura.Text = gvPlaza.Rows[e.NewEditIndex].Cells[3].Text.ToString();
             txtdatosAdicionales.Text = gvPlaza.Rows[e.NewEditIndex].Cells[4].Text.ToString();
