@@ -23,8 +23,8 @@ namespace DAL
         }
         public static string getConnection() {
 
-            //string p1 = @"Data Source=JEISOLO-PC\SQLEXPRESS;Initial Catalog=hayLugarDB;Integrated Security=True";
-            string p1 = @"workstation id=databasehl.mssql.somee.com;packet size=4096;user id=sbiondini2018_SQLLogin_2;pwd=is389p9m2s;data source=databasehl.mssql.somee.com;persist security info=False;initial catalog=databasehl";
+            string p1 = @"Data Source=JEISOLO-PC\SQLEXPRESS;Initial Catalog=hayLugarDB;Integrated Security=True";
+            //string p1 = @"workstation id=databasehl.mssql.somee.com;packet size=4096;user id=sbiondini2018_SQLLogin_2;pwd=is389p9m2s;data source=databasehl.mssql.somee.com;persist security info=False;initial catalog=databasehl";
             return p1;
         }
     }

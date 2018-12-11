@@ -178,6 +178,7 @@
     <Content Include="images\login.png" />
     <Content Include="img\profile.jpg" />
     <Content Include="index.html" />
+    <Content Include="js\myJS.js" />
     <Content Include="js\resume.js" />
     <Content Include="js\resume.min.js" />
     <Content Include="LocalizarEnMapa.aspx" />
