@@ -49,7 +49,13 @@
 
                             <asp:BoundField DataField="idPlaza" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Plaza" />
 
-                            <asp:BoundField DataField="descEstacionamiento" HeaderText="Tarifa" />
+<%--                            <asp:BoundField DataField="descEstacionamiento" HeaderText="Tarifa" />--%>
+
+                        <asp:TemplateField  HeaderText = "Tarifa" ItemStyle-HorizontalAlign="Right">
+                            <ItemTemplate>
+                                <asp:Label ID="lblTarifa" style="width: 45px;" Text='<%# String.Format("${0:n2}", Convert.ToDecimal( Eval("descEstacionamiento"))) %>' runat="server" ></asp:Label>
+                            </ItemTemplate>                    
+                        </asp:TemplateField>                            
 
                             <asp:BoundField DataField="calle" HeaderText="Calle" />
 
