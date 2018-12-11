@@ -44,12 +44,11 @@ namespace UI.Account
                 //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
                 //manager.SendEmail(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>.");
 
-                signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
+                //signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
 
                 Response.Redirect("~/Account/ActivacionPendiente.aspx");
-                //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             }
-            else 
+            else
             {
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
             }
@@ -86,76 +85,77 @@ namespace UI.Account
             {
 
 
-            string constr = BIZUtilites.getConnection();
-            string activationCode = Guid.NewGuid().ToString();
-            using (SqlConnection con = new SqlConnection(constr))
-            {
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO UserActivation VALUES(@UserId, @ActivationCode)"))
+                string constr = BIZUtilites.getConnection();
+                string activationCode = Guid.NewGuid().ToString();
+                using (SqlConnection con = new SqlConnection(constr))
                 {
-                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO UserActivation VALUES(@UserId, @ActivationCode)"))
                     {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@UserId", userId);
-                        cmd.Parameters.AddWithValue("@ActivationCode", activationCode);
-                        cmd.Connection = con;
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                        con.Close();
+                        using (SqlDataAdapter sda = new SqlDataAdapter())
+                        {
+                            cmd.CommandType = CommandType.Text;
+                            cmd.Parameters.AddWithValue("@UserId", userId);
+                            cmd.Parameters.AddWithValue("@ActivationCode", activationCode);
+                            cmd.Connection = con;
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
                     }
                 }
-            }
 
 
 
-            MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-            //Especificamos el correo desde el que se enviará el Email y el nombre de la persona que lo envía
-            //mail.From = new MailAddress("info.conelmed@gmail.com", "Info LO DE FITO", Encoding.UTF8);
-            mail.From = new MailAddress("haylugararg@gmail.com", "Info Hay Lugar", Encoding.UTF8);
-            //Aquí ponemos el asunto del correo
-            mail.Subject = "Hay Lugar - Alta de usuario";
-            //Aquí ponemos el mensaje que incluirá el correo
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                //Especificamos el correo desde el que se enviará el Email y el nombre de la persona que lo envía
+                //mail.From = new MailAddress("info.conelmed@gmail.com", "Info LO DE FITO", Encoding.UTF8);
+                mail.From = new MailAddress("haylugararg@gmail.com", "Info Hay Lugar", Encoding.UTF8);
+                //Aquí ponemos el asunto del correo
+                mail.Subject = "Hay Lugar - Alta de usuario";
+                //Aquí ponemos el mensaje que incluirá el correo
 
-            string body = string.Empty;
+                string body = string.Empty;
 
-            string urlFinal = @"http://haylugar.somee.com/Account/CS_Activation.aspx?ActivationCode=" + activationCode;
+                string urlFinal = @"http://haylugar.somee.com/Account/CS_Activation.aspx?ActivationCode=" + activationCode;
 
-            body += "<br /><br />Ingresa al siguiente enlace para activar tu cuenta:";
-            body += "<br /><br />";
-            body += "<br /><a href ='" + urlFinal + "'>ACTIVAR CUENTA</a>";
-            body += "<br /><br />";
+                body += "<br /><br />Ingresa al siguiente enlace para activar tu cuenta:";
+                body += "<br /><br />";
+                body += "<br /><a href ='" + urlFinal + "'>ACTIVAR CUENTA</a>";
+                body += "<br /><br />";
 
 
-            using (StreamReader reader = new StreamReader(Server.MapPath("~/Uploads/EmailTemplate.htm")))
-            {
-                body += reader.ReadToEnd();
-            }
-            string url = "www.haylugar.somee.com";
-            body = body.Replace("{UserName}", Email.Text);
-            body = body.Replace("{UserPass}", Password.Text);
-            body = body.Replace("{Url}", url);
-            body = body.Replace("{activationCode}", activationCode);
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/Uploads/EmailTemplate.htm")))
+                {
+                    body += reader.ReadToEnd();
+                }
+                string url = "www.haylugar.somee.com";
+                body = body.Replace("{UserName}", Email.Text);
+                body = body.Replace("{UserPass}", Password.Text);
+                body = body.Replace("{Url}", url);
+                body = body.Replace("{activationCode}", activationCode);
 
-            mail.Body = body;
-            mail.IsBodyHtml = true;
+                mail.Body = body;
+                mail.IsBodyHtml = true;
 
-            //Especificamos a quien enviaremos el Email, no es necesario que sea Gmail, puede ser cualquier otro proveedor
-            mail.To.Add(emailaddress);
+                //Especificamos a quien enviaremos el Email, no es necesario que sea Gmail, puede ser cualquier otro proveedor
+                mail.To.Add(emailaddress);
 
-            //Si queremos enviar archivos adjuntos tenemos que especificar la ruta en donde se encuentran
-            //mail.Attachments.Add(new Attachment(@"C:\Documentos\carta.docx"));
+                //Si queremos enviar archivos adjuntos tenemos que especificar la ruta en donde se encuentran
+                //mail.Attachments.Add(new Attachment(@"C:\Documentos\carta.docx"));
 
-            //Configuracion del SMTP
-            SmtpServer.Port = 25; //Puerto que utiliza Gmail para sus servicios 587
-            //Especificamos las credenciales con las que enviaremos el mail
-            SmtpServer.Credentials = new System.Net.NetworkCredential("haylugararg@gmail.com", "sandra2017");
-            SmtpServer.EnableSsl = true;
-            SmtpServer.Send(mail);
+                //Configuracion del SMTP
+                SmtpServer.Port = 25; //Puerto que utiliza Gmail para sus servicios 587
+                                      //Especificamos las credenciales con las que enviaremos el mail
+                SmtpServer.Credentials = new System.Net.NetworkCredential("haylugararg@gmail.com", "sandra2017");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
             }
             catch (Exception ex)
             {
-                String err = ex.Message;
-                throw;
+                //String err = 
+                lblErrorMail.Text = ex.Message;
+
             }
 
         }
