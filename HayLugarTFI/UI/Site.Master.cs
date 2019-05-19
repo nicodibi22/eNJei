@@ -105,6 +105,8 @@ namespace UI
             if (ddlAdm.SelectedValue == "4")
             { Response.Redirect("~/MisReservas.aspx"); }
 
+            if (ddlAdm.SelectedValue == "5")
+            { Response.Redirect("~/Usuario.aspx"); }
         }
 
         protected void ddlMiCuenta_SelectedIndexChanged(object sender, EventArgs e)

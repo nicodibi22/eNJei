@@ -14,7 +14,7 @@
                             <th style="text-align: left;">
                                 <h4>Mapa.</h4><br />
                                 <div id="divShowMapa">
-                                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCJHG-OM17NkmG9kteZWkaMY2mvbY34rQ&sensor=false"
+                                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCJHG-OM17NkmG9kteZWkaMY2mvbY34rQ"
                                                         type="text/javascript">
                                     </script>
                                                 <script type="text/javascript">

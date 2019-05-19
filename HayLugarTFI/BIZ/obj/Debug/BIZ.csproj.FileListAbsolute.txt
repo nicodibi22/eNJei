@@ -9,3 +9,12 @@ C:\Users\Nico\eNJei\HayLugarTFI\BIZ\obj\Debug\BIZ.csproj.CoreCompileInputs.cache
 C:\Users\Nico\eNJei\HayLugarTFI\BIZ\obj\Debug\BIZ.csproj.CopyComplete
 C:\Users\Nico\eNJei\HayLugarTFI\BIZ\obj\Debug\BIZ.dll
 C:\Users\Nico\eNJei\HayLugarTFI\BIZ\obj\Debug\BIZ.pdb
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Debug\BIZ.dll
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Debug\BIZ.pdb
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Debug\DAL.dll
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Debug\DAL.pdb
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\obj\Debug\BIZ.csprojResolveAssemblyReference.cache
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\obj\Debug\BIZ.dll
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\obj\Debug\BIZ.pdb

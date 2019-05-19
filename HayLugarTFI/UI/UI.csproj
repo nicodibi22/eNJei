@@ -218,6 +218,7 @@
     <Content Include="Reserva.aspx" />
     <Content Include="Uploads\EmailTemplate.htm" />
     <Content Include="Uploads\EmailTemplateReserva.htm" />
+    <Content Include="Usuario.aspx" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-reboot.css" />
@@ -632,6 +633,13 @@
     </Compile>
     <Compile Include="CalcularDistanciaMapa.aspx.designer.cs">
       <DependentUpon>CalcularDistanciaMapa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.aspx.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuario.aspx.designer.cs">
+      <DependentUpon>Usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

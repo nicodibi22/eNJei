@@ -27,11 +27,12 @@ namespace BIZ
         /// <history>
         /// 	[JEISOLO]	23/09/2017 22:58:17
         /// </history>
-        public static int Insert(string idUsr, string tipoDoc, string nroDoc, string email, string telefono, string tipoTelefono, string aliasEmp)
+        public static int Insert(string idUsr, string tipoDoc, string nroDoc, string email, string telefono, string tipoTelefono, string aliasEmp,
+            string nombre, string apellido, string direccion, string cuil)
         {
             try
             {
-                return DALDatosPersonales.Insert(idUsr, tipoDoc, nroDoc, email, telefono, tipoTelefono, aliasEmp);
+                return DALDatosPersonales.Insert(idUsr, tipoDoc, nroDoc, email, telefono, tipoTelefono, aliasEmp, nombre, apellido, direccion, cuil);
             }
             catch (Exception)
             {
@@ -170,5 +171,47 @@ namespace BIZ
             }
         }
 
+        public static string ProcesarArchivoPlano(string csv_file_path) 
+        {
+
+            /*DataTable csvData = new DataTable();
+
+            try
+            {
+
+                using (TextFieldParser csvReader = new TextFieldParser(csv_file_path))
+                {
+                    csvReader.SetDelimiters(new string[] { "," });
+                    csvReader.HasFieldsEnclosedInQuotes = true;
+                    string[] colFields = csvReader.ReadFields();
+                    foreach (string column in colFields)
+                    {
+                        DataColumn datecolumn = new DataColumn(column);
+                        datecolumn.AllowDBNull = true;
+                        csvData.Columns.Add(datecolumn);
+                    }
+
+                    while (!csvReader.EndOfData)
+                    {
+                        string[] fieldData = csvReader.ReadFields();
+                        //Making empty value as null
+                        for (int i = 0; i < fieldData.Length; i++)
+                        {
+                            if (fieldData[i] == "")
+                            {
+                                fieldData[i] = null;
+                            }
+                        }
+                        csvData.Rows.Add(fieldData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            */
+
+            return string.Empty;
+        }
     }
 }

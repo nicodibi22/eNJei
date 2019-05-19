@@ -21,3 +21,12 @@ C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.csprojResolv
 C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.dll
 C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.pdb
 >>>>>>> 67f7eedc7d1e9131e9158076eacd7c8f23872ed2
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Release\BIZ.dll
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Release\BIZ.pdb
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Release\DAL.dll
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Release\DAL.pdb
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.csprojResolveAssemblyReference.cache
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.dll
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.pdb

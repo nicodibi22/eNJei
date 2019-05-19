@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Registrarse" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="UI.Account.Register" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <div class="container">
     <h2><%: Title %>.</h2>
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
@@ -20,13 +21,15 @@
         </div>
 
         <div class="form-group">
-            <asp:Label runat="server" ID="lblRol" CssClass="col-md-2 control-label">Soy</asp:Label>
+            <asp:Label runat="server" ID="lblRol" CssClass="col-md-2 control-label" >Soy</asp:Label>
             <div class="col-md-10">
-                <asp:DropDownList ID="ddlRol" AutoPostBack="false" runat="server">
+                <asp:DropDownList ID="ddlRol" AutoPostBack="false" runat="server" CssClass="form-control" Width="270px">
                         <asp:ListItem  Selected="True" Text="Conductor" Value="2" />
                         <asp:ListItem Text="Propietario" Value="3" />
                         <asp:ListItem Text="Conductor y Propietario" Value="4" />
                 </asp:DropDownList> 
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlRol"
+                    CssClass="text-danger" ErrorMessage="El campo de contraseña es obligatorio." />
             </div>
         </div>
 
@@ -55,4 +58,6 @@
         </div>
     </div>
                     <asp:Label runat="server" id="lblErrorMail"></asp:Label>
+
+        </div>
 </asp:Content>

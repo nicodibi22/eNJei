@@ -10,7 +10,7 @@
         $("#chkShowPassword").bind("click", function () {
             var txtPassword = $("[id*=txtPassword]");
             if ($(this).is(":checked")) {
-                txtPassword.after('<input onchange = "PasswordChanged(this);" id = "txt_' + txtPassword.attr("id") + '" type = "text" value = "' + txtPassword.val() + '" />');
+                txtPassword.after('<input onchange = "PasswordChanged(this);" id = "txt_' + txtPassword.attr("id") + '" type = "text" class="form-control" value = "' + txtPassword.val() + '" />');
                 txtPassword.hide();
             } else {
                 txtPassword.val(txtPassword.next().val());
@@ -22,7 +22,11 @@
     function PasswordChanged(txt) {
         $(txt).prev().val($(txt).val());
     }
+
+
 </script>
+
+    <div class="container">
 
     <h2> Ingresar </h2>
 
@@ -72,4 +76,5 @@
             </section>
         </div>
     </div>
+        </div>
 </asp:Content>

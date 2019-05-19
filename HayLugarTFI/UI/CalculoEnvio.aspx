@@ -91,7 +91,7 @@
                     var selectedText = skillsSelect.options[skillsSelect.selectedIndex].value;
 
 
-
+                    
                     switch (selectedText) {
                         case "0":
                             precio = 85; diasestimados = 3;
@@ -112,18 +112,23 @@
                             precio = 80; diasestimados = 2;
                     }
 
-                    let today = new Date().toLocaleDateString();
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth() + 1; //January is 0!
+                    var yyyy = today.getFullYear();
 
-                    var date = new Date();
-                    var newdate = new Date(today);
+                    if (dd < 10) {
+                        dd = '0' + dd
+                    }
 
-                    newdate.setDate(newdate.getDate() + diasestimados);
+                    if (mm < 10) {
+                        mm = '0' + mm
+                    }
 
-                    var dd = newdate.getDate();
-                    var mm = newdate.getMonth() + 1;
-                    var y = newdate.getFullYear();
+                    today = mm + '/' + dd + '/' + yyyy;
 
-                    var someFormattedDate = mm + '/' + dd + '/' + y;
+
+                    var someFormattedDate = dd + '/' + mm + '/' + yyyy;
                     fechaEntrega = someFormattedDate;
 
                     var pivotdistance = distance.substr(0, distance.length - 2);

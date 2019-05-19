@@ -15,3 +15,8 @@ C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\DAL\obj\Release\DAL.csprojResolv
 C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\DAL\obj\Release\DAL.dll
 C:\Users\JEISOLO\git\enjei\hl\eNJei\HayLugarTFI\DAL\obj\Release\DAL.pdb
 >>>>>>> 67f7eedc7d1e9131e9158076eacd7c8f23872ed2
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\DAL\bin\Release\DAL.dll
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\DAL\bin\Release\DAL.pdb
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\DAL\obj\Release\DAL.dll
+C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\DAL\obj\Release\DAL.pdb

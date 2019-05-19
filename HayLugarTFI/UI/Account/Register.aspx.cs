@@ -58,7 +58,7 @@ namespace UI.Account
         {
             try
             {
-                BIZDatosPersonales.Insert(id, "DNI", "00000000", email, "9999999999", "MOVIL", "Nombre Apellido");
+                BIZDatosPersonales.Insert(id, "DNI", "00000000", email, "9999999999", "MOVIL", "Nombre Apellido", string.Empty, string.Empty, string.Empty, string.Empty);
                 BIZVehiculo.Insert(id, "MARCA", "MODELO", "XXX XXX");
             }
             catch (Exception)

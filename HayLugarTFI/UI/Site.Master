@@ -79,6 +79,7 @@
                                         <asp:ListItem Text="Gestión Cta Cte" Value="2" />
                                         <asp:ListItem Text="Estacionam." Value="3" />
                                         <asp:ListItem Text="Reservas" Value="4" />
+                                        <asp:ListItem Text="Usuarios" Value="5" />
                                 </asp:DropDownList> 
                             </a> 
                         </li>
@@ -104,7 +105,7 @@
                 </div>
             </div>
         </div>
-        <div class="container body-content">
+        <div >
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
