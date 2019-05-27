@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CuteWebUI.AjaxUploader, Version=4.0.0.0, Culture=neutral, PublicKeyToken=bc00d4b0e43ec38d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CuteWebUI.AjaxUploader.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\..\TFI.2016.JEI\UI.CONELMED.DESA\bin\itextsharp.dll</HintPath>
     </Reference>
@@ -163,6 +167,7 @@
     <Content Include="Account\CS_Activation.aspx" />
     <Content Include="Barrio.aspx" />
     <Content Include="CalculoEnvio.aspx" />
+    <Content Include="CargaMasivaUsuario.aspx" />
     <Content Include="CargaMasiva.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -216,6 +221,8 @@
     <Content Include="PagoReserva.aspx" />
     <Content Include="PlazasDisponibles.aspx" />
     <Content Include="Reserva.aspx" />
+    <Content Include="uploader.css" />
+    <Content Include="uploadertheme.css" />
     <Content Include="Uploads\EmailTemplate.htm" />
     <Content Include="Uploads\EmailTemplateReserva.htm" />
     <Content Include="Usuario.aspx" />
@@ -484,6 +491,13 @@
     </Compile>
     <Compile Include="CalculoEnvio.aspx.designer.cs">
       <DependentUpon>CalculoEnvio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CargaMasivaUsuario.aspx.cs">
+      <DependentUpon>CargaMasivaUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CargaMasivaUsuario.aspx.designer.cs">
+      <DependentUpon>CargaMasivaUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="CargaMasiva.aspx.cs">
       <DependentUpon>CargaMasiva.aspx</DependentUpon>

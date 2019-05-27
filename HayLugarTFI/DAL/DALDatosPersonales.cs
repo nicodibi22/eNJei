@@ -80,12 +80,13 @@ namespace DAL
 		/// <history>
 		/// 	[JEISOLO]	23/09/2017 22:58:17
 		/// </history>
-		public static void Update(int nroReg, string idUsr, string tipoDoc, string nroDoc, string email, string telefono, string tipoTelefono, string aliasEmp)
+		public static void Update(string idUsr, string tipoDoc, string nroDoc, string email, string telefono, string tipoTelefono, string aliasEmp,
+            string nombre, string apellido, string direccion, string cuil)
 		{
 			Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
 			DbCommand myCommand = myDatabase.GetStoredProcCommand("DatosPersonalesUpdate");
 
-			myDatabase.AddInParameter(myCommand,"@nroReg", DbType.Int32, nroReg);
+			
 			myDatabase.AddInParameter(myCommand,"@idUsr", DbType.String, idUsr);
 			myDatabase.AddInParameter(myCommand,"@tipoDoc", DbType.String, tipoDoc);
 			myDatabase.AddInParameter(myCommand,"@nroDoc", DbType.String, nroDoc);
@@ -93,6 +94,10 @@ namespace DAL
 			myDatabase.AddInParameter(myCommand,"@telefono", DbType.String, telefono);
 			myDatabase.AddInParameter(myCommand,"@tipoTelefono", DbType.String, tipoTelefono);
 			myDatabase.AddInParameter(myCommand,"@aliasEmp", DbType.String, aliasEmp);
+            myDatabase.AddInParameter(myCommand, "@nombre", DbType.String, nombre);
+            myDatabase.AddInParameter(myCommand, "@apellido", DbType.String, apellido);
+            myDatabase.AddInParameter(myCommand, "@direccion", DbType.String, direccion);
+            myDatabase.AddInParameter(myCommand, "@cuil", DbType.String, cuil);
 
 			myDatabase.ExecuteNonQuery(myCommand);
 		}

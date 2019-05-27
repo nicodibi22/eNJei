@@ -56,11 +56,13 @@ namespace BIZ
         /// <history>
         /// 	[JEISOLO]	23/09/2017 22:58:17
         /// </history>
-        public static void Update(int nroReg, string idUsr, string tipoDoc, string nroDoc, string email, string telefono, string tipoTelefono, string aliasEmp)
+        public static void Update(string idUsr, string tipoDoc, string nroDoc, string email, string telefono, string tipoTelefono, string aliasEmp,
+            string nombre, string apellido, string direccion, string cuil)
         {
             try
             {
-                DALDatosPersonales.Update(nroReg, idUsr, tipoDoc, nroDoc, email, telefono, tipoTelefono, aliasEmp);
+
+                DALDatosPersonales.Update(idUsr, tipoDoc, nroDoc, email, telefono, tipoTelefono, aliasEmp, nombre, apellido, direccion, cuil);
             }
             catch (Exception)
             {
@@ -170,6 +172,44 @@ namespace BIZ
                 throw;
             }
         }
+
+        /// <summary>
+             /// Valida el CUIT ingresado.
+            /// </summary>
+            /// <param name="cuit" />Número de CUIT como string con o sin guiones
+            /// <returns>True si el CUIT es válido y False si no.</returns>
+            public static bool ValidaCuit(string cuit)
+            {
+                if (cuit == null)
+                {
+                    return false;
+                }
+                //Quito los guiones, el cuit resultante debe tener 11 caracteres.
+                cuit = cuit.Replace("-", string.Empty);
+                if (cuit.Length != 11)
+                {
+                    return false;
+                }
+                else
+                {
+                    int calculado = CalcularDigitoCuit(cuit);
+                    int digito = int.Parse(cuit.Substring(10));
+                    return calculado == digito;
+                }
+            }
+
+        private static int CalcularDigitoCuit(string cuit)
+            {
+                int[] mult = new[] { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
+                char[] nums = cuit.ToCharArray();
+                int total = 0;
+                for (int i = 0; i < mult.Length; i++)
+                {
+                    total += int.Parse(nums[i].ToString()) * mult[i];
+                }
+                var resto = total % 11;
+                return resto == 0 ? 0 : resto == 1 ? 9 : 11 - resto;
+            }
 
         public static string ProcesarArchivoPlano(string csv_file_path) 
         {

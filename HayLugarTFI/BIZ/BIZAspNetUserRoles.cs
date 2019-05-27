@@ -36,5 +36,18 @@ namespace BIZ
             }
         }
 
+        public static void Update(string userId, string roleId)
+        {
+            try
+            {
+                DALAspNetUserRoles.Update(userId, roleId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

@@ -248,11 +248,11 @@ namespace BIZ
             }
         }
 
-        public static DataSet MisReservasSelectAllByEstadoPago(bool pago)
+        public static DataSet MisReservasSelectAllByEstadoPago(bool pago, DateTime? fechaDesde, DateTime? fechaHasta, string usuario)
         {
             try
             {
-                return DALReserva.MisReservasSelectAllByEstadoPago(pago);
+                return DALReserva.MisReservasSelectAllByEstadoPago(pago, fechaDesde, fechaHasta, usuario);
             }
             catch (Exception)
             {

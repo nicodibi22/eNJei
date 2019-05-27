@@ -35,16 +35,19 @@ namespace UI
             {
                 if (Context.User.IsInRole("Administrador"))
                 {
-                    gvReserva.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(true);
+                    
+                    gvReserva.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(true, null, null,"");
                     gvReserva.DataBind();
 
-                    gvReservasPendientes.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(false);
+                    gvReservasPendientes.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(false, null, null, "");
                     gvReservasPendientes.DataBind();
 
 
                 }
                 else
                 {
+                    divFiltros1.Visible = false;
+                    divFiltros2.Visible = false;
                     gvReserva.DataSource = BIZReserva.MisReservasSelectByPagoStateAndUserId(true, User.Identity.GetUserId());
                     gvReserva.DataBind();
 
@@ -75,6 +78,76 @@ namespace UI
 
                 Response.Redirect("ErrorPage.aspx");
             }
+        }
+
+        private bool ValidacionFechas(out DateTime fechaDesde, out DateTime fechaHasta)
+        {
+            fechaDesde = DateTime.MinValue;
+            fechaHasta = DateTime.MinValue;
+            if (string.IsNullOrEmpty(txtFechaDesde.Text) && !string.IsNullOrEmpty(txtFechaHasta.Text))
+            {
+                lblErrorFiltro.Text = "Debe completar la Fecha Desde";
+                return false;
+            }
+            if (!string.IsNullOrEmpty(txtFechaDesde.Text) && string.IsNullOrEmpty(txtFechaHasta.Text))
+            {
+                lblErrorFiltro.Text = "Debe completar la Fecha Hasta";
+                return false;
+            }
+            if (!string.IsNullOrEmpty(txtFechaDesde.Text))
+            {
+                DateTime result;
+                DateTime.TryParse(txtFechaDesde.Text, out fechaDesde);
+                if (fechaDesde.Equals(DateTime.MinValue))
+                {
+                    lblErrorFiltro.Text = "El formato de la Fecha Desde no es correcto";
+                    return false;
+                }
+
+                DateTime.TryParse(txtFechaHasta.Text, out fechaHasta);
+                if (fechaHasta.Equals(DateTime.MinValue))
+                {
+                    lblErrorFiltro.Text = "El formato de la Fecha Hasta no es correcto";
+                    return false;
+                }
+            }
+            
+
+            return true;
+        }
+
+        private bool ValidacionFechas2(out DateTime fechaDesde, out DateTime fechaHasta)
+        {
+            fechaDesde = DateTime.MinValue;
+            fechaHasta = DateTime.MinValue;
+            if (string.IsNullOrEmpty(txtFechaDesde2.Text) && !string.IsNullOrEmpty(txtFechaHasta2.Text))
+            {
+                lblErrorFiltro2.Text = "Debe completar la Fecha Desde";
+                return false;
+            }
+            if (!string.IsNullOrEmpty(txtFechaDesde2.Text) && string.IsNullOrEmpty(txtFechaHasta2.Text))
+            {
+                lblErrorFiltro2.Text = "Debe completar la Fecha Hasta";
+                return false;
+            }
+            if (!string.IsNullOrEmpty(txtFechaDesde2.Text))
+            {
+                DateTime.TryParse(txtFechaDesde2.Text, out fechaDesde);
+                if (fechaDesde.Equals(DateTime.MinValue))
+                {
+                    lblErrorFiltro2.Text = "El formato de la Fecha Desde no es correcto";
+                    return false;
+                }
+
+                DateTime.TryParse(txtFechaHasta2.Text, out fechaHasta);
+                if (fechaHasta.Equals(DateTime.MinValue))
+                {
+                    lblErrorFiltro2.Text = "El formato de la Fecha Hasta no es correcto";
+                    return false;
+                }
+            }
+                            
+            return true;
         }
 
         protected void gvReserva_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -242,6 +315,37 @@ namespace UI
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
 
 
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            lblErrorFiltro.Text = string.Empty;
+            DateTime fechaDesde;
+            DateTime fechaHasta;
+            if (ValidacionFechas(out fechaDesde, out fechaHasta))
+            {
+                DateTime? fechaDesdeFiltro = fechaDesde != DateTime.MinValue ? fechaDesde : (DateTime?)null;
+                DateTime? fechaHastaFiltro = fechaHasta != DateTime.MinValue ? fechaHasta : (DateTime?)null;
+
+                
+                gvReservasPendientes.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(false, fechaDesdeFiltro, fechaHastaFiltro, txtUsuario.Text.Trim());
+                gvReservasPendientes.DataBind();
+            }            
+        }
+
+        protected void btnFiltrar2_Click(object sender, EventArgs e)
+        {
+            lblErrorFiltro2.Text = string.Empty;
+            DateTime fechaDesde;
+            DateTime fechaHasta;
+            if (ValidacionFechas2(out fechaDesde, out fechaHasta))
+            {
+                DateTime? fechaDesdeFiltro = fechaDesde != DateTime.MinValue ? fechaDesde : (DateTime?)null;
+                DateTime? fechaHastaFiltro = fechaHasta != DateTime.MinValue ? fechaHasta : (DateTime?)null;
+
+                gvReserva.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(true, fechaDesdeFiltro, fechaHastaFiltro, txtUsuario2.Text.Trim());
+                gvReserva.DataBind();
+            }
         }
     }
 }

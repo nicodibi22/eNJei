@@ -45,6 +45,29 @@ namespace DAL
 			myDatabase.ExecuteNonQuery(myCommand);
 		}
 
+        /// <summary>
+		/// Actualiza registros dentro de la tabla AspNetUserRoles.
+		/// </summary>
+		/// <param name="userId"></param>
+		/// <param name="roleId"></param>
+		/// <returns></returns>
+		/// <remarks>
+		/// </remarks>
+		/// <history>
+		/// 	[JEISOLO]	23/09/2017 22:58:17
+		/// </history>
+		public static void Update(string userId, string roleId)
+		{
+			Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("AspNetUserRolesUpdate");
+
+			myDatabase.AddInParameter(myCommand,"@UserId", DbType.String, userId);
+			myDatabase.AddInParameter(myCommand,"@RoleId", DbType.String, roleId);
+
+			myDatabase.ExecuteNonQuery(myCommand);
+		}
+
+        
 		/// <summary>
 		/// Suprime un registro de la tabla AspNetUserRoles por una clave primaria(primary key).
 		/// </summary>

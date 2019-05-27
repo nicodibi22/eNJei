@@ -236,12 +236,15 @@ namespace DAL
 			return myDatabase.ExecuteDataSet(myCommand);
 		}
 
-        public static DataSet MisReservasSelectAllByEstadoPago(bool pago)
+        public static DataSet MisReservasSelectAllByEstadoPago(bool pago, DateTime? fechaDesde, DateTime? fechaHasta, string usuario)
         {
             Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
             DbCommand myCommand = myDatabase.GetStoredProcCommand("MisReservasSelectAllByEstadoPago");
 
             myDatabase.AddInParameter(myCommand, "@pago", DbType.Boolean, pago);
+            myDatabase.AddInParameter(myCommand, "@fechaDesde", DbType.DateTime, fechaDesde);
+            myDatabase.AddInParameter(myCommand, "@fechaHasta", DbType.DateTime, fechaHasta);
+            myDatabase.AddInParameter(myCommand, "@usuario", DbType.String, usuario);
 
             return myDatabase.ExecuteDataSet(myCommand);
         }

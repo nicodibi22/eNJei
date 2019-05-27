@@ -25,7 +25,7 @@ namespace UI
                 {
                     if (!this.IsPostBack)
                     {
-                        string query = @"SELECT E.[descripcion], E.[calle], E.[altura], E.[datosAdicionales], B.[descripcion], E.[latitud] ,E.[longitud]  FROM [Estacionamiento] E, [Plaza] P, [Barrio] B where E.[idEstacionamiento] = P.[idEstacionamiento] AND B.[idBarrio] = E.[idBarrio] AND P.[disponible] = 1 AND P.[pago] = 0";
+                        string query = @"SELECT E.[descripcion], E.[calle], E.[altura], E.[datosAdicionales], B.[descripcion], E.[latitud] ,E.[longitud], TE.[idTipoEstadia]  FROM [Estacionamiento] E, [Plaza] P, [Barrio] B, [TipoEstadia] TE, [Tarifa] T where E.[idEstacionamiento] = P.[idEstacionamiento] AND B.[idBarrio] = E.[idBarrio] AND P.[disponible] = 1 AND P.[pago] = 0 and P.idTarifa = T.idTarifa and T.idTipoEstadia = TE.idTipoEstadia";
                         DataTable dt = this.GetData(query);
                         rptMarkers.DataSource = dt;
                         rptMarkers.DataBind();
@@ -33,6 +33,7 @@ namespace UI
                         if (dt.Rows.Count == 0)
                         {
                             lblErrorMapa.Text = "No se encuentran plazas disponibles";
+                            lblErrorMapa.Visible = true;
                         }
 
                     }

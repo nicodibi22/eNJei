@@ -42,7 +42,7 @@ namespace UI
                     gvDatosPersonales.HeaderRow.TableSection = TableRowSection.TableHeader;
 
                 }
-                if (Context.User.IsInRole("Propietario"))
+                if (Context.User.IsInRole("Propietario") || Context.User.IsInRole("Administrador"))
                 {
                     pnlTab3.Visible = false;
                 }
@@ -67,10 +67,12 @@ namespace UI
             pnlTab2.Visible = true;
 
             txtAliasEmp.Text = ((Label)gvDatosPersonales.Rows[e.NewEditIndex].FindControl("lblNroReg")).Text; //gvDatosPersonales.Rows[e.NewEditIndex].Cells[0].Text.ToString();
-            ddlTipoDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[1].Text.ToString();
-            txtNumeroDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[2].Text.ToString();
-            txtEmail.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[3].Text.ToString();
-            txtNroTelefono.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[5].Text.ToString();
+            txtApellido.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[0].Text.ToString().Replace("&nbsp;", "");
+            txtNombre.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[1].Text.ToString().Replace("&nbsp;", "");
+            ddlTipoDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[2].Text.ToString();
+            txtNumeroDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[3].Text.ToString().Replace("&nbsp;", "");
+            txtEmail.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[4].Text.ToString().Replace("&nbsp;", "");
+            txtNroTelefono.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[6].Text.ToString().Replace("&nbsp;", "");
             ddltipotelefono.SelectedValue = ((Label)gvDatosPersonales.Rows[e.NewEditIndex].FindControl("lblTipoTelefono")).Text;
             //txtAliasEmp.Text = ((Label)gvDatosPersonales.Rows[e.NewEditIndex].FindControl("lblAliasEmp")).Text;
 
@@ -88,11 +90,13 @@ namespace UI
         {
             try
             {
-                BIZDatosPersonales.Update(Convert.ToInt32(txtAliasEmp.Text), User.Identity.GetUserId(), ddlTipoDocumento.SelectedValue, txtNumeroDocumento.Text, txtEmail.Text, txtNroTelefono.Text, ddltipotelefono.SelectedValue, txtAliasEmp.Text);
+                BIZDatosPersonales.Update(User.Identity.GetUserId(), ddlTipoDocumento.SelectedValue, txtNumeroDocumento.Text, txtEmail.Text, txtNroTelefono.Text, ddltipotelefono.SelectedValue, string.Empty, txtNombre.Text, txtApellido.Text, string.Empty, string.Empty);
                 txtNumeroDocumento.Text = "";
                 txtEmail.Text = "";
                 txtNroTelefono.Text = "";
                 txtAliasEmp.Text = "";
+                txtApellido.Text = string.Empty;
+                txtNombre.Text = string.Empty;
                 pnlTab2.Visible = false;
                 pnlTab3.Visible = true;
                 pnlTab1.Visible = true;

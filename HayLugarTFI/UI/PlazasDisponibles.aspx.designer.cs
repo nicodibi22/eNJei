@@ -22,15 +22,6 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Button btnReservar;
         
         /// <summary>
-        /// rptMarkers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptMarkers;
-        
-        /// <summary>
         /// lblErrorMapa control.
         /// </summary>
         /// <remarks>
@@ -38,6 +29,15 @@ namespace UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblErrorMapa;
+        
+        /// <summary>
+        /// rptMarkers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptMarkers;
         
         /// <summary>
         /// GridView1 control.
