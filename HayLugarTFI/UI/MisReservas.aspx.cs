@@ -10,11 +10,15 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Net.Mail;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace UI
 {
     public partial class MisReservas : System.Web.UI.Page
     {
+        decimal Total = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated == true)
@@ -37,7 +41,7 @@ namespace UI
                 {
                     
                     gvReserva.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(true, null, null,"");
-                    gvReserva.DataBind();
+                    gvReserva.DataBind();                    
 
                     gvReservasPendientes.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(false, null, null, "");
                     gvReservasPendientes.DataBind();
@@ -201,21 +205,9 @@ namespace UI
 
         protected void gvReserva_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            pnlTab1.Visible = false;
-            pnlTab2.Visible = true;
-
-            txtIdReserva.Text = gvReserva.Rows[e.NewEditIndex].Cells[0].Text.ToString();
-            txtdescEstacionamiento.Text = gvReserva.Rows[e.NewEditIndex].Cells[1].Text.ToString();
-            txtCalle.Text = gvReserva.Rows[e.NewEditIndex].Cells[2].Text.ToString();
-            txtAltura.Text = gvReserva.Rows[e.NewEditIndex].Cells[3].Text.ToString();
-            txtdatosAdicionales.Text = gvReserva.Rows[e.NewEditIndex].Cells[4].Text.ToString();
-            txtdescBarrio.Text = gvReserva.Rows[e.NewEditIndex].Cells[5].Text.ToString();
-            txtUser.Text = gvReserva.Rows[e.NewEditIndex].Cells[6].Text.ToString();
-
-            e.Cancel = true;
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
-
-
+            
+            BIZReserva.MisReservasCancelar(int.Parse(gvReserva.Rows[e.NewEditIndex].Cells[0].Text.ToString()));
+            cargarReservas();
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -271,6 +263,9 @@ namespace UI
 
         protected void gvReservasPendientes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            string[] valores = e.CommandArgument.ToString().Split(new char[] { ',' });
+            Session["Nro_Reserva"] = valores[0];
+                
             if (e.CommandName == "Pagar")
             {
 
@@ -279,8 +274,6 @@ namespace UI
                 //string pPrecio = valores[1];
                 //Response.Redirect("PagoReserva.aspx?pnr=" + pNroReserva + "?ppr=" + pPrecio);
 
-                string[] valores = e.CommandArgument.ToString().Split(new char[] { ',' });
-                Session["Nro_Reserva"] = valores[0];
                 double importe = Convert.ToDouble(valores[1]);
                 Session["Importe_Reserva"] = importe;
                 Response.Redirect("PagoReserva");
@@ -288,7 +281,7 @@ namespace UI
 
 
             }
-
+            
         }
 
         protected void gvReservasPendientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -300,20 +293,21 @@ namespace UI
 
         protected void gvReservasPendientes_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            pnlTab1.Visible = false;
-            pnlTab2.Visible = true;
+            //pnlTab1.Visible = false;
+            //pnlTab2.Visible = true;
 
-            txtIdReserva.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[0].Text.ToString();
-            txtdescEstacionamiento.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[1].Text.ToString();
-            txtCalle.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[2].Text.ToString();
-            txtAltura.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[3].Text.ToString();
-            txtdatosAdicionales.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[4].Text.ToString();
-            txtdescBarrio.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[5].Text.ToString();
-            txtUser.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[6].Text.ToString();
+            //txtIdReserva.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[0].Text.ToString();
+            //txtdescEstacionamiento.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[1].Text.ToString();
+            //txtCalle.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[2].Text.ToString();
+            //txtAltura.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[3].Text.ToString();
+            //txtdatosAdicionales.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[4].Text.ToString();
+            //txtdescBarrio.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[5].Text.ToString();
+            //txtUser.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[6].Text.ToString();
 
-            e.Cancel = true;
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
-
+            //e.Cancel = true;
+            //ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
+            BIZReserva.MisReservasCancelar(int.Parse(gvReservasPendientes.Rows[e.NewEditIndex].Cells[0].Text.ToString()));
+            cargarReservas();
 
         }
 
@@ -335,6 +329,7 @@ namespace UI
 
         protected void btnFiltrar2_Click(object sender, EventArgs e)
         {
+            Total = 0;
             lblErrorFiltro2.Text = string.Empty;
             DateTime fechaDesde;
             DateTime fechaHasta;
@@ -345,6 +340,44 @@ namespace UI
 
                 gvReserva.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(true, fechaDesdeFiltro, fechaHastaFiltro, txtUsuario2.Text.Trim());
                 gvReserva.DataBind();
+            }
+        }
+
+        private DataTable GetData(string query)
+        {
+            //string conString = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+            string conString = BIZUtilites.getConnection();
+            //string conString = @"workstation id=haylugardbnew.mssql.somee.com;packet size=4096;user id=sbiondini_SQLLogin_2;pwd=z9j9uo7kaq;data source=haylugardbnew.mssql.somee.com;persist security info=False;initial catalog=haylugardbnew";
+
+
+            SqlCommand cmd = new SqlCommand(query);
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    cmd.Connection = con;
+
+                    sda.SelectCommand = cmd;
+                    using (DataTable dt = new DataTable())
+                    {
+                        sda.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
+
+        protected void gvReserva_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lblTotal = (Label)e.Row.FindControl("lblTarifa");
+                Total += Decimal.Parse(lblTotal.Text);
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                Label lblTotal = (Label)e.Row.FindControl("lblTotal");
+                lblTotal.Text = Total.ToString();
             }
         }
     }

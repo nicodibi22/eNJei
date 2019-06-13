@@ -131,10 +131,10 @@
                     var someFormattedDate = dd + '/' + mm + '/' + yyyy;
                     fechaEntrega = someFormattedDate;
 
-                    var pivotdistance = distance.substr(0, distance.length - 2);
-                    var pivot2 = pivotdistance.toFixed;
+                    var pivotdistance = parseInt(distance);//.substr(0, distance.length - 2);
+                    var pivot2 = pivotdistance;
                     var costoViaje =  pivot2 * precio;
-                    var costoTotal = costoViaje.toFixed();
+                    var costoTotal = costoViaje;
 
                     var dvDistance = document.getElementById("dvDistance");
                     dvDistance.innerHTML = "";

@@ -62,13 +62,13 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:Label ID="lblFechaDesde" runat="server" Text="Fecha Desde: "></asp:Label>
+                                    <asp:Label ID="lblFechaDesde" runat="server" Text="Fecha Reserva Desde: "></asp:Label>
                                 </td>
                                 <td>
                                     <asp:TextBox runat="server" ID="txtFechaDesde" type="date" CssClass="form-control" ></asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblFechaHasta" runat="server" Text="Fecha Hasta: "></asp:Label>
+                                    <asp:Label ID="lblFechaHasta" runat="server" Text="Hasta: "></asp:Label>
                                 </td>
                                 <td>
                                     <asp:TextBox runat="server" ID="txtFechaHasta" type="date" CssClass="form-control" ></asp:TextBox>
@@ -96,8 +96,8 @@
                         PageSize="50" CssClass="footable" Align="Center" OnRowCommand="gvReservasPendientes_RowCommand" OnRowEditing="gvReservasPendientes_RowEditing" OnPageIndexChanging="gvReservasPendientes_PageIndexChanging"  >
                         <Columns> 
 
-                            <asp:BoundField DataField="idPlaza" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Reserva" />
-
+                            <asp:BoundField DataField="idReserva" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Reserva" />
+                            <asp:BoundField DataField="fechaReserva" HeaderText="Fecha Reserva" DataFormatString="{0:dd/MM/yyyy}" />
                             <asp:BoundField DataField="descEstacionamiento" HeaderText="Tarifa" />
 
                             <asp:BoundField DataField="calle" HeaderText="Calle" />
@@ -110,12 +110,12 @@
 
                             <asp:BoundField DataField="UserName" ItemStyle-CssClass="filtro" HeaderText="Reservado por" />
 
-                            <asp:CommandField HeaderText="" EditText="Cancelar Reserva" ShowEditButton="true" ShowCancelButton="false" />
+                            <asp:CommandField HeaderText="" EditText="Cancelar Reserva" ShowEditButton="true" ShowCancelButton="false"  />
 
 
                             <asp:TemplateField HeaderText = "Reserva">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkPagarReserva" CommandName="Pagar" CommandArgument='<%# Eval("idPlaza")+","+Eval("descEstacionamiento")%>' Text="Pagar" runat="server" ></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkPagarReserva" CommandName="Pagar" CommandArgument='<%# Eval("idReserva")+","+Eval("descEstacionamiento")%>' Text="Pagar" runat="server" ></asp:LinkButton>
                                 </ItemTemplate>                    
                             </asp:TemplateField>                            
 
@@ -133,13 +133,13 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:Label ID="lblFechaDesde2" runat="server"  Text="Fecha Desde: "></asp:Label>
+                                    <asp:Label ID="lblFechaDesde2" runat="server"  Text="Fecha Reserva Desde: "></asp:Label>
                                 </td>
                                 <td>
                                     <asp:TextBox runat="server" ID="txtFechaDesde2" CssClass="form-control" type="date" ></asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblFechaHasta2" runat="server" Text="Fecha Hasta: "></asp:Label>
+                                    <asp:Label ID="lblFechaHasta2" runat="server" Text="Hasta: "></asp:Label>
                                 </td>
                                 <td>
                                     <asp:TextBox runat="server" ID="txtFechaHasta2" type="date" CssClass="form-control" ></asp:TextBox>
@@ -163,12 +163,29 @@
                         <div>
                         <%--gvReserva: acá listo las reservas pagas--%>
                     <asp:GridView ID="gvReserva" runat="server" AutoGenerateColumns="False" AllowPaging="true"
-                        PageSize="50" CssClass="footable" Align="Center" OnRowCommand="gvReserva_RowCommand" OnPageIndexChanging="gvReserva_PageIndexChanging" OnRowEditing="gvReserva_RowEditing">
+                        ShowFooter="true" PageSize="50" CssClass="footable" Align="Center" OnRowCommand="gvReserva_RowCommand" OnPageIndexChanging="gvReserva_PageIndexChanging" OnRowEditing="gvReserva_RowEditing"
+                        OnRowDataBound="gvReserva_RowDataBound">
                         <Columns> 
 
-                            <asp:BoundField DataField="idPlaza" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Reserva" />
-
-                            <asp:BoundField DataField="descEstacionamiento" HeaderText="Tarifa" />
+                            <asp:BoundField DataField="idReserva" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Reserva" />
+                            <asp:BoundField DataField="fechaReserva" HeaderText="Fecha Reserva" DataFormatString="{0:dd/MM/yyyy}" />
+                            
+                            <asp:TemplateField HeaderText="Fecha Pago">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblFechaPago"  Text='<%# Eval("fechaPago","{0:d}") %>' runat="server" ></asp:Label>
+                                </ItemTemplate> 
+                                <FooterTemplate>
+                                  <asp:Label ID="lblTotalTexto" ForeColor="Red" Font-Bold="true" Text="Total:" runat="server" ></asp:Label>
+                                  </FooterTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Tarifa">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblTarifa" Text='<%# Eval("descEstacionamiento")%>' runat="server" ></asp:Label>
+                                </ItemTemplate> 
+                                <FooterTemplate>
+                                  <asp:Label ID="lblTotal" ForeColor="Red" Font-Bold="true"  runat="server" ></asp:Label>
+                                  </FooterTemplate>
+                            </asp:TemplateField>
 
                             <asp:BoundField DataField="calle" HeaderText="Calle" />
 
@@ -182,7 +199,7 @@
                             
                             <asp:TemplateField HeaderText = "Reserva">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkImprimirReserva" CommandName="ImprimirReserva" CommandArgument='<%# Eval("idPlaza")%>' Text="Descargar" runat="server" ></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkImprimirReserva" CommandName="ImprimirReserva" CommandArgument='<%# Eval("idReserva")%>' Text="Descargar" runat="server" ></asp:LinkButton>
                                 </ItemTemplate>                    
                             </asp:TemplateField>                            
 

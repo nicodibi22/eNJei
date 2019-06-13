@@ -105,7 +105,7 @@
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblIdEstac" CssClass="col-md-2 control-label">Identificador del estacionamiento</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtIdEstac" size="10" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="false" ID="txtIdEstac" size="10" type="number" CssClass="textAreaBoxInputs" />
 								    </div>
 							    </div>
 

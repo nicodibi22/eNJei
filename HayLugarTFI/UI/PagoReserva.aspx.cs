@@ -40,14 +40,15 @@ namespace UI
                     {
 
                         SaldoCuentaCorriente = decimal.Parse(dataset.Tables[0].Rows[0].ItemArray[1].ToString());
-
-                        if (SaldoCuentaCorriente > 180)
+                        lblCCNro.Text = dataset.Tables[0].Rows[0].ItemArray[0].ToString();
+                        lblTotalSaldo.Text = dataset.Tables[0].Rows[0].ItemArray[1].ToString();
+                        /*if (SaldoCuentaCorriente > 180)
                         {
                             ddlFormaPago.Items.Add(new ListItem("Cuenta Corriente", "ddlCC"));
 
                             lblCCNro.Text = dataset.Tables[0].Rows[0].ItemArray[0].ToString();
                             lblTotalSaldo.Text = dataset.Tables[0].Rows[0].ItemArray[1].ToString();
-                        }
+                        }*/
 
                     }
 
@@ -94,13 +95,17 @@ namespace UI
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
+            lblErrorMensaje.Visible = false;
             try
             {
-
+                bool pagoReserva = false;
                 if (ddlFormaPago.SelectedValue == "0")
                 {
                     string message = "Debe seleccionar una forma de pago.";
                     ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + message + "');", true);
+
+                    lblErrorMensaje.Text = message;
+                    lblErrorMensaje.Visible = true;
                     panelTC.Visible = false;
                     panelCC.Visible = false;
                 }
@@ -111,7 +116,19 @@ namespace UI
                     {
                         btnConfirmar.ValidationGroup = "ValTarjetaCredito";
                         //consumir servicio
-                        BIZOperacionesTC.Insert(txtNroTarjeta.Text, Convert.ToDateTime("01/" + txtMes.Text + "/" + txtAnio.Text), Convert.ToInt32(txtCodSeg.Text), Convert.ToInt32(Session["Nro_Reserva"].ToString()), DateTime.Now, "", User.Identity.GetUserId());
+                        if(TarjetaValida())
+                        {
+                            BIZOperacionesTC.Insert(txtNroTarjeta.Text, Convert.ToDateTime("01/" + txtMes.Text + "/" + txtAnio.Text), Convert.ToInt32(txtCodSeg.Text), Convert.ToInt32(Session["Nro_Reserva"].ToString()), DateTime.Now, "", User.Identity.GetUserId());
+                            pagoReserva = true;
+                        }
+                        else
+                        {
+                            string message = "Verifique los datos de la tarjeta ingresada";
+                            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + message + "');", true);
+                            lblErrorMensaje.Text = message;
+                            lblErrorMensaje.Visible = true;
+                        }
+                        
                     }
                     else
                     {
@@ -122,11 +139,15 @@ namespace UI
                             {
                                 BIZCuentaCorriente.UpdateSaldo(Convert.ToInt32(lblCCNro.Text), Convert.ToDecimal(Session["Importe_Reserva"].ToString()));
                                 BIZOperacionesCtaCte.Insert(Convert.ToInt32(lblCCNro.Text), Convert.ToDecimal(Session["Importe_Reserva"].ToString()), DateTime.Now, "Pago de la reserva Nro: " + Session["Nro_Reserva"].ToString(), "DEBITO");
+                                pagoReserva = true;
                             }
                             else
                             {
-                                string message = "El saldo de su cuenta no es suficiente para pagar la reserva.";
-                                ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + message + "');", true);
+                                //string message = "El saldo de su cuenta no es suficiente para pagar la reserva.";
+                                //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + message + "');", true);
+
+                                lblSaldoInsuficiente.Visible = true;
+
                             }
 
                         }
@@ -136,14 +157,16 @@ namespace UI
                         }
                     }
                 }
-
-                BIZReserva.PlazaUpdateStatePayment(Convert.ToInt32(Session["Nro_Reserva"].ToString()), true);
-
-                panelTotal.Visible = false;
-                lblPyEconfirmado.Visible = true;
-                btnContinuar.Visible = true;
-                btnMisReservas.Visible = true;
-
+                if (pagoReserva)
+                {
+                    //BIZReserva.PlazaUpdateStatePayment(Convert.ToInt32(Session["Nro_Reserva"].ToString()), true);
+                    BIZReserva.ReservaUpdateStatePayment(Convert.ToInt32(Session["Nro_Reserva"].ToString()), true);
+                    panelTotal.Visible = false;
+                    lblPyEconfirmado.Visible = true;
+                    btnContinuar.Visible = true;
+                    btnMisReservas.Visible = true;
+                }
+                
             }
             catch (Exception)
             {
@@ -152,6 +175,24 @@ namespace UI
                 Response.Redirect("MisReservas.aspx");
             }
 
+        }
+
+        private bool TarjetaValida()
+        {
+            try
+            {
+                if (int.Parse(txtAnio.Text) < DateTime.Today.Year)
+                    return false;
+                if (int.Parse(txtAnio.Text) == DateTime.Today.Year && int.Parse(txtMes.Text) > DateTime.Today.Month)
+                    return false;
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            
         }
 
         protected void btnContinuar_Click(object sender, EventArgs e)

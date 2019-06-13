@@ -79,6 +79,18 @@ namespace BIZ
             }
         }
 
+        public static void ReservaUpdateStatePayment(int idReserva, bool pago)
+        {
+            try
+            {
+                DALReserva.ReservaUpdateStatePayment(idReserva, pago);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         /// <summary>
         /// Suprime un registro de la tabla Reserva por una clave primaria(primary key).
@@ -275,5 +287,17 @@ namespace BIZ
             }
         }
 
+        public static void MisReservasCancelar(int idReserva)
+        {
+            try
+            {
+                DALReserva.MisReservasCancelar(idReserva);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

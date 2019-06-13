@@ -25,8 +25,19 @@ namespace UI
                 {
                     if (!this.IsPostBack)
                     {
+                        ddlZona.DataSource = BIZZona.SelectAll();
+                        ddlZona.DataBind();
                         string query = @"SELECT E.[descripcion], E.[calle], E.[altura], E.[datosAdicionales], B.[descripcion], E.[latitud] ,E.[longitud], TE.[idTipoEstadia]  FROM [Estacionamiento] E, [Plaza] P, [Barrio] B, [TipoEstadia] TE, [Tarifa] T where E.[idEstacionamiento] = P.[idEstacionamiento] AND B.[idBarrio] = E.[idBarrio] AND P.[disponible] = 1 AND P.[pago] = 0 and P.idTarifa = T.idTarifa and T.idTipoEstadia = TE.idTipoEstadia";
                         DataTable dt = this.GetData(query);
+
+                        int? idTipoEstadia = !string.IsNullOrEmpty(ddlTipoAlquiler.SelectedValue) ? int.Parse(ddlTipoAlquiler.SelectedValue) : (int?)null;
+                        int? idZona = int.Parse(ddlZona.SelectedValue);
+                        DateTime? fechaDesde = !string.IsNullOrEmpty(txtFechaDesde.Text) ? Convert.ToDateTime(txtFechaDesde.Text) : (DateTime?)null;
+                        DateTime? fechaHasta = !string.IsNullOrEmpty(txtFechaHasta.Text) ? Convert.ToDateTime(txtFechaHasta.Text) : (DateTime?)null;
+
+                        
+                        dt = BIZPlaza.SelectAll(idTipoEstadia, idZona, fechaDesde, fechaHasta).Tables[0];
+                        Session["PlazasFiltradas"] = dt;
                         rptMarkers.DataSource = dt;
                         rptMarkers.DataBind();
 
@@ -35,6 +46,8 @@ namespace UI
                             lblErrorMapa.Text = "No se encuentran plazas disponibles";
                             lblErrorMapa.Visible = true;
                         }
+                        
+                        
 
                     }
                 }
@@ -78,6 +91,50 @@ namespace UI
         protected void btnReservar_Click(object sender, EventArgs e)
         {
             Response.Redirect("ModificarPlaza.aspx");
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            int? idTipoEstadia = !string.IsNullOrEmpty(ddlTipoAlquiler.SelectedValue) ? int.Parse(ddlTipoAlquiler.SelectedValue) : (int?)null;
+            int? idZona = int.Parse(ddlZona.SelectedValue);
+            DateTime? fechaDesde;
+            DateTime? fechaHasta;
+            if (idTipoEstadia == 1)
+            {
+                fechaDesde = !string.IsNullOrEmpty(txtFechaDesde.Text) ? Convert.ToDateTime(txtFechaDesde.Text) : (DateTime?)null;
+                fechaHasta = !string.IsNullOrEmpty(txtFechaHasta.Text) ? Convert.ToDateTime(txtFechaHasta.Text) : (DateTime?)null;
+            }
+            else
+            {
+                fechaDesde = !string.IsNullOrEmpty(txtFecha.Text) ? Convert.ToDateTime(txtFecha.Text) : (DateTime?)null;
+                fechaHasta = !string.IsNullOrEmpty(txtFecha.Text) ? Convert.ToDateTime(txtFecha.Text) : (DateTime?)null;
+            }
+
+            DataTable dt = BIZPlaza.SelectAll(idTipoEstadia, idZona, fechaDesde, fechaHasta).Tables[0];
+            Session["PlazasFiltradas"] = dt;
+            rptMarkers.DataSource = dt;
+            rptMarkers.DataBind();
+
+            if (dt.Rows.Count == 0)
+            {
+                lblErrorMapa.Text = "No se encuentran plazas disponibles";
+                lblErrorMapa.Visible = true;
+            }
+        }
+
+        protected void ddlTipoAlquiler_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlTipoAlquiler.SelectedValue == "1")
+            {
+
+                divDiario.Visible = true;
+                divHora.Visible = false;
+            }
+            else
+            {
+                divDiario.Visible = false;
+                divHora.Visible = true;
+            }
         }
     }
 }

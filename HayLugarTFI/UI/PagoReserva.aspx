@@ -35,7 +35,7 @@
         <asp:DropDownList ID="ddlFormaPago" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlFormaPago_SelectedIndexChanged">
             <asp:ListItem Selected="True" Text="" Value="0" />
             <asp:ListItem Text="Tarjeta de crédito" Value="ddlTC" />
-<%--            <asp:ListItem Text="Cuenta Corriente" Value="ddlCC" />--%>
+            <asp:ListItem Text="Cuenta Corriente" Value="ddlCC" />
         </asp:DropDownList>    <br /><br />
 
         <asp:Panel ID="panelCC" Visible="false" runat="server">
@@ -101,6 +101,7 @@
 
      <br /><br />       
     <asp:Label ID="lblPyEconfirmado" Visible="false" runat="server" Text="Hemos registrado tu pago."></asp:Label><br /><br />
+    <asp:Label ID="lblErrorMensaje" Visible="false" runat="server" ForeColor="Red" Text=""></asp:Label><br /><br />
     <asp:Button ID="btnContinuar" CssClass="btn btn-default" Visible="false" OnClick="btnContinuar_Click"  runat="server" Text="Continuar" />
     <asp:Button ID="btnMisReservas" CssClass="btn btn-default" Visible="false"  OnClick="btnMisReservas_Click" runat="server" Text="Ir a mis reservas" />
     <br />

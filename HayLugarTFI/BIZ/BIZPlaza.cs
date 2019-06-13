@@ -28,7 +28,7 @@ namespace BIZ
         {
             try
             {
-                return BIZPlaza.Insert(idEstacionamiento, idUsuario, idTarifa, disponible);
+                return DALPlaza.Insert(idEstacionamiento, idUsuario, idTarifa, disponible, false);
             }
             catch (Exception)
             {
@@ -188,11 +188,24 @@ namespace BIZ
         /// <history>
         /// 	[JEISOLO]	23/09/2017 22:58:17
         /// </history>
-        public static DataSet SelectAll()
+        public static DataSet SelectAll(int? idTipoEstadia, int? idZona, DateTime? fechaDesde, DateTime? fechaHasta)
         {
             try
             {
-                return DALPlaza.SelectAll();
+                return DALPlaza.SelectAll(idTipoEstadia, idZona, fechaDesde, fechaHasta);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static DataSet SelectDisponibilidadByPlaza(int? idPlaza, DateTime? fechaDesde, DateTime? fechaHasta)
+        {
+            try
+            {
+                return DALPlaza.SelectDisponibilidadByPlaza(idPlaza, fechaDesde, fechaHasta);
             }
             catch (Exception)
             {

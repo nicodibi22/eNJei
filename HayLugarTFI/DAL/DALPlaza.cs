@@ -211,14 +211,32 @@ namespace DAL
 		/// <history>
 		/// 	[JEISOLO]	23/09/2017 22:58:17
 		/// </history>
-		public static DataSet  SelectAll()
+		public static DataSet  SelectAll(int? idTipoEstadia, int? idZona, DateTime? fechaDesde, DateTime? fechaHasta)
 		{
 			Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
             //DbCommand myCommand = myDatabase.GetStoredProcCommand("PlazaSelectAll");
             DbCommand myCommand = myDatabase.GetStoredProcCommand("PlazaSelectAllAvailable");
 
+            myDatabase.AddInParameter(myCommand, "@idTipoEstadia", DbType.Int32, idTipoEstadia);
+            myDatabase.AddInParameter(myCommand, "@idZona", DbType.Int32, idZona);
+            myDatabase.AddInParameter(myCommand, "@fechaDesde", DbType.Date, fechaDesde);
+            myDatabase.AddInParameter(myCommand, "@fechaHasta", DbType.Date, fechaHasta);
+
             return myDatabase.ExecuteDataSet(myCommand);
 		}
+
+        public static DataSet SelectDisponibilidadByPlaza(int? idPlaza, DateTime? fechaDesde, DateTime? fechaHasta)
+        {
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            //DbCommand myCommand = myDatabase.GetStoredProcCommand("PlazaSelectAll");
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("PlazaSelectAvailableByPlaza");
+
+            myDatabase.AddInParameter(myCommand, "@idPlaza", DbType.Int32, idPlaza);
+            myDatabase.AddInParameter(myCommand, "@fechaDesde", DbType.Date, fechaDesde);
+            myDatabase.AddInParameter(myCommand, "@fechaHasta", DbType.Date, fechaHasta);
+
+            return myDatabase.ExecuteDataSet(myCommand);
+        }
 
 		/// <summary>
 		/// Selecciona todos los registros de la tabla Plaza a través de una foreign key.

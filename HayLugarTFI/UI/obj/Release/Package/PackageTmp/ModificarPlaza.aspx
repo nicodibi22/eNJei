@@ -6,6 +6,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/0.1.0/css/footable.min.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/0.1.0/js/footable.min.js"></script>
+
         <script type="text/javascript">
             $(function () {
                 $('[id*=gvPlaza]').footable();
@@ -50,10 +51,10 @@
                             <asp:BoundField DataField="idPlaza" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Plaza" />
 
 <%--                            <asp:BoundField DataField="descEstacionamiento" HeaderText="Tarifa" />--%>
-
+                            <asp:BoundField DataField="tipoAlquiler" HeaderText="Tipo Alquiler" />
                         <asp:TemplateField  HeaderText = "Tarifa" ItemStyle-HorizontalAlign="Right">
                             <ItemTemplate>
-                                <asp:Label ID="lblTarifa" style="width: 45px;" Text='<%# String.Format("${0:n2}", Convert.ToDecimal( Eval("descEstacionamiento"))) %>' runat="server" ></asp:Label>
+                                <asp:Label ID="lblTarifa" style="width: 45px;" Text='<%# String.Format("${0:n2}", Convert.ToDecimal( Eval("descripcion"))) %>' runat="server" ></asp:Label>
                             </ItemTemplate>                    
                         </asp:TemplateField>                            
 
@@ -65,6 +66,11 @@
 
                             <asp:BoundField DataField="descBarrio" HeaderText="Barrio" />
                             
+                            <asp:TemplateField  HeaderText = "TipoEstadiaId" Visible="false" ItemStyle-HorizontalAlign="Right">
+                            <ItemTemplate>
+                                <asp:Label ID="lblTipoEstadiaId" style="width: 45px;" Text='<%#  Eval("idTipoEstadia") %>' runat="server" ></asp:Label>
+                            </ItemTemplate>                    
+                        </asp:TemplateField>                            
                             <asp:CommandField HeaderText="" EditText="Reservar" ShowEditButton="true" ShowCancelButton="false" />
 
                         </Columns>
@@ -72,6 +78,7 @@
                     </asp:GridView>
                         </div>
                         <br />
+                        <asp:Label ID="lblMensajeError" runat="server"></asp:Label>
                     </asp:Panel>
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -90,29 +97,29 @@
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblIdPlaza" CssClass="col-md-2 control-label">Identificador de la Plaza</asp:Label>
-								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtIdPlaza" size="10" CssClass="textAreaBoxInputs" />
+								    <div class="col-md-1">
+									    <asp:TextBox runat="server" Enabled="false" ID="txtIdPlaza" size="10" CssClass="form-control" />
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lbldescEstacionamiento" CssClass="col-md-2 control-label">Estacionamiento</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtdescEstacionamiento" size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="false" ID="txtdescEstacionamiento" size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblCalle" CssClass="col-md-2 control-label">Calle</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtCalle" size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="false" ID="txtCalle" size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblAltura" CssClass="col-md-2 control-label">Altura</asp:Label>
-								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtAltura" size="10" CssClass="textAreaBoxInputs" />
+								    <div class="col-md-2">
+									    <asp:TextBox runat="server" Enabled="false" ID="txtAltura" size="10" CssClass="form-control" />
 								    </div>
 							    </div>
 
@@ -120,17 +127,62 @@
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lbldatosAdicionales" CssClass="col-md-2 control-label">Datos Adicionales</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtdatosAdicionales" size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="false" ID="txtdatosAdicionales" size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lbldescBarrio" CssClass="col-md-2 control-label">Barrio</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtdescBarrio" size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="false" ID="txtdescBarrio" size="80" CssClass="form-control" />
+								    </div>
+							    </div>
+                                <div class="form-group">
+                                    <asp:Label runat="server" ID="lblTipoAlquiler" CssClass="col-md-2 control-label">Tipo Alquiler</asp:Label>
+								    <div class="col-md-2">
+                                        <asp:DropDownList ID="ddlTipoAlquiler" Enabled="false" runat="server" CssClass="form-control" >
+                                            <asp:ListItem Text="" Value=""></asp:ListItem>
+                                            <asp:ListItem Text="Diario" Value="1"></asp:ListItem>
+                                            <asp:ListItem Text="Hora" Value="2"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                                <div id="divDiario" runat="server">
+                                <div class="form-group">
+								    <asp:Label runat="server" ID="lblFechaDesde" CssClass="col-md-2 control-label">Fecha Desde</asp:Label>
+								    <div class="col-md-2">
+									    <asp:TextBox runat="server" ID="txtFechaDesde" type="date" size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
+                                <div class="form-group">
+								    <asp:Label runat="server" ID="lblFechaHasta" CssClass="col-md-2 control-label">Fecha Hasta</asp:Label>
+								    <div class="col-md-2">
+									    <asp:TextBox runat="server" ID="txtFechaHasta" type="date" size="80" CssClass="form-control" />
+								    </div>
+							    </div>
+                                    </div>
+                            <div id="divHora" runat="server">
+                                <div class="form-group">
+								    <asp:Label runat="server" ID="lblFecha" CssClass="col-md-2 control-label">Fecha</asp:Label>
+								    <div class="col-md-2">
+									    <asp:TextBox runat="server" ID="txtFecha" type="date" size="80" CssClass="form-control" />
+								    </div>
+							    </div>
+                            <div class="form-group" >
+								    <asp:Label runat="server" ID="lblHoraDesde" CssClass="col-md-2 control-label">Hora Desde</asp:Label>
+								    <div class="col-md-2">
+									    <asp:TextBox ID="txtHoraDesde" runat="server" type="time" step="3600" size="80"  CssClass="form-control"></asp:TextBox>
+								    </div>
+							    </div>
+                                <div class="form-group">
+								    <asp:Label runat="server" ID="lblHoraHasta" CssClass="col-md-2 control-label">Hora Hasta</asp:Label>
+								    <div class="col-md-2">
+									    <asp:TextBox ID="txtHoraHasta" runat="server" type="time" step="3600" size="80" CssClass="form-control"></asp:TextBox>
+								    </div>
+							    </div>
+
+                                </div>
                         </div>
                     </asp:Panel>
                 </ContentTemplate>

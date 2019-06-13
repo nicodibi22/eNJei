@@ -83,13 +83,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/04/2019 21:57:09</publishTime>
     </File>
     <File Include="bin/BIZ.dll">
-      <publishTime>05/25/2019 23:46:54</publishTime>
+      <publishTime>06/12/2019 01:03:55</publishTime>
     </File>
     <File Include="bin/CuteWebUI.AjaxUploader.dll">
       <publishTime>01/31/2019 15:18:10</publishTime>
     </File>
     <File Include="bin/DAL.dll">
-      <publishTime>05/25/2019 23:46:53</publishTime>
+      <publishTime>06/12/2019 01:03:55</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>05/04/2019 21:57:09</publishTime>
@@ -251,7 +251,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/04/2019 21:57:10</publishTime>
     </File>
     <File Include="bin/UI.dll">
-      <publishTime>05/26/2019 16:29:04</publishTime>
+      <publishTime>06/12/2019 02:11:41</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/04/2019 21:57:11</publishTime>
@@ -266,7 +266,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/04/2019 21:57:07</publishTime>
     </File>
     <File Include="CalculoEnvio.aspx">
-      <publishTime>05/18/2019 22:51:28</publishTime>
+      <publishTime>05/26/2019 17:21:04</publishTime>
     </File>
     <File Include="CallWebService.aspx">
       <publishTime>05/04/2019 21:57:07</publishTime>
@@ -374,10 +374,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/22/2019 09:02:59</publishTime>
     </File>
     <File Include="MisReservas.aspx">
-      <publishTime>05/26/2019 16:31:43</publishTime>
+      <publishTime>06/12/2019 02:10:39</publishTime>
     </File>
     <File Include="ModificarPlaza.aspx">
-      <publishTime>05/04/2019 21:57:08</publishTime>
+      <publishTime>06/11/2019 23:32:38</publishTime>
     </File>
     <File Include="otro/bootstrap.min.css">
       <publishTime>05/04/2019 21:57:09</publishTime>
@@ -392,13 +392,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/04/2019 21:57:09</publishTime>
     </File>
     <File Include="PagoReserva.aspx">
-      <publishTime>05/04/2019 21:57:08</publishTime>
+      <publishTime>06/12/2019 00:58:37</publishTime>
     </File>
     <File Include="pepe.aspx">
       <publishTime>05/04/2019 21:57:09</publishTime>
     </File>
     <File Include="PlazasDisponibles.aspx">
-      <publishTime>05/22/2019 09:56:46</publishTime>
+      <publishTime>06/12/2019 01:50:31</publishTime>
     </File>
     <File Include="README.md">
       <publishTime>05/04/2019 21:57:08</publishTime>
@@ -740,7 +740,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/04/2019 21:57:08</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/22/2019 09:57:54</publishTime>
+      <publishTime>06/12/2019 02:11:46</publishTime>
     </File>
     <File Include="Zona.aspx">
       <publishTime>05/04/2019 21:57:08</publishTime>

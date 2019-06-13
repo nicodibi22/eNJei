@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Net.Mail;
 using System.Text;
+using System.Data;
 
 namespace UI
 {
@@ -37,8 +38,9 @@ namespace UI
         {
             try
             {
+
                 CultureInfo us = new CultureInfo("es-ES");
-                gvPlaza.DataSource = BIZPlaza.SelectAll();
+                gvPlaza.DataSource = Session["PlazasFiltradas"];//BIZPlaza.SelectAll(idTipoEstadia, idZona, fechaDesde, fechaHasta);
                 gvPlaza.DataBind();
 
                 if (gvPlaza.Rows.Count > 0)
@@ -107,12 +109,65 @@ namespace UI
         {
             try
             {
+                DataSet dsPlazaDisponible;
+                if (ddlTipoAlquiler.SelectedValue == "1")
+                    dsPlazaDisponible  = BIZPlaza.SelectDisponibilidadByPlaza(int.Parse(txtIdPlaza.Text), Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text));
+                else
+                    dsPlazaDisponible = BIZPlaza.SelectDisponibilidadByPlaza(int.Parse(txtIdPlaza.Text), Convert.ToDateTime(txtFecha.Text), Convert.ToDateTime(txtFecha.Text));
+                if (dsPlazaDisponible.Tables.Count > 0 && dsPlazaDisponible.Tables[0].Rows.Count > 0)
+                {
+                    if (ddlTipoAlquiler.SelectedValue == "1")
+                    {
+                        lblMensaje.Text = "La plaza no está disponible en la fecha seleccionada";
+                        lblMensaje.Visible = true;
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
+                        return;
+                    }
+                    else
+                    {
+                        foreach(DataRow dr in dsPlazaDisponible.Tables[0].Rows)
+                        {
+                            int horaInicio = int.Parse(dr["horaDesde"].ToString().Substring(0, 2)) * 100;
+                            int horaFin = int.Parse(dr["horaHasta"].ToString().Substring(0, 2)) * 100;
 
-                BIZPlaza.UpdateAvailable(Convert.ToInt32(txtIdPlaza.Text), User.Identity.GetUserId());
+                            int horaInicioSeleccionada = int.Parse(txtHoraDesde.Text.Substring(0, 2)) * 100 + 1;
+                            int horaFinSeleccionada = int.Parse(txtHoraHasta.Text.Substring(0, 2)) * 100 -1;
 
-                //envio mail
-                Send_Info_Reserva(User.Identity.GetUserId());
+                            if (horaInicioSeleccionada > horaInicio && horaInicioSeleccionada < horaFin)
+                            {
+                                lblMensaje.Text = "La plaza no está disponible en la hora seleccionada";
+                                lblMensaje.Visible = true;
+                                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
+                                return; 
+                            }
+                            else if (horaFinSeleccionada > horaInicio && horaFinSeleccionada < horaFin)
+                            {
+                                lblMensaje.Text = "La plaza no está disponible en la hora seleccionada";
+                                lblMensaje.Visible = true;
+                                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
+                                return; 
+                            }
+                        }
+                    }
+                }
                 
+                //BIZPlaza.UpdateAvailable(Convert.ToInt32(txtIdPlaza.Text), User.Identity.GetUserId());
+                if (ddlTipoAlquiler.SelectedValue == "1")
+                    BIZReserva.Insert(Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text), null, null, int.Parse(txtIdPlaza.Text), User.Identity.GetUserId());
+                else
+                    BIZReserva.Insert(Convert.ToDateTime(txtFecha.Text), Convert.ToDateTime(txtFecha.Text), txtHoraDesde.Text, txtHoraHasta.Text, int.Parse(txtIdPlaza.Text), User.Identity.GetUserId());
+                //envio mail
+                try
+                {
+                    Send_Info_Reserva(User.Identity.GetUserId());
+                }
+                catch (Exception)
+                {
+
+                    //Si no envia mail no arrojo error.
+                }
+
+
                 txtIdPlaza.Text = "";
                 txtdescEstacionamiento.Text = "";
                 txtdescBarrio.Text = "";
@@ -127,9 +182,12 @@ namespace UI
                 pnlTab1.Visible = true;
                 //divPrecio.Visible = false;
                 lblMensaje.Text = string.Empty;
-                cargarPlazas();
+                lblMensajeError.Text = string.Empty;
+                //cargarPlazas();
+                Response.Redirect("~/MisReservas.aspx", false);
+                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 Response.Redirect("~/ErrorPage.aspx");
             }
@@ -138,21 +196,57 @@ namespace UI
 
         protected void gvPlaza_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            pnlTab1.Visible = false;
-            pnlTab2.Visible = true;
+            lblMensajeError.Text = string.Empty;
 
-            txtIdPlaza.Text = gvPlaza.Rows[e.NewEditIndex].Cells[0].Text.ToString();
-            //txtdescEstacionamiento.Text = gvPlaza.Rows[e.NewEditIndex].Cells[1].Text.ToString();
-            txtdescEstacionamiento.Text = ((Label)gvPlaza.Rows[e.NewEditIndex].FindControl("lblTarifa")).Text.Substring(1);
+            DataSet dsPagosPendientes = BIZReserva.MisReservasSelectByPagoStateAndUserId(false, User.Identity.GetUserId());
+            if (dsPagosPendientes.Tables.Count > 0 && dsPagosPendientes.Tables[0].Rows.Count > 0)
+            {
+                lblMensajeError.Text = "No puede generar la reserva: Tiene reserva pendiente de pago.";
+            }
+            else
+            { 
+                pnlTab1.Visible = false;
+                pnlTab2.Visible = true;
 
-            txtCalle.Text = gvPlaza.Rows[e.NewEditIndex].Cells[2].Text.ToString();
-            txtAltura.Text = gvPlaza.Rows[e.NewEditIndex].Cells[3].Text.ToString();
-            txtdatosAdicionales.Text = gvPlaza.Rows[e.NewEditIndex].Cells[4].Text.ToString();
-            txtdescBarrio.Text = gvPlaza.Rows[e.NewEditIndex].Cells[5].Text.ToString();
+                txtIdPlaza.Text = gvPlaza.Rows[e.NewEditIndex].Cells[0].Text.ToString();
+                //txtdescEstacionamiento.Text = gvPlaza.Rows[e.NewEditIndex].Cells[1].Text.ToString();
+                txtdescEstacionamiento.Text = ((Label)gvPlaza.Rows[e.NewEditIndex].FindControl("lblTarifa")).Text.Substring(1);
+                ddlTipoAlquiler.SelectedValue = gvPlaza.Rows[e.NewEditIndex].Cells[1].Text.ToString().Equals("Diario") ? "1" : "2";//((Label)gvPlaza.Rows[e.NewEditIndex].FindControl("lblTipoEstadiaId")).Text.Substring(1);
+                txtCalle.Text = gvPlaza.Rows[e.NewEditIndex].Cells[3].Text.ToString();
+                txtAltura.Text = gvPlaza.Rows[e.NewEditIndex].Cells[4].Text.ToString();
+                txtdatosAdicionales.Text = gvPlaza.Rows[e.NewEditIndex].Cells[5].Text.ToString();
+                txtdescBarrio.Text = gvPlaza.Rows[e.NewEditIndex].Cells[6].Text.ToString();
+                
+
+                if (Request.Browser.Browser == "Chrome")
+                {
+                    txtFecha.Text = DateTime.Today.ToString("yyyy-MM-dd");
+                    txtFechaDesde.Text = DateTime.Today.ToString("yyyy-MM-dd");
+                    txtFechaHasta.Text = DateTime.Today.ToString("yyyy-MM-dd");
+
+                }
+                else
+                {
+                    txtFecha.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                    txtFechaDesde.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                    txtFechaHasta.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                
+                }
+
+                if (ddlTipoAlquiler.SelectedValue == "1")
+                {
+                    divDiario.Visible = true;
+                    divHora.Visible = false;
+                }
+                else
+                {
+                    divDiario.Visible = false;
+                    divHora.Visible = true;
+                }
+
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
+            }
             e.Cancel = true;
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
-
-
         }
 
         protected void gvPlaza_PageIndexChanging(object sender, GridViewPageEventArgs e)

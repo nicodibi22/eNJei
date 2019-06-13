@@ -2,7 +2,51 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
         <h2>Plazas disponibles</h2>
-
+        <asp:UpdatePanel runat="server" ID="upFiltros">
+            <ContentTemplate>
+                <div class="row">
+                    <div class="col-md-2">
+                        <asp:Label ID="lblTipoAlquiler" Text="Tipo Alquiler" runat="server"></asp:Label>
+                        <asp:DropDownList ID="ddlTipoAlquiler" runat="server" AutoPostBack="true"  CssClass="form-control" OnSelectedIndexChanged="ddlTipoAlquiler_SelectedIndexChanged" >
+                            <asp:ListItem Text="" Value=""></asp:ListItem>
+                            <asp:ListItem Text="Diario" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="Hora" Value="2"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div id="divDiario" runat="server" visible="false">
+                        <div class="col-md-2">
+                            <asp:Label ID="lblFechaDesde" Text="Fecha Desde" runat="server"></asp:Label>
+                            <asp:TextBox ID="txtFechaDesde" runat="server" type="date" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="col-md-2">
+                            <asp:Label ID="lblFechaHasta" Text="Fecha Hasta" runat="server"></asp:Label>
+                            <asp:TextBox ID="txtFechaHasta" runat="server" type="date" CssClass="form-control"></asp:TextBox>
+                        </div>
+            
+                    </div>
+                    <div id="divHora" runat="server" visible="false">
+                        <div class="col-md-2">
+                            <asp:Label ID="lblFecha" Text="Fecha" runat="server"></asp:Label>
+                            <asp:TextBox ID="txtFecha" runat="server" type="date" CssClass="form-control"></asp:TextBox>
+                        </div>
+            
+                    </div>       
+                    <div class="col-md-2">
+                        <asp:Label ID="lblZona" Text="Zona" runat="server"></asp:Label>
+                        <asp:DropDownList ID="ddlZona" runat="server" CssClass="form-control" DataValueField="idZona" DataTextField="descripcion"></asp:DropDownList>
+                    </div>
+                    <div class="col-md-1">
+                        <asp:Label ID="lblNada" Text="......"  ForeColor="White" runat="server"></asp:Label>
+                        <asp:Button runat="server" ID="btnFiltrar" CssClass="form-control" Text="Filtrar" OnClick="btnFiltrar_Click"/>
+                    </div>
+                    
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        
+        
+        
+        
         <br />
         <asp:Button runat="server" ID="btnReservar" CssClass="btn btn-default" Text="Reservar Plaza" OnClick="btnReservar_Click"/>
         <br /><p></p>

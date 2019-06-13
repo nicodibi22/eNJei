@@ -43,7 +43,7 @@ namespace UI
         {
             try
             {
-                string url = "http://maps.google.com/maps/api/geocode/xml?address=" + txtCalle.Text + " " + txtAltura.Text + "&sensor=false";
+                string url = "https://maps.google.com/maps/api/geocode/xml?address=" + txtCalle.Text + " " + txtAltura.Text + "&sensor=false&key=AIzaSyBCJHG-OM17NkmG9kteZWkaMY2mvbY34rQ";
                 WebRequest request = WebRequest.Create(url);
                 using (WebResponse response = (HttpWebResponse)request.GetResponse())
                 {
@@ -186,7 +186,7 @@ namespace UI
 
             txtIdEstac.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[0].Text.ToString();
             //txtDescripcion.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[1].Text.ToString();
-            txtDescripcion.Text = ((Label)gvEstacionamiento.Rows[e.NewEditIndex].FindControl("lblDescripcion")).Text.Substring(1);
+            txtDescripcion.Text = ((Label)gvEstacionamiento.Rows[e.NewEditIndex].FindControl("lblDescripcion")).Text.Substring(1).Replace(".", "").Replace(",", ".");
 
             txtCalle.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[2].Text.ToString();
             txtAltura.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[3].Text.ToString();

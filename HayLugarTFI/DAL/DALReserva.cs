@@ -262,6 +262,25 @@ namespace DAL
         }
 
 
+        public static DataSet MisReservasCancelar(int idReserva)
+        {
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("MisReservasCancelar");
 
+            myDatabase.AddInParameter(myCommand, "@idReserva", DbType.Int32, idReserva);            
+
+            return myDatabase.ExecuteDataSet(myCommand);
+        }
+
+        public static void ReservaUpdateStatePayment(int idReserva, bool pago)
+        {
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("ReservaUpdateStatePayment");
+
+            myDatabase.AddInParameter(myCommand, "@idReserva", DbType.Int32, idReserva);
+            myDatabase.AddInParameter(myCommand, "@pago", DbType.Boolean, pago);
+
+            myDatabase.ExecuteNonQuery(myCommand);
+        }
     }
 }
