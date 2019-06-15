@@ -271,11 +271,18 @@
 
                             <div class="form-group">
 								    <asp:Label runat="server" ID="lblCuil" CssClass="col-md-2 control-label">CUIL</asp:Label>
-								    <div class="col-md-10">
+								    <div class="col-sm-3">
+
 									    <asp:TextBox runat="server" ID="txtCuil" ValidationGroup="producto" size="15" numeric CssClass="form-control" />
-                                        <asp:Button runat="server" ID="btnValidar" formnovalidate Text="Validar"  OnClick="btnValidar_Click" />
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <asp:Button runat="server" ID="btnValidar" formnovalidate Text="Validar"  OnClick="btnValidar_Click" CssClass="form-control" />
                                         <asp:Label ID="lblValicionCuil"  runat="server"></asp:Label>
 								    </div>
+                                   <div class="col-md-5">
+                                       </div>
+                                   <div class="col-md-5">
+                                       </div>
 							    </div>
 
                             <div id="divConductor" runat="server" visible="false"> 

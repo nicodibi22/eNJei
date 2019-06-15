@@ -16,6 +16,32 @@ namespace UI
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
 
+        public enum WarningType
+        {
+            Success,
+            Info,
+            Warning,
+            Danger
+        }
+
+        public void ShowMessage(string mensaje, WarningType type)
+        {
+            //gets the controls from the page
+            //Panel PanelMessage = Master.FindControl("Message") as Panel;
+            //Label labelMessage = PanelMessage.FindControl("labelMessage") as Label;
+
+            //sets the message and the type of alert, than displays the message
+            labelMessage.Text = mensaje;
+            Message.CssClass = string.Format("alert alert-{0} alert-dismissable", type.ToString().ToLower());
+            Message.Attributes.Add("role", "alert");
+            Message.Visible = true;
+        }
+
+        public void HiddenMessage()
+        {
+            Message.Visible = false;
+        }
+
         protected void Page_Init(object sender, EventArgs e)
         {
             // El código siguiente ayuda a proteger frente a ataques XSRF
@@ -83,6 +109,11 @@ namespace UI
                 {
                     pestaniaMiCuenta.Visible = true;
                 }
+
+                if(Context.User.IsInRole("Propietario"))
+                {
+                    pestaniaRendimiento.Visible = true;
+                }
             }
 
         }
@@ -107,6 +138,9 @@ namespace UI
 
             if (ddlAdm.SelectedValue == "5")
             { Response.Redirect("~/Usuario.aspx"); }
+
+            if (ddlAdm.SelectedValue == "6")
+            { Response.Redirect("~/LiberarPlazas.aspx"); }
         }
 
         protected void ddlMiCuenta_SelectedIndexChanged(object sender, EventArgs e)

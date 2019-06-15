@@ -82,22 +82,22 @@
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblIdZona" CssClass="col-md-2 control-label">Identificador de la zona</asp:Label>
-								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtIdZona" size="10" CssClass="textAreaBoxInputs" />
+								    <div class="col-md-1">
+									    <asp:TextBox runat="server" Enabled="false" ID="txtIdZona" size="10" CssClass="form-control" />
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblDescripcion" CssClass="col-md-2 control-label">Descripción</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" ID="txtDescripcion" ValidationGroup="producto" required size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" ID="txtDescripcion" ValidationGroup="producto" required size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblDireccion" CssClass="col-md-2 control-label">Dirección</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" ID="txtDireccion" ValidationGroup="producto" required size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" ID="txtDireccion" ValidationGroup="producto" required size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 

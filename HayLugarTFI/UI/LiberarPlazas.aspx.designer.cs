@@ -10,96 +10,78 @@
 namespace UI {
     
     
-    public partial class SiteMaster {
+    public partial class LiberarPlazas {
         
         /// <summary>
-        /// pestaniaPlazasDisponibles control.
+        /// Timer1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor pestaniaPlazasDisponibles;
+        protected global::System.Web.UI.Timer Timer1;
         
         /// <summary>
-        /// pestaniaMiCuenta control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor pestaniaMiCuenta;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// ddlMiCuenta control.
+        /// lblFechaActual control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMiCuenta;
+        protected global::System.Web.UI.WebControls.Label lblFechaActual;
         
         /// <summary>
-        /// pestaniaCalcDistancia control.
+        /// lblTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor pestaniaCalcDistancia;
+        protected global::System.Web.UI.WebControls.Label lblTime;
         
         /// <summary>
-        /// pestaniaAdm control.
+        /// lblAjustarFechaHora control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor pestaniaAdm;
+        protected global::System.Web.UI.WebControls.Label lblAjustarFechaHora;
         
         /// <summary>
-        /// ddlAdm control.
+        /// txtFecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAdm;
+        protected global::System.Web.UI.WebControls.TextBox txtFecha;
         
         /// <summary>
-        /// pestaniaRendimiento control.
+        /// txtHoraDesde control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor pestaniaRendimiento;
+        protected global::System.Web.UI.WebControls.TextBox txtHoraDesde;
         
         /// <summary>
-        /// Message control.
+        /// btnAjustarHora control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Message;
-        
-        /// <summary>
-        /// labelMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelMessage;
-        
-        /// <summary>
-        /// MainContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Button btnAjustarHora;
     }
 }

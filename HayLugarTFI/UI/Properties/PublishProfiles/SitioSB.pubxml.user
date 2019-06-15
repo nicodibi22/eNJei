@@ -83,13 +83,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/04/2019 21:57:09</publishTime>
     </File>
     <File Include="bin/BIZ.dll">
-      <publishTime>06/12/2019 01:03:55</publishTime>
+      <publishTime>06/13/2019 22:17:04</publishTime>
     </File>
     <File Include="bin/CuteWebUI.AjaxUploader.dll">
       <publishTime>01/31/2019 15:18:10</publishTime>
     </File>
     <File Include="bin/DAL.dll">
-      <publishTime>06/12/2019 01:03:55</publishTime>
+      <publishTime>06/13/2019 22:17:03</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>05/04/2019 21:57:09</publishTime>
@@ -251,7 +251,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/04/2019 21:57:10</publishTime>
     </File>
     <File Include="bin/UI.dll">
-      <publishTime>06/12/2019 02:11:41</publishTime>
+      <publishTime>06/13/2019 22:32:25</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/04/2019 21:57:11</publishTime>
@@ -314,7 +314,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/04/2019 21:57:07</publishTime>
     </File>
     <File Include="Estacionamiento.aspx">
-      <publishTime>05/04/2019 21:57:07</publishTime>
+      <publishTime>06/12/2019 23:05:30</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>05/04/2019 21:57:08</publishTime>
@@ -364,6 +364,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="js/resume.min.js">
       <publishTime>05/04/2019 21:57:08</publishTime>
     </File>
+    <File Include="LiberarPlazas.aspx">
+      <publishTime>06/13/2019 20:31:44</publishTime>
+    </File>
     <File Include="LICENSE">
       <publishTime>05/04/2019 21:57:07</publishTime>
     </File>
@@ -374,10 +377,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/22/2019 09:02:59</publishTime>
     </File>
     <File Include="MisReservas.aspx">
-      <publishTime>06/12/2019 02:10:39</publishTime>
+      <publishTime>06/13/2019 00:09:28</publishTime>
     </File>
     <File Include="ModificarPlaza.aspx">
-      <publishTime>06/11/2019 23:32:38</publishTime>
+      <publishTime>06/12/2019 20:27:07</publishTime>
     </File>
     <File Include="otro/bootstrap.min.css">
       <publishTime>05/04/2019 21:57:09</publishTime>
@@ -398,7 +401,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/04/2019 21:57:09</publishTime>
     </File>
     <File Include="PlazasDisponibles.aspx">
-      <publishTime>06/12/2019 01:50:31</publishTime>
+      <publishTime>06/13/2019 20:00:45</publishTime>
     </File>
     <File Include="README.md">
       <publishTime>05/04/2019 21:57:08</publishTime>
@@ -518,7 +521,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/04/2019 21:57:09</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>05/18/2019 20:36:37</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
       <publishTime>05/04/2019 21:57:08</publishTime>

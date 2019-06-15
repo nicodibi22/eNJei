@@ -104,22 +104,22 @@
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblIdEstac" CssClass="col-md-2 control-label">Identificador del estacionamiento</asp:Label>
-								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtIdEstac" size="10" type="number" CssClass="textAreaBoxInputs" />
+								    <div class="col-md-1">
+									    <asp:TextBox runat="server" Enabled="false" ID="txtIdEstac" size="10" type="number" CssClass="form-control" />
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblDescripcion" CssClass="col-md-2 control-label">Tarifa</asp:Label>
-								    <div class="col-md-10">
-									    <asp:TextBox runat="server" ID="txtDescripcion" ValidationGroup="producto" required size="80" CssClass="textAreaBoxInputs" />
+								    <div class="col-xs-1">
+									    <asp:TextBox runat="server" ID="txtDescripcion" ValidationGroup="producto" required size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblCalle" CssClass="col-md-2 control-label">Calle</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" ID="txtCalle" ValidationGroup="producto" required size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" ID="txtCalle" ValidationGroup="producto" required size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
@@ -127,36 +127,36 @@
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblAltura" CssClass="col-md-2 control-label">Altura</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" ID="txtAltura" ValidationGroup="producto" required size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" ID="txtAltura" ValidationGroup="producto" required size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblDatosAdicionales" CssClass="col-md-2 control-label">Datos adicionales</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" ID="txtDatosAdicionales" ValidationGroup="producto" required size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" ID="txtDatosAdicionales" ValidationGroup="producto" required size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblIdBarrio" CssClass="col-md-2 control-label">Zona</asp:Label>
-								    <div class="col-md-10">
+								    <div class="col-md-2">
 <%--									    <asp:TextBox runat="server" ID="txtIdBarrio" ValidationGroup="producto" required size="80" CssClass="textAreaBoxInputs" />--%>
-                                        <asp:DropDownList ID="ddlBarrios" AutoPostBack="false" runat="server">
+                                        <asp:DropDownList ID="ddlBarrios" AutoPostBack="false" runat="server" CssClass="form-control">
                                         </asp:DropDownList> 
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblLatitud" CssClass="col-md-2 control-label">Latitud</asp:Label>
-								    <div class="col-md-10">
-									    <asp:TextBox runat="server" ID="txtLatitud" ValidationGroup="producto" required size="80" CssClass="textAreaBoxInputs" />
+								    <div class="col-md-2">
+									    <asp:TextBox runat="server" ID="txtLatitud" ValidationGroup="producto" required size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblLongitud" CssClass="col-md-2 control-label">Longitud</asp:Label>
-								    <div class="col-md-10">
-									    <asp:TextBox runat="server" ID="txtLongitud" ValidationGroup="producto" required size="80" CssClass="textAreaBoxInputs" />
+								    <div class="col-md-2">
+									    <asp:TextBox runat="server" ID="txtLongitud" ValidationGroup="producto" required size="80" CssClass="form-control" />
 								    </div>
 							    </div>
                 <div id="div_tabla21" style="display:none" >

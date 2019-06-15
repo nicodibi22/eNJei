@@ -97,7 +97,9 @@
                         <Columns> 
 
                             <asp:BoundField DataField="idReserva" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Reserva" />
-                            <asp:BoundField DataField="fechaReserva" HeaderText="Fecha Reserva" DataFormatString="{0:dd/MM/yyyy}" />
+                            
+                            <asp:BoundField DataField="fechaDesde" HeaderText="Fecha Desde" DataFormatString="{0:dd/MM/yyyy}" />
+                            <asp:BoundField DataField="fechaHasta" HeaderText="Fecha Hasta" DataFormatString="{0:dd/MM/yyyy}" />
                             <asp:BoundField DataField="descEstacionamiento" HeaderText="Tarifa" />
 
                             <asp:BoundField DataField="calle" HeaderText="Calle" />
@@ -168,7 +170,8 @@
                         <Columns> 
 
                             <asp:BoundField DataField="idReserva" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Reserva" />
-                            <asp:BoundField DataField="fechaReserva" HeaderText="Fecha Reserva" DataFormatString="{0:dd/MM/yyyy}" />
+                            <asp:BoundField DataField="fechaDesde" HeaderText="Fecha Desde" DataFormatString="{0:dd/MM/yyyy}" />
+                            <asp:BoundField DataField="fechaHasta" HeaderText="Fecha Hasta" DataFormatString="{0:dd/MM/yyyy}" />
                             
                             <asp:TemplateField HeaderText="Fecha Pago">
                                 <ItemTemplate>

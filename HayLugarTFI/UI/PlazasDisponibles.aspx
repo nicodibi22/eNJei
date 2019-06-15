@@ -1,9 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PlazasDisponibles.aspx.cs" Inherits="UI.PlazasDisponibles" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-        <h2>Plazas disponibles</h2>
-        <asp:UpdatePanel runat="server" ID="upFiltros">
-            <ContentTemplate>
+    <br />
+
+        <br />
+                        <hr />
+                            <h4>Plazas Disponibles</h4>
+                        <hr />
+                        <br />
                 <div class="row">
                     <div class="col-md-2">
                         <asp:Label ID="lblTipoAlquiler" Text="Tipo Alquiler" runat="server"></asp:Label>
@@ -41,8 +45,7 @@
                     </div>
                     
                 </div>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+            
         
         
         
@@ -151,5 +154,5 @@
             <asp:BoundField DataField="Longitude" HeaderText="Longitude" />
         </Columns>
     </asp:GridView>
-
+        
 </asp:Content>

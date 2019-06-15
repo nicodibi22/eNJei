@@ -14,9 +14,22 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <style>
+        
+        .MessagePanelDiv 
+        {
+            position:fixed;
+            left: 35%;
+            top:15%;
+            width:35%;
+            z-index:1000;
+        }
+    
+    </style>
 </head>
 <body>
+    
+    
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -80,9 +93,11 @@
                                         <asp:ListItem Text="Estacionam." Value="3" />
                                         <asp:ListItem Text="Reservas" Value="4" />
                                         <asp:ListItem Text="Usuarios" Value="5" />
+                                        <asp:ListItem Text="Liberar Plazas" Value="6" />
                                 </asp:DropDownList> 
                             </a> 
                         </li>
+                        <li><a runat="server" visible="false" id="pestaniaRendimiento" href="~/Rendimiento">Rendimiento</a></li>
 
                     </ul>
 
@@ -106,6 +121,12 @@
             </div>
         </div>
         <div >
+            <div class="MessagePanelDiv">
+                <asp:Panel ID="Message" runat="server" Visible="False">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <asp:Label ID="labelMessage" runat="server" />
+                </asp:Panel>
+            </div>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />

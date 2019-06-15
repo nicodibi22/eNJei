@@ -167,6 +167,8 @@
     <Content Include="Account\CS_Activation.aspx" />
     <Content Include="Barrio.aspx" />
     <Content Include="CalculoEnvio.aspx" />
+    <Content Include="Rendimiento.aspx" />
+    <Content Include="LiberarPlazas.aspx" />
     <Content Include="CargaMasivaUsuario.aspx" />
     <Content Include="CargaMasiva.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -491,6 +493,20 @@
     </Compile>
     <Compile Include="CalculoEnvio.aspx.designer.cs">
       <DependentUpon>CalculoEnvio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Rendimiento.aspx.cs">
+      <DependentUpon>Rendimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Rendimiento.aspx.designer.cs">
+      <DependentUpon>Rendimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LiberarPlazas.aspx.cs">
+      <DependentUpon>LiberarPlazas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LiberarPlazas.aspx.designer.cs">
+      <DependentUpon>LiberarPlazas.aspx</DependentUpon>
     </Compile>
     <Compile Include="CargaMasivaUsuario.aspx.cs">
       <DependentUpon>CargaMasivaUsuario.aspx</DependentUpon>

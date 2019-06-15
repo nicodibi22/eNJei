@@ -92,21 +92,21 @@
                                <div class="form-group">
 								    <asp:Label runat="server" ID="lblCUENTA" CssClass="col-md-2 control-label">Nro. Cuenta</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtNroCuenta" size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="false" ID="txtNroCuenta" size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
                                <div class="form-group">
 								    <asp:Label runat="server" ID="lblTitular" CssClass="col-md-2 control-label">Titular</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtTitular" size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="false" ID="txtTitular" size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
                                <div class="form-group">
 								    <asp:Label runat="server" ID="lblUsuarios" CssClass="col-md-2 control-label">Usuario</asp:Label>
                                     <div class="col-md-10">
-                                        <asp:DropDownList ID="ddlUsuarios" AutoPostBack="false" runat="server">
+                                        <asp:DropDownList ID="ddlUsuarios" AutoPostBack="false" runat="server" CssClass="form-control">
                                         </asp:DropDownList> 
                                     </div>
 							    </div>
@@ -115,7 +115,7 @@
                                 <div class="form-group">
 								    <asp:Label runat="server" ID="lblSaldoHoy" CssClass="col-md-2 control-label">Saldo $</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtSaldoHoy" size="10" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="false" ID="txtSaldoHoy" size="10" CssClass="form-control" Width="180px" />
 								    </div>
 							    </div>
 
@@ -123,7 +123,7 @@
 								    <asp:Label runat="server" ID="lblSaldoNuevo" CssClass="col-md-2 control-label">Nuevo Saldo $</asp:Label>
 								    <div class="col-md-10">
 									    
-                                        <asp:TextBox ID="txtSaldoNuevo" ValidationGroup="ValCuentaCorriente"  required Type="number" placeholder="Ingresar un valor." runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtSaldoNuevo" ValidationGroup="ValCuentaCorriente" size="10"  required Type="number" placeholder="Ingresar un valor." runat="server" CssClass="form-control" Width="180px"></asp:TextBox>
 								    </div>
 							    </div>
 

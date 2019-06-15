@@ -299,5 +299,18 @@ namespace BIZ
                 throw;
             }
         }
+
+        public static void ReservaUpdateFinalizado(DateTime fecha, string hora)
+        {
+            try
+            {
+                DALReserva.ReservaUpdateFinalizado(fecha, hora);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

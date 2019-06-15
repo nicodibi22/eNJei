@@ -80,6 +80,7 @@
                                         <asp:ListItem Text="Estacionam." Value="3" />
                                         <asp:ListItem Text="Reservas" Value="4" />
                                         <asp:ListItem Text="Usuarios" Value="5" />
+                                        <asp:ListItem Text="Liberar Plazas" Value="6" />
                                 </asp:DropDownList> 
                             </a> 
                         </li>

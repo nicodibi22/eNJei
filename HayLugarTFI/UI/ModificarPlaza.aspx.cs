@@ -110,6 +110,17 @@ namespace UI
             try
             {
                 DataSet dsPlazaDisponible;
+
+                if (!FechasValidas())
+                {
+                    if (ddlTipoAlquiler.SelectedValue == "1")
+                        ((SiteMaster)this.Master).ShowMessage("<strong>Verifique las fechas ingresadas</strong>", SiteMaster.WarningType.Warning);
+                    else
+                        ((SiteMaster)this.Master).ShowMessage("<strong>Verifique la fecha y horas ingresadas</strong>", SiteMaster.WarningType.Warning);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
+                    return;
+                }
+
                 if (ddlTipoAlquiler.SelectedValue == "1")
                     dsPlazaDisponible  = BIZPlaza.SelectDisponibilidadByPlaza(int.Parse(txtIdPlaza.Text), Convert.ToDateTime(txtFechaDesde.Text), Convert.ToDateTime(txtFechaHasta.Text));
                 else
@@ -254,6 +265,33 @@ namespace UI
             gvPlaza.PageIndex = e.NewPageIndex;
             cargarPlazas();
 
+        }
+
+        private bool FechasValidas()
+        {
+            if (ddlTipoAlquiler.SelectedValue == "1")
+            {
+                if (string.IsNullOrEmpty(txtFechaDesde.Text) || string.IsNullOrEmpty(txtFechaHasta.Text))
+                    return false;
+                DateTime fecha;
+                if (!DateTime.TryParse(txtFechaDesde.Text, out fecha) || !DateTime.TryParse(txtFechaHasta.Text, out fecha))
+                    return false;
+
+                if (DateTime.Parse(txtFechaDesde.Text) > DateTime.Parse(txtFechaHasta.Text))
+                    return false;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(txtFecha.Text))
+                    return false;
+
+                if (string.IsNullOrEmpty(txtHoraDesde.Text) || string.IsNullOrEmpty(txtHoraHasta.Text))
+                    return false;
+
+                if (int.Parse(txtHoraDesde.Text.Substring(0, 2)) >= int.Parse(txtHoraHasta.Text.Substring(0, 2)))
+                    return false;
+            }
+            return true;
         }
     }
 }

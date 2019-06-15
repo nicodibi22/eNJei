@@ -21,6 +21,10 @@ namespace UI.Account
             //{
             //    RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
             //}
+            if (HttpContext.Current.User.Identity.IsAuthenticated == true)
+            {
+                Response.Redirect("~/default.aspx");
+            }
         }
 
         protected void LogIn(object sender, EventArgs e)

@@ -215,6 +215,7 @@ namespace UI
                 //divPrecio.Visible = false;
                 lblMensaje.Text = string.Empty;
                 cargarZonas();
+                
             }
             catch (Exception)
             {

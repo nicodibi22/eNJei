@@ -23,7 +23,8 @@ namespace UI
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated == true)
             {
-                    cargarReservas();
+                BIZReserva.ReservaUpdateFinalizado(DateTime.Today, DateTime.Today.Hour.ToString().PadLeft(2, '0'));
+                cargarReservas();
             }
             else
             {

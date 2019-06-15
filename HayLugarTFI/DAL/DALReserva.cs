@@ -282,5 +282,16 @@ namespace DAL
 
             myDatabase.ExecuteNonQuery(myCommand);
         }
+
+        public static void ReservaUpdateFinalizado(DateTime fecha, string hora)
+        {
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("ReservaUpdateFinalizado");
+
+            myDatabase.AddInParameter(myCommand, "@fecha", DbType.Date, fecha);
+            myDatabase.AddInParameter(myCommand, "@hora", DbType.String, hora);
+
+            myDatabase.ExecuteNonQuery(myCommand);
+        }
     }
 }
