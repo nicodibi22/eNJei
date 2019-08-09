@@ -7,14 +7,19 @@
             runat="server">
             <ContentTemplate>
                 <br />
+                <div class="row ml-5" >
+                    <div class="col-md-2">
                 <asp:Label ID="lblFechaActual" Text="Fecha Actual" runat="server"
                     Font-Size="Large" ></asp:Label>
                    <asp:Label ID="lblTime" runat="server"
                     Font-Size="Large" ></asp:Label>
                 <br />
+                        </div>
+                    </div>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="tIMER1" EventName="Tick"></asp:AsyncPostBackTrigger>
+                <asp:PostBackTrigger ControlID="btnAjustarHora" />
             </Triggers>
         </asp:UpdatePanel>
     <br />
@@ -33,7 +38,11 @@
         </div>
     <br /><p></p>
     <br />
-    <asp:Button runat="server" ID="btnAjustarHora" CssClass="btn btn-default" Text="Ajustar Hora" OnClick="btnAjustarHora_Click"/>
+    <div class="row ml-5" >
+                    <div class="col-md-2">
+    <asp:Button runat="server" ID="btnAjustarHora" CssClass="btn btn-secondary" Text="Ajustar Hora" OnClick="btnAjustarHora_Click"/>
+                        </div>
+        </div>
     <br /><p></p>
 
 </asp:Content>

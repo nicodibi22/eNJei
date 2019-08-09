@@ -19,6 +19,7 @@ namespace UI.Account
             if (!this.IsPostBack)
             {
                 string constr = BIZUtilites.getConnection();
+                bool activo = false;
                 string activationCode = !string.IsNullOrEmpty(Request.QueryString["ActivationCode"]) ? Request.QueryString["ActivationCode"] : Guid.Empty.ToString();
                 using (SqlConnection con = new SqlConnection(constr))
                 {
@@ -35,9 +36,9 @@ namespace UI.Account
                             if (rowsAffected == 1)
                             {
 
-                                BIZAspNetUsers.AspNetUsersUpdateEmailConfirmed(User.Identity.GetUserId());
+                                
 
-                                ltMessage.Text = "Felicidades! La activación de la cuenta se hizo satisfactoriamente. Ahora ya podes iniciar sesión.";
+                                ltMessage.Text = "Felicitaciones! La activación de la cuenta se hizo satisfactoriamente. \r\nAhora ya podes iniciar sesión.";
                             }
                             else
                             {
@@ -45,6 +46,10 @@ namespace UI.Account
                             }
                         }
                     }
+                }
+                if (activo)
+                {
+                    BIZAspNetUsers.AspNetUsersUpdateEmailConfirmed(User.Identity.GetUserId());
                 }
             }
         }

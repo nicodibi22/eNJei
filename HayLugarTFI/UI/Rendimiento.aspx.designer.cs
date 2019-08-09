@@ -22,13 +22,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Panel pnlTabcc;
         
         /// <summary>
-        /// gv_DatosCC control.
+        /// gv_DatosCocheras control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_DatosCC;
+        protected global::System.Web.UI.WebControls.GridView gv_DatosCocheras;
         
         /// <summary>
         /// btnVerMovCC control.

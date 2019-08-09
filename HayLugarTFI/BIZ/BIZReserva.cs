@@ -79,11 +79,11 @@ namespace BIZ
             }
         }
 
-        public static void ReservaUpdateStatePayment(int idReserva, bool pago)
+        public static void ReservaUpdateStatePayment(int idReserva, DateTime fechaPago, bool pago)
         {
             try
             {
-                DALReserva.ReservaUpdateStatePayment(idReserva, pago);
+                DALReserva.ReservaUpdateStatePayment(idReserva, fechaPago, pago);
             }
             catch (Exception)
             {
@@ -260,6 +260,19 @@ namespace BIZ
             }
         }
 
+        public static DataSet SelectByPropietario(string idUser)
+        {
+            try
+            {
+                return DALReserva.SelectByPropietario(idUser);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public static DataSet MisReservasSelectAllByEstadoPago(bool pago, DateTime? fechaDesde, DateTime? fechaHasta, string usuario)
         {
             try
@@ -305,6 +318,32 @@ namespace BIZ
             try
             {
                 DALReserva.ReservaUpdateFinalizado(fecha, hora);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static void ReservaUpdateCerrado(string idUser)
+        {
+            try
+            {
+                DALReserva.ReservaUpdateCerrado(idUser);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static DataSet ReservaPagaSelectByIdUsuario(string idUser)
+        {
+            try
+            {
+                return DALReserva.ReservaPagaSelectByIdUsuario(idUser);
             }
             catch (Exception)
             {

@@ -83,9 +83,9 @@
             });
         }
     </script>
-    <table border="0" cellpadding="0" cellspacing="3">
-        <tr>
-            <td colspan="2">
+    <br />
+    <div class="row ml-5" >
+        <div class="col-md-4">
                 Origen:
 <%--                <input type="text" id="txtSource" value="Bandra, Mumbai, India" style="width: 200px" />--%>
                 <asp:TextBox runat="server" placeholder="Origen" ID="txtSource" CssClass="form-control"  ClientIDMode="Static"></asp:TextBox>
@@ -96,25 +96,25 @@
                     <input type="button" value="Obtener distancia" onclick="GetRoute()" style="width:auto; height: 38px;padding: 8px 12px;font-size: 14px;color: #888888;background-color: #ffffff;border: 1px solid #282828;" />
 <%--                <asp:Button runat="server" ID="btnCalcular" ClientIDMode="Static" Text="Obtener Distancia" CssClass="btn btn-default" OnClientClick="GetRoute()" />--%>
                 <hr />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
+            </div>
+        </div>
+        <div class="row ml-5" >
+            <div class="col-md-2">
                 <div id="dvDistance">
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div id="dvMap" style="width: 500px; height: 500px">
+            </div>
+        </div>
+        <div class="row ml-5" >
+            <div class="col-sm-5" >
+                <div id="dvMap" style="width: 100%; height: 500px">
                 </div>
-            </td>
-            <td>
-                <div id="dvPanel" style="width: 500px; height: 500px; color: #888888;">
+            </div>
+            <div class="col-sm-3">
+                <div id="dvPanel" style="width: 100%; height: 500px; color: #888888;">
                 </div>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
+
     <br />
 
 

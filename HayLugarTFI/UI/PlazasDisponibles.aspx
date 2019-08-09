@@ -5,10 +5,10 @@
 
         <br />
                         <hr />
-                            <h4>Plazas Disponibles</h4>
+                            <h4 >Plazas Disponibles</h4>
                         <hr />
                         <br />
-                <div class="row">
+                <div class="row ml-5" >
                     <div class="col-md-2">
                         <asp:Label ID="lblTipoAlquiler" Text="Tipo Alquiler" runat="server"></asp:Label>
                         <asp:DropDownList ID="ddlTipoAlquiler" runat="server" AutoPostBack="true"  CssClass="form-control" OnSelectedIndexChanged="ddlTipoAlquiler_SelectedIndexChanged" >
@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-md-1">
                         <asp:Label ID="lblNada" Text="......"  ForeColor="White" runat="server"></asp:Label>
-                        <asp:Button runat="server" ID="btnFiltrar" CssClass="form-control" Text="Filtrar" OnClick="btnFiltrar_Click"/>
+                        <asp:Button runat="server" ID="btnFiltrar" CssClass="btn btn-warning" Text="Filtrar" OnClick="btnFiltrar_Click"/>
                     </div>
                     
                 </div>
@@ -51,7 +51,10 @@
         
         
         <br />
-        <asp:Button runat="server" ID="btnReservar" CssClass="btn btn-default" Text="Reservar Plaza" OnClick="btnReservar_Click"/>
+        <div style="margin-left:15px">
+            <asp:Button runat="server" ID="btnReservar" CssClass="btn btn-success" Text="Reservar Plaza" OnClick="btnReservar_Click" />
+        </div>
+        
         <br /><p></p>
 
                         <br/><%-- Datos de contacto--%>
@@ -59,7 +62,7 @@
                         <table id="tabla21" style="width:100%;border: white 5px solid">
                             <tr>
                             <th style="text-align: left;">
-                                <h4>Mapa.</h4><br />
+                                <br />
                                 <asp:Label ID="lblErrorMapa" runat="server" Visible="false" ForeColor="Red" Font-Bold="true" Text="No se ha podido cargar el mapa. Verifique su dirección"></asp:Label>
                                 <div id="divShowMapa">
                                     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyBCJHG-OM17NkmG9kteZWkaMY2mvbY34rQ"
@@ -71,7 +74,7 @@
 		                                            <ItemTemplate>
 				                                                {
 				                                                    "title": "Precio: $ " + '<%# Eval("descripcion") %>' + "\nDirección: "
-                                                                        + '<%# Eval("calle") %>' + " " + '<%# Eval("altura") %>',
+                                                                        + '<%# Eval("calle") %>' + " " + '<%# Eval("altura") %>' + "\n" + '<%# Eval("SegmentosDisp") %>',
 				                                                    "lat": '<%# Eval("latitud") %>',
 				                                                    "lng": '<%# Eval("longitud") %>',
                                                                     "description": '<%# Eval("datosAdicionales") %>',

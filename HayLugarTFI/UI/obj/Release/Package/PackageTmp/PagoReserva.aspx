@@ -42,7 +42,7 @@
             <asp:Label ID="lblCuentaCorrienteNro" runat="server" Text="Nro Cuenta Corriente: "></asp:Label>
             <%--<asp:TextBox ID="txtCCnro" ValidationGroup="ValCuentaCorriente"  required Type="number" placeholder="Ingresar Nro CC." runat="server"></asp:TextBox>--%>
             <asp:Label ID="lblCCNro" runat="server" Font-Bold="true"></asp:Label>
-
+            <br />
             <asp:Label ID="lblSaldoDisponible" runat="server" Text="Saldo Disponible: $"></asp:Label>
             <asp:Label ID="lblTotalSaldo" runat="server" Font-Bold="true" ></asp:Label>
 
@@ -95,15 +95,15 @@
             <asp:PostBackTrigger ControlID="btnConfirmar" />
         </Triggers>
     </asp:UpdatePanel>
-        <asp:Button ID="btnCancelar" CssClass="btn btn-default" formnovalidate OnClientClick="return confirm('Tu reserva quedará pendiente de pago por 7 días desde su registracion. Luego procederemos a cancelarla.')" runat="server" Text="Pagar en otro momento" OnClick="btnCancelar_Click"/>
-        <asp:Button ID="btnConfirmar" CssClass="btn btn-default" OnClick="btnConfirmar_Click" ValidationGroup="ValCuentaCorriente"   runat="server" Text="Confirmar" />
+        <asp:Button ID="btnCancelar" CssClass="btn btn-danger" formnovalidate OnClientClick="return confirm('Tu reserva quedará pendiente de pago por 7 días desde su registracion. Luego procederemos a cancelarla.')" runat="server" Text="Pagar en otro momento" OnClick="btnCancelar_Click"/>
+        <asp:Button ID="btnConfirmar" CssClass="btn btn-success" OnClick="btnConfirmar_Click" ValidationGroup="ValCuentaCorriente"   runat="server" Text="Confirmar" />
 </asp:Panel>
 
      <br /><br />       
     <asp:Label ID="lblPyEconfirmado" Visible="false" runat="server" Text="Hemos registrado tu pago."></asp:Label><br /><br />
     <asp:Label ID="lblErrorMensaje" Visible="false" runat="server" ForeColor="Red" Text=""></asp:Label><br /><br />
-    <asp:Button ID="btnContinuar" CssClass="btn btn-default" Visible="false" OnClick="btnContinuar_Click"  runat="server" Text="Continuar" />
-    <asp:Button ID="btnMisReservas" CssClass="btn btn-default" Visible="false"  OnClick="btnMisReservas_Click" runat="server" Text="Ir a mis reservas" />
+    <asp:Button ID="btnContinuar" CssClass="btn btn-secondary" Visible="false" OnClick="btnContinuar_Click"  runat="server" Text="Continuar" />
+    <asp:Button ID="btnMisReservas" CssClass="btn btn-secondary" Visible="false"  OnClick="btnMisReservas_Click" runat="server" Text="Ir a mis reservas" />
     <br />
 
         <!-- Ventana modal -->

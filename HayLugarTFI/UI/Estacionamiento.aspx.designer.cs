@@ -103,6 +103,24 @@ namespace UI {
         protected global::System.Web.UI.WebControls.TextBox txtIdEstac;
         
         /// <summary>
+        /// lblTipoAlquiler control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTipoAlquiler;
+        
+        /// <summary>
+        /// ddlTipoAlquiler control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoAlquiler;
+        
+        /// <summary>
         /// lblDescripcion control.
         /// </summary>
         /// <remarks>
@@ -238,15 +256,6 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Repeater rptMarkers;
         
         /// <summary>
-        /// lblErrorMapa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMapa;
-        
-        /// <summary>
         /// lblMensaje control.
         /// </summary>
         /// <remarks>
@@ -254,6 +263,15 @@ namespace UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensaje;
+        
+        /// <summary>
+        /// lblErrorMapa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMapa;
         
         /// <summary>
         /// btnCancelar control.

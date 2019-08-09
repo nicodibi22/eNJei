@@ -40,21 +40,25 @@
                     <asp:Panel ID="pnlTab1" runat="server">
                         <br />
                         <hr />
-                            <h4>Listado de Sucursales</h4>
+                            <h4>ABM Zonas</h4>
                         <hr />
                         <br />
-                        <asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-default" Text="Agregar" OnClick="btnAgregar_Click"/>
+                        <div class="row ml-5" >
+                    <div class="col-md-2">
+                        <asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-secondary" Text="Agregar" OnClick="btnAgregar_Click"/>
+                        </div>
+                            </div>
                         <br /><p></p>
                         <div>
                     <asp:GridView ID="gvZona" runat="server" AutoGenerateColumns="False" AllowPaging="true"
                         PageSize="50" CssClass="footable" Align="Center" OnRowDeleting="gvZona_RowDeleting" DataKeyNames="idZona"  OnPageIndexChanging="gvZona_PageIndexChanging" OnRowEditing="gvZona_RowEditing">
                         <Columns> 
 
-                            <asp:BoundField DataField="idZona" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Zona" />
+                            <asp:BoundField DataField="idZona" ItemStyle-HorizontalAlign="Center" HeaderText="Id Zona" />
 
-                            <asp:BoundField DataField="descripcion" HeaderText="Descripción" />
+                            <asp:BoundField DataField="descripcion" HeaderText="Nombre" />
 
-                            <asp:BoundField DataField="direccion" HeaderText="Dirección" />
+                            <asp:BoundField DataField="direccion" HeaderText="Detalle" />
                             
                             <asp:CommandField HeaderText="Modificar" EditText="Modificar" ShowEditButton="true" ShowCancelButton="false" />
                             <asp:CommandField HeaderText="Eliminar" EditText="Eliminar" ShowEditButton="false" ShowDeleteButton="true" />
@@ -82,22 +86,22 @@
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblIdZona" CssClass="col-md-2 control-label">Identificador de la zona</asp:Label>
-								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtIdZona" size="10" CssClass="textAreaBoxInputs" />
+								    <div class="col-md-1">
+									    <asp:TextBox runat="server" Enabled="false" ID="txtIdZona" size="10" CssClass="form-control" />
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblDescripcion" CssClass="col-md-2 control-label">Descripción</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" ID="txtDescripcion" ValidationGroup="producto" required size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" ID="txtDescripcion" ValidationGroup="producto" required size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblDireccion" CssClass="col-md-2 control-label">Dirección</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" ID="txtDireccion" ValidationGroup="producto" required size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" ID="txtDireccion" ValidationGroup="producto" required size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
@@ -114,8 +118,8 @@
                             
                             <div class="form-group">
 							    <div class="col-md-10">
-                                    <asp:Button ID="btnCancelar" CssClass="btn btn-default" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
-                                    <asp:Button ID="btnConfirmar" CssClass="btn btn-default" ValidationGroup="producto"  runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
+                                    <asp:Button ID="btnCancelar" CssClass="btn btn-danger" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
+                                    <asp:Button ID="btnConfirmar" CssClass="btn btn-success" ValidationGroup="producto"  runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
                                 </div>
                             </div>                        
                         <br />

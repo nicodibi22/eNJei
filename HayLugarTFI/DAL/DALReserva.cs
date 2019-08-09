@@ -272,12 +272,13 @@ namespace DAL
             return myDatabase.ExecuteDataSet(myCommand);
         }
 
-        public static void ReservaUpdateStatePayment(int idReserva, bool pago)
+        public static void ReservaUpdateStatePayment(int idReserva, DateTime fechaPago, bool pago)
         {
             Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
             DbCommand myCommand = myDatabase.GetStoredProcCommand("ReservaUpdateStatePayment");
 
             myDatabase.AddInParameter(myCommand, "@idReserva", DbType.Int32, idReserva);
+            myDatabase.AddInParameter(myCommand, "@fechaPago", DbType.Date, fechaPago);
             myDatabase.AddInParameter(myCommand, "@pago", DbType.Boolean, pago);
 
             myDatabase.ExecuteNonQuery(myCommand);
@@ -292,6 +293,36 @@ namespace DAL
             myDatabase.AddInParameter(myCommand, "@hora", DbType.String, hora);
 
             myDatabase.ExecuteNonQuery(myCommand);
+        }
+
+        public static DataSet SelectByPropietario(string idUser)
+        {
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("ReservaSelectByPropietario");
+
+            myDatabase.AddInParameter(myCommand, "@idUser", DbType.String, idUser);
+
+            return myDatabase.ExecuteDataSet(myCommand);
+        }
+
+        public static void ReservaUpdateCerrado(string idUser)
+        {
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("ReservaUpdateCerrado");
+
+            myDatabase.AddInParameter(myCommand, "@idUser", DbType.String, idUser);
+
+            myDatabase.ExecuteNonQuery(myCommand);
+        }
+
+        public static DataSet ReservaPagaSelectByIdUsuario(string idUser)
+        {
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("ReservaPagaSelectByIdUsuario");
+
+            myDatabase.AddInParameter(myCommand, "@idUsuario", DbType.String, idUser);
+
+            return myDatabase.ExecuteDataSet(myCommand);
         }
     }
 }

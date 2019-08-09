@@ -7,6 +7,9 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Owin;
 
 namespace UI
 {
@@ -95,25 +98,56 @@ namespace UI
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Request.Browser.Adapters.Clear();
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            /*if (HttpContext.Current.User.Identity.IsAuthenticated == true && 
+                !manager.IsEmailConfirmed(HttpContext.Current.User.Identity.GetUserId()))
+            {
+                if (this.Page.AppRelativeVirtualPath.Contains("CS_Activation") && !string.IsNullOrEmpty(this.Page.ClientQueryString))
+                    return;
+                if (!this.Page.AppRelativeVirtualPath.Contains("ActivacionPendiente"))
+                    Response.Redirect("~/Account/ActivacionPendiente.aspx");
+                else
+                    return;
+            }*/
+            
+
             if (HttpContext.Current.User.Identity.IsAuthenticated == true)
             {
-                pestaniaCalcDistancia.Visible = true;
+                pestaniaMisViajes.Visible = true;
                 pestaniaPlazasDisponibles.Visible = true;
 
                 if (Context.User.IsInRole("Administrador"))
                 {
                     pestaniaMiCuenta.Visible = true;
                     pestaniaAdm.Visible = true;
+                    
+                    (this.loginView.FindControl("imgStar") as Image).Visible = true;
                 }
                 else
                 {
                     pestaniaMiCuenta.Visible = true;
                 }
 
-                if(Context.User.IsInRole("Propietario"))
+                if (Context.User.IsInRole("Propietario") || Context.User.IsInRole("Cond_Prop"))
                 {
                     pestaniaRendimiento.Visible = true;
+                    
+                    (this.loginView.FindControl("imgKey") as Image).Visible = true;
+                    
                 }
+
+                if (Context.User.IsInRole("Propietario") || Context.User.IsInRole("Cond_Prop"))
+                {
+                    pestaniaEstacionamiento.Visible = true;
+                }
+
+                if (Context.User.IsInRole("Conductor") || Context.User.IsInRole("Cond_Prop"))
+                {
+                    (this.loginView.FindControl("imgCar") as Image).Visible = true;
+                }
+                
+                
             }
 
         }
@@ -150,13 +184,19 @@ namespace UI
 
             if (ddlMiCuenta.SelectedValue == "2")
             { Response.Redirect("~/CtaCte.aspx"); }
-
-            if (ddlMiCuenta.SelectedValue == "3")
-            { Response.Redirect("~/CalculoEnvio.aspx"); }
-
+           
             if (ddlMiCuenta.SelectedValue == "4")
             { Response.Redirect("~/MisDatosPersonales.aspx"); }
 
+        }
+
+        protected void ddlMisViajes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlMisViajes.SelectedValue == "1")
+            { Response.Redirect("~/CalcularDistanciaMapa.aspx"); }
+
+            if (ddlMisViajes.SelectedValue == "2")
+            { Response.Redirect("~/CalculoEnvio.aspx"); }
         }
     }
 

@@ -70,7 +70,8 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="LogIn" Text="Iniciar sesión" CssClass="btn btn-default" />
+                            <asp:Button runat="server" OnClick="LogIn" Text="Iniciar sesión" CssClass="btn btn-secondary" />
+                            <asp:Button runat="server" OnClick="btnRegistrar_Click" Text="Registrarse" CausesValidation="false" CssClass="btn btn-secondary" />
                         </div>
                     </div>
             </section>

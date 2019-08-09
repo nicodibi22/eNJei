@@ -17,4 +17,3 @@ C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\ServiciosWeb\bin\Microsoft.CodeDom.P
 C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\ServiciosWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\ServiciosWeb\obj\Release\ServiciosWeb.dll
 C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\ServiciosWeb\obj\Release\ServiciosWeb.pdb
-C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\ServiciosWeb\obj\Release\ServiciosWeb.csprojResolveAssemblyReference.cache

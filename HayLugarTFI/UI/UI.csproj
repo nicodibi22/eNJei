@@ -167,6 +167,10 @@
     <Content Include="Account\CS_Activation.aspx" />
     <Content Include="Barrio.aspx" />
     <Content Include="CalculoEnvio.aspx" />
+    <Content Include="images\car.png" />
+    <Content Include="images\key.png" />
+    <Content Include="images\star.png" />
+    <Content Include="Reclamo.aspx" />
     <Content Include="Rendimiento.aspx" />
     <Content Include="LiberarPlazas.aspx" />
     <Content Include="CargaMasivaUsuario.aspx" />
@@ -494,6 +498,14 @@
     <Compile Include="CalculoEnvio.aspx.designer.cs">
       <DependentUpon>CalculoEnvio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomUserValidator.cs" />
+    <Compile Include="Reclamo.aspx.cs">
+      <DependentUpon>Reclamo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reclamo.aspx.designer.cs">
+      <DependentUpon>Reclamo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Rendimiento.aspx.cs">
       <DependentUpon>Rendimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -688,6 +700,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Reclamos\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BIZ\BIZ.csproj">

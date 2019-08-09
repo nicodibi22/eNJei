@@ -58,6 +58,10 @@ namespace BIZ
             {
                 return false;
             }
+            else if (cuit.Substring(0, 2) != "20" && cuit.Substring(0, 2) != "27")
+            {
+                return false;
+            }
             else
             {
                 int calculado = CalcularDigitoCuit(cuit);

@@ -48,7 +48,7 @@ namespace DAL
 			myDatabase.AddInParameter(myCommand,"@idUsuario", DbType.String, idUsuario);
 			myDatabase.AddInParameter(myCommand,"@idTarifa", DbType.Int32, idTarifa);
 			myDatabase.AddInParameter(myCommand,"@disponible", DbType.Boolean, disponible);
-            myDatabase.AddInParameter(myCommand, "@pago", DbType.Boolean, pago);
+            //myDatabase.AddInParameter(myCommand, "@pago", DbType.Boolean, pago);
 
             //Ejecuta la consulta y retorna el nuevo identity.
             int returnValue = Convert.ToInt32(myDatabase.ExecuteScalar(myCommand));
@@ -277,5 +277,26 @@ namespace DAL
 
 			return myDatabase.ExecuteDataSet(myCommand);
 		}
-	}
+
+        public static DataSet SelectDisponibilidadHora(DateTime fecha, string hora)
+        {
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("PlazaSelectAllHoraAvailable");
+
+            myDatabase.AddInParameter(myCommand, "@fecha", DbType.Date, fecha);
+            myDatabase.AddInParameter(myCommand, "@hora", DbType.String, hora);
+			return myDatabase.ExecuteDataSet(myCommand);
+            
+        }
+
+        public static DataSet SelectDisponibilidadDiario(DateTime fecha)
+        {
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("PlazaSelectAllDiarioAvailable");
+
+            myDatabase.AddInParameter(myCommand, "@fecha", DbType.Date, fecha);
+            return myDatabase.ExecuteDataSet(myCommand);
+
+        }
+    }
 }

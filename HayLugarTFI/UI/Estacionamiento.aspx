@@ -44,19 +44,22 @@
                             <h4>Listado de Estacionamientos</h4>
                         <hr />
                         <br />
-                        <asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-default" Text="Agregar" OnClick="btnAgregar_Click"/>
+                        <div class="row ml-5" >
+                    <div class="col-md-2">
+                        <asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-secondary" Text="Agregar" OnClick="btnAgregar_Click"/>
                         <br /><p></p>
                         <br />
-                        <asp:Button runat="server" ID="btnCargaMasiva" CssClass="btn btn-default" Text="Carga Masiva" OnClick="btnCargaMasiva_Click"/>
+                        <asp:Button runat="server" ID="btnCargaMasiva" CssClass="btn btn-secondary" Text="Carga Masiva" OnClick="btnCargaMasiva_Click"/>
                         <br /><p></p>
-
+                        </div>
+                            </div>
                         <div>
                     <asp:GridView ID="gvEstacionamiento" runat="server" AutoGenerateColumns="False" AllowPaging="true"
                         PageSize="50" CssClass="footable" Align="Center" OnRowDeleting="gvEstacionamiento_RowDeleting" DataKeyNames="idEstacionamiento" OnPageIndexChanging="gvEstacionamiento_PageIndexChanging" OnRowEditing="gvEstacionamiento_RowEditing">
                         <Columns> 
 
                             <asp:BoundField DataField="idEstacionamiento" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador del estacionamiento" />
-
+                            <asp:BoundField DataField="TipoEstadia" ItemStyle-HorizontalAlign="Center" HeaderText="Tipo Alquiler" />
 <%--                            <asp:BoundField DataField="descripcion" HeaderText="Tarifa" />--%>
                             <asp:TemplateField  HeaderText = "Tarifa" ItemStyle-HorizontalAlign="Right">
                                 <ItemTemplate>
@@ -108,7 +111,14 @@
 									    <asp:TextBox runat="server" Enabled="false" ID="txtIdEstac" size="10" type="number" CssClass="form-control" />
 								    </div>
 							    </div>
-
+                                <div class="form-group">
+								    <asp:Label runat="server" ID="lblTipoAlquiler" CssClass="col-md-2 control-label">Tipo Alquiler</asp:Label>
+								    <div class="col-md-2">
+<%--									    <asp:TextBox runat="server" ID="txtIdBarrio" ValidationGroup="producto" required size="80" CssClass="textAreaBoxInputs" />--%>
+                                        <asp:DropDownList ID="ddlTipoAlquiler" AutoPostBack="false" runat="server" CssClass="form-control">
+                                        </asp:DropDownList> 
+								    </div>
+							    </div>
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblDescripcion" CssClass="col-md-2 control-label">Tarifa</asp:Label>
 								    <div class="col-xs-1">
@@ -215,8 +225,9 @@
                                                 </script>
                                                 <div id="dvMap" style="width: 100%; height: 500px">
                                                 </div>
-                                    <asp:Label ID="lblErrorMapa" runat="server" Visible="false" ForeColor="Red" Font-Bold="true" Text="No se ha podido cargar el mapa. Verifique su dirección"></asp:Label>
+                                    
                                 </div>
+                                
 			                </th>
                             </tr>
                         </table>
@@ -230,13 +241,13 @@
              <div ID="divBotones" style="display:none">            
             <br /><br />
             <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
-
+                 <asp:Label ID="lblErrorMapa" runat="server" Visible="false" ForeColor="Red" Font-Bold="true" Text="No se ha podido cargar el mapa. Verifique su dirección"></asp:Label>
                             <br /><br />
                             
                             <div class="form-group">
 							    <div class="col-md-10">
-                                    <asp:Button ID="btnCancelar" CssClass="btn btn-default" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
-                                    <asp:Button ID="btnConfirmar" CssClass="btn btn-default" ValidationGroup="producto"  runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click"/>
+                                    <asp:Button ID="btnCancelar" CssClass="btn btn-danger" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
+                                    <asp:Button ID="btnConfirmar" CssClass="btn btn-success" ValidationGroup="producto"  runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click"/>
                                 </div>
                             </div>                        
                         <br />

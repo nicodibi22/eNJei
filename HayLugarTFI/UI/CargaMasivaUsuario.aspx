@@ -17,7 +17,7 @@
     <asp:TextBox TextMode="MultiLine" Rows="10" Width="750" runat="server" ID="txtResultado"></asp:TextBox>
     <br />
     <br />
-    <asp:Button runat="server" ID="btnCargaMasivaBack" CssClass="btn btn-default" Text="Volver" OnClick="btnCargaMasivaBack_Click"/>
+    <asp:Button runat="server" ID="btnCargaMasivaBack" CssClass="btn btn-secondary" Text="Volver" OnClick="btnCargaMasivaBack_Click"/>
     <br /><p></p>
 
 </asp:Content>

@@ -55,7 +55,7 @@
 						                </asp:GridView><br />
 				                        <div class="form-group">
 					                        <div class="col-md-10">
-						                        <asp:Button runat="server" ID="btnVerMovCC" Text="Ver Movimientos" OnClick="btnVerMovCC_Click" CssClass="btn btn-default" />
+						                        <asp:Button runat="server" ID="btnVerMovCC" Text="Ver Movimientos" OnClick="btnVerMovCC_Click" CssClass="btn btn-secondary" />
 					                        </div>
 				                        </div>
 					                </div>

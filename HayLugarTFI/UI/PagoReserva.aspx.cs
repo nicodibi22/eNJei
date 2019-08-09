@@ -159,8 +159,12 @@ namespace UI
                 }
                 if (pagoReserva)
                 {
+                    DateTime MyDateTime = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
+
+                    TimeZoneInfo JOTZ = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");//Jordan
+                    MyDateTime = TimeZoneInfo.ConvertTime(MyDateTime.AddHours(4), JOTZ);
                     //BIZReserva.PlazaUpdateStatePayment(Convert.ToInt32(Session["Nro_Reserva"].ToString()), true);
-                    BIZReserva.ReservaUpdateStatePayment(Convert.ToInt32(Session["Nro_Reserva"].ToString()), true);
+                    BIZReserva.ReservaUpdateStatePayment(Convert.ToInt32(Session["Nro_Reserva"].ToString()), MyDateTime, true);
                     panelTotal.Visible = false;
                     lblPyEconfirmado.Visible = true;
                     btnContinuar.Visible = true;
@@ -179,11 +183,18 @@ namespace UI
 
         private bool TarjetaValida()
         {
+
+            DateTime MyDateTime = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
+
+            TimeZoneInfo JOTZ = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");//Jordan
+            MyDateTime = TimeZoneInfo.ConvertTime(MyDateTime.AddHours(4), JOTZ);
+            
+
             try
             {
-                if (int.Parse(txtAnio.Text) < DateTime.Today.Year)
+                if (int.Parse(txtAnio.Text) < MyDateTime.Year)
                     return false;
-                if (int.Parse(txtAnio.Text) == DateTime.Today.Year && int.Parse(txtMes.Text) > DateTime.Today.Month)
+                if (int.Parse(txtAnio.Text) == MyDateTime.Year && int.Parse(txtMes.Text) > MyDateTime.Month)
                     return false;
                 return true;
             }

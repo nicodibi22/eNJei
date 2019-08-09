@@ -381,5 +381,19 @@ namespace UI
                 lblTotal.Text = Total.ToString();
             }
         }
+
+        protected void btnLimpiarFiltros_Click(object sender, EventArgs e)
+        {
+            txtFechaDesde.Text = string.Empty;
+            txtFechaHasta.Text = string.Empty;
+            txtUsuario.Text = string.Empty;
+        }
+
+        protected void btnLimpiarFiltros2_Click(object sender, EventArgs e)
+        {
+            txtFechaDesde2.Text = string.Empty;
+            txtFechaHasta2.Text = string.Empty;
+            txtUsuario2.Text = string.Empty;
+        }
     }
 }

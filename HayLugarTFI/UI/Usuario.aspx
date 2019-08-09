@@ -88,10 +88,14 @@
                             <h4>Listado de Usuarios</h4>
                         <hr />
                         <br />
-                        <asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-default" Text="Agregar" OnClick="btnAgregar_Click"/>
+                        <div class="row ml-5" >
+                    <div class="col-md-2">
+                        <asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-secondary" Text="Agregar" OnClick="btnAgregar_Click"/>
                         <br /><p></p>
                         <br />
-                        <asp:Button runat="server" ID="btnCargaMasiva" CssClass="btn btn-default" Text="Carga Masiva" OnClick="btnCargaMasiva_Click"/>
+                        <asp:Button runat="server" ID="btnCargaMasiva" CssClass="btn btn-secondary" Text="Carga Masiva" OnClick="btnCargaMasiva_Click"/>
+                        </div>
+                            </div>
                         <br /><p></p>
                         <div>
                     <asp:GridView ID="gvUsuario" runat="server" AutoGenerateColumns="False" AllowPaging="true"
@@ -258,7 +262,7 @@
 							    <div class="form-group">
 								    <asp:Label runat="server" ID="lblDireccion" CssClass="col-md-2 control-label">Dirección</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" ID="txtDireccion" ValidationGroup="producto" required size="200" CssClass="form-control" />
+									    <asp:TextBox runat="server" ID="txtDireccion" ValidationGroup="producto" size="200" CssClass="form-control" />
 								    </div>
 							    </div>
 
@@ -290,6 +294,7 @@
 								    <asp:Label runat="server" ID="lblMarca" CssClass="col-md-2 control-label">Marca</asp:Label>
 								    <div class="col-md-10">
 									    <asp:TextBox runat="server" ID="txtMarca" ValidationGroup="vehiculo"  CssClass="form-control" size="30"  />
+                                        <asp:HiddenField runat="server" ID="hdIdVehiculo" />
 								    </div>
 							    </div>
                                 <div class="form-group">
@@ -319,8 +324,8 @@
                             
                             <div class="form-group">
 							    <div class="col-md-10">
-                                    <asp:Button ID="btnCancelar" CssClass="btn btn-default" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
-                                    <asp:Button ID="btnConfirmar" CssClass="btn btn-default" ValidationGroup="producto"  runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
+                                    <asp:Button ID="btnCancelar" CssClass="btn btn-danger" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
+                                    <asp:Button ID="btnConfirmar" CssClass="btn btn-success" ValidationGroup="producto"  runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
                                 </div>
                             </div>                        
                         <br />

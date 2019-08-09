@@ -40,11 +40,7 @@ namespace UI
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure la lógica de validación de nombres de usuario
-            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
-            {
-                AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
-            };
+            manager.UserValidator = new CustomUserValidator<ApplicationUser>(manager);            
 
             // Configure la lógica de validación de contraseñas
             manager.PasswordValidator = new PasswordValidator
@@ -80,6 +76,7 @@ namespace UI
             {
                 manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
+
             return manager;
         }
     }

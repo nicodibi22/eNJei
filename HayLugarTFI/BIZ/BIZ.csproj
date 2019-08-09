@@ -52,6 +52,7 @@
     <Compile Include="BIZOperacionesTC.cs" />
     <Compile Include="BIZPago.cs" />
     <Compile Include="BIZPlaza.cs" />
+    <Compile Include="BIZReclamo.cs" />
     <Compile Include="BIZReserva.cs" />
     <Compile Include="BIZTarifa.cs" />
     <Compile Include="BIZTipoEstadia.cs" />

@@ -124,6 +124,7 @@ namespace UI
                 txtMarca.Text = dsVehiculo.Tables[0].Rows[0]["marca"].ToString();
                 txtModelo.Text = dsVehiculo.Tables[0].Rows[0]["modelo"].ToString();
                 txtPatente.Text = dsVehiculo.Tables[0].Rows[0]["patente"].ToString();
+                hdIdVehiculo.Value = dsVehiculo.Tables[0].Rows[0]["idVehiculo"].ToString();
             }
             else
             {
@@ -191,7 +192,11 @@ namespace UI
                     BIZAspNetUserRoles.Update(txtUsuarioId.Text, ddlRol.SelectedValue);
 
                     BIZDatosPersonales.Update(txtUsuarioId.Text, ddlTipoDocumento.SelectedValue, txtNroDocumento.Text, txtMail.Text, txtTelefono.Text, string.Empty, string.Empty, txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtCuil.Text);
-                    //BIZVehiculo.Insert(user.Id, "MARCA", "MODELO", "XXX XXX");
+                    if (!string.IsNullOrEmpty(hdIdVehiculo.Value))
+                    {
+                        BIZVehiculo.Update(Convert.ToDecimal(hdIdVehiculo.Value), txtUsuarioId.Text, txtMarca.Text, txtModelo.Text, txtPatente.Text);
+                    }
+                    
 
                 }
                 txtUsuarioId.Text = string.Empty;

@@ -67,12 +67,12 @@ namespace UI
             pnlTab2.Visible = true;
 
             txtAliasEmp.Text = ((Label)gvDatosPersonales.Rows[e.NewEditIndex].FindControl("lblNroReg")).Text; //gvDatosPersonales.Rows[e.NewEditIndex].Cells[0].Text.ToString();
-            txtApellido.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[0].Text.ToString().Replace("&nbsp;", "");
-            txtNombre.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[1].Text.ToString().Replace("&nbsp;", "");
-            ddlTipoDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[2].Text.ToString();
-            txtNumeroDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[3].Text.ToString().Replace("&nbsp;", "");
-            txtEmail.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[4].Text.ToString().Replace("&nbsp;", "");
-            txtNroTelefono.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[6].Text.ToString().Replace("&nbsp;", "");
+            txtApellido.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[3].Text.ToString().Replace("&nbsp;", "");
+            txtNombre.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[4].Text.ToString().Replace("&nbsp;", "");
+            ddlTipoDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[5].Text.ToString();
+            txtNumeroDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[6].Text.ToString().Replace("&nbsp;", "");
+            txtEmail.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[0].Text.ToString().Replace("&nbsp;", "");
+            txtNroTelefono.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[2].Text.ToString().Replace("&nbsp;", "");
             ddltipotelefono.SelectedValue = ((Label)gvDatosPersonales.Rows[e.NewEditIndex].FindControl("lblTipoTelefono")).Text;
             //txtAliasEmp.Text = ((Label)gvDatosPersonales.Rows[e.NewEditIndex].FindControl("lblAliasEmp")).Text;
 
@@ -161,6 +161,31 @@ namespace UI
             catch (Exception ex)
             {
                 Response.Redirect("ErrorDB.aspx");
+            }
+        }
+
+        protected void gvDatosPersonales_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lblPerfil = (Label)e.Row.FindControl("lblPerfil");
+                
+                if (Context.User.IsInRole("Propietario"))
+                {
+                    lblPerfil.Text = "Propietario";
+                }
+                else if (Context.User.IsInRole("Cond_Prop"))
+                {
+                    lblPerfil.Text = "Conductor-Propietario";
+                }
+                else if (Context.User.IsInRole("Conductor"))
+                {
+                    lblPerfil.Text = "Conductor";
+                }
+                else if (Context.User.IsInRole("Administrador"))
+                {
+                    lblPerfil.Text = "Administrador";
+                }
             }
         }
     }

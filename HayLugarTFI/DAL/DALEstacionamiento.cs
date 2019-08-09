@@ -181,5 +181,15 @@ namespace DAL
 
 			return myDatabase.ExecuteDataSet(myCommand);
 		}
-	}
+
+        public static DataSet SelectByIdUser(string idUser)
+        {
+            Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
+            DbCommand myCommand = myDatabase.GetStoredProcCommand("EstacionamientoSelectByIdUser");
+
+            myDatabase.AddInParameter(myCommand, "@idUser", DbType.String, idUser);
+
+            return myDatabase.ExecuteDataSet(myCommand);
+        }
+    }
 }

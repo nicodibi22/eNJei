@@ -129,8 +129,9 @@ namespace UI
                 {
                     if (ddlTipoAlquiler.SelectedValue == "1")
                     {
-                        lblMensaje.Text = "La plaza no está disponible en la fecha seleccionada";
-                        lblMensaje.Visible = true;
+                        //lblMensaje.Text = "La plaza no está disponible en la fecha seleccionada";
+                        //lblMensaje.Visible = true;                        
+                        ((SiteMaster)this.Master).ShowMessage("<strong>La plaza no está disponible en la fecha seleccionada</strong>", SiteMaster.WarningType.Warning);
                         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
                         return;
                     }
@@ -146,16 +147,18 @@ namespace UI
 
                             if (horaInicioSeleccionada > horaInicio && horaInicioSeleccionada < horaFin)
                             {
-                                lblMensaje.Text = "La plaza no está disponible en la hora seleccionada";
-                                lblMensaje.Visible = true;
+                                //lblMensaje.Text = "La plaza no está disponible en la hora seleccionada";
+                                //lblMensaje.Visible = true;                                
+                                ((SiteMaster)this.Master).ShowMessage("<strong>La plaza no está disponible en la hora seleccionada</strong>", SiteMaster.WarningType.Warning);
                                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
                                 return; 
                             }
                             else if (horaFinSeleccionada > horaInicio && horaFinSeleccionada < horaFin)
                             {
-                                lblMensaje.Text = "La plaza no está disponible en la hora seleccionada";
-                                lblMensaje.Visible = true;
-                                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
+                                //lblMensaje.Text = "La plaza no está disponible en la hora seleccionada";
+                                //lblMensaje.Visible = true;
+                                ((SiteMaster)this.Master).ShowMessage("<strong>La plaza no está disponible en la hora seleccionada</strong>", SiteMaster.WarningType.Warning);
+                                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);                                
                                 return; 
                             }
                         }
@@ -213,6 +216,8 @@ namespace UI
             if (dsPagosPendientes.Tables.Count > 0 && dsPagosPendientes.Tables[0].Rows.Count > 0)
             {
                 lblMensajeError.Text = "No puede generar la reserva: Tiene reserva pendiente de pago.";
+
+                //((SiteMaster)this.Master).ShowMessage("<strong>No puede generar la reserva: Tiene reserva pendiente de pago.</strong>", SiteMaster.WarningType.Warning);
             }
             else
             { 
@@ -256,6 +261,7 @@ namespace UI
                 }
 
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
+                
             }
             e.Cancel = true;
         }
@@ -279,6 +285,10 @@ namespace UI
 
                 if (DateTime.Parse(txtFechaDesde.Text) > DateTime.Parse(txtFechaHasta.Text))
                     return false;
+
+                if (DateTime.Today.Date > DateTime.Parse(txtFechaDesde.Text))
+                    return false;
+                    
             }
             else
             {

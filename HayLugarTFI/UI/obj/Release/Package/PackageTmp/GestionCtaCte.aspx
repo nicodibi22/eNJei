@@ -49,8 +49,7 @@
                             <h4>Gestión de Cuenta Corriente</h4>
                         <hr />
                         <br />
-                        <asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-default" Text="Agregar una cuenta" OnClick="btnAgregar_Click"/>
-                        <br /><p></p>
+                        
                         <div>
                     <asp:GridView ID="gvCC" runat="server" AutoGenerateColumns="False" AllowPaging="true"
                         PageSize="50" Align="Center" CssClass="footable" OnPageIndexChanging="gvCC_PageIndexChanging" OnRowEditing="gvCC_RowEditing">
@@ -92,21 +91,21 @@
                                <div class="form-group">
 								    <asp:Label runat="server" ID="lblCUENTA" CssClass="col-md-2 control-label">Nro. Cuenta</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtNroCuenta" size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="false" ID="txtNroCuenta" size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
                                <div class="form-group">
 								    <asp:Label runat="server" ID="lblTitular" CssClass="col-md-2 control-label">Titular</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtTitular" size="80" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="false" ID="txtTitular" size="80" CssClass="form-control" />
 								    </div>
 							    </div>
 
                                <div class="form-group">
 								    <asp:Label runat="server" ID="lblUsuarios" CssClass="col-md-2 control-label">Usuario</asp:Label>
                                     <div class="col-md-10">
-                                        <asp:DropDownList ID="ddlUsuarios" AutoPostBack="false" runat="server">
+                                        <asp:DropDownList ID="ddlUsuarios" AutoPostBack="false" runat="server" CssClass="form-control">
                                         </asp:DropDownList> 
                                     </div>
 							    </div>
@@ -115,7 +114,7 @@
                                 <div class="form-group">
 								    <asp:Label runat="server" ID="lblSaldoHoy" CssClass="col-md-2 control-label">Saldo $</asp:Label>
 								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtSaldoHoy" size="10" CssClass="textAreaBoxInputs" />
+									    <asp:TextBox runat="server" Enabled="false" ID="txtSaldoHoy" size="10" CssClass="form-control" Width="180px" />
 								    </div>
 							    </div>
 
@@ -123,15 +122,15 @@
 								    <asp:Label runat="server" ID="lblSaldoNuevo" CssClass="col-md-2 control-label">Nuevo Saldo $</asp:Label>
 								    <div class="col-md-10">
 									    
-                                        <asp:TextBox ID="txtSaldoNuevo" ValidationGroup="ValCuentaCorriente"  required Type="number" placeholder="Ingresar un valor." runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtSaldoNuevo" ValidationGroup="ValCuentaCorriente" size="10"  required Type="number" placeholder="Ingresar un valor." runat="server" CssClass="form-control" Width="180px"></asp:TextBox>
 								    </div>
 							    </div>
 
                         <br /><br />                            
                         <div class="form-group">
-				            <div class="col-md-10">
-                                <asp:Button ID="btnCancelar" CssClass="btn btn-default" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
-                                <asp:Button ID="btnConfirmar" CssClass="btn btn-default" ValidationGroup="ValCuentaCorriente" runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
+				            <div class="col-md-10 ml-5">
+                                <asp:Button ID="btnCancelar" CssClass="btn btn-danger" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
+                                <asp:Button ID="btnConfirmar" CssClass="btn btn-success" ValidationGroup="ValCuentaCorriente" runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
                             </div>
                         </div>
                     </div>

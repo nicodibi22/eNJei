@@ -131,14 +131,14 @@
                     var someFormattedDate = dd + '/' + mm + '/' + yyyy;
                     fechaEntrega = someFormattedDate;
 
-                    var pivotdistance = parseInt(distance);//.substr(0, distance.length - 2);
-                    var pivot2 = pivotdistance;
-                    var costoViaje =  pivot2 * precio;
+                    var pivotdistance = distance.replace(",", ".");//.substr(0, distance.length - 2);
+                    var pivot2 = precio;
+                    var costoViaje = parseFloat(pivot2) * parseFloat(pivotdistance);
                     var costoTotal = costoViaje;
 
                     var dvDistance = document.getElementById("dvDistance");
                     dvDistance.innerHTML = "";
-                    dvDistance.innerHTML += "Distancia: " + distance + "<br />";
+                    dvDistance.innerHTML += "Distancia: " + pivotdistance + "<br />";
                     //dvDistance.innerHTML += "Tiempo estimado: " + duration + "<br />";
                     dvDistance.innerHTML += "Precio del Km: $ " + precio + "<br />";
                     dvDistance.innerHTML += "Costo total: $ " + costoTotal + "<br />";
@@ -153,24 +153,34 @@
     </script>
 
 
-    <table border="0" cellpadding="0" cellspacing="3">
-        <tr>
-            <td colspan="2">
+    <br />
+    <br />
+
+    <div class="row ml-5" >
+                    <div class="col-md-2">
                 Seleccione el lugar de despacho:
 <%--                <input type="text" id="txtSource" value="Bandra, Mumbai, India" style="width: 200px" />--%>
 <%--                <asp:TextBox runat="server" placeholder="Origen" ID="txtSource" CssClass="form-control"  ClientIDMode="Static"></asp:TextBox>--%>
                                 <asp:DropDownList ID="ddlDespacho" ClientIDMode="Static" CssClass="form-control" style="width:auto;" runat="server">
                                 </asp:DropDownList> 
-
+                        </div>
+        </div>
+    <div class="row ml-5" >
+                    <div class="col-md-2">
                 &nbsp; Ingrese la dirección de envío:
                 <asp:TextBox runat="server" placeholder="Destino" ID="txtDestination" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
 <%--                <input type="text" id="txtDestination" value="Andheri, Mumbai, India" style="width: 200px" />--%>
                 <br />
-                    <input type="button" value="Calcular costo de envío" onclick="GetRoute()" style="width:auto; height: 38px;padding: 8px 12px;font-size: 14px;color: #888888;background-color: #ffffff;border: 1px solid #282828;" />
+                        </div>
+        </div>
+    <div class="row ml-5" >
+                    <div class="col-md-2">
+                    <input type="button" value="Calcular costo de envío" onclick="GetRoute()" class="btn btn-secondary" />
 <%--                <asp:Button runat="server" ID="btnCalcular" ClientIDMode="Static" Text="Obtener Distancia" CssClass="btn btn-default" OnClientClick="GetRoute()" />--%>
-                <hr />
-            </td>
-        </tr>
+             </div>
+        </div>
+    <br />
+    <table style="margin-left:5px">
         <tr>
             <td colspan="2">
                 <div id="dvDistance">

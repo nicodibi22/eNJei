@@ -59,34 +59,38 @@
                             <h4>Mis reservas pendientes de pago</h4>
                         <hr />
                         <div id="divFiltros1" runat="server">
-                        <table>
-                            <tr>
-                                <td>
+                        
+                            <div class="row ml-5" >
+                                <div class="col-md-2">
                                     <asp:Label ID="lblFechaDesde" runat="server" Text="Fecha Reserva Desde: "></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:TextBox runat="server" ID="txtFechaDesde" type="date" CssClass="form-control" ></asp:TextBox>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblFechaHasta" runat="server" Text="Hasta: "></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:TextBox runat="server" ID="txtFechaHasta" type="date" CssClass="form-control" ></asp:TextBox>
-                                </td>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblUsuario" runat="server" Text="Usuario: "></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:TextBox runat="server" ID="txtUsuario" CssClass="form-control" ></asp:TextBox>
-                                </td>
-                                <td>
-                                    <asp:Button runat="server" ID="btnFiltrar" OnClick="btnFiltrar_Click" Text="Filtrar" CssClass="form-control"/>
-                                <asp:Label runat="server" ID="lblErrorFiltro" ForeColor="Red" Font-Bold="true"></asp:Label>
-                                </td>
                                 
-                            </tr>
-                        </table>
+                                    <asp:TextBox runat="server" ID="txtFechaDesde" type="date" CssClass="form-control" ></asp:TextBox>
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="lblFechaHasta" runat="server" Text="Hasta: "></asp:Label>
+                                    <asp:TextBox runat="server" ID="txtFechaHasta" type="date" CssClass="form-control" ></asp:TextBox>
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="lblUsuario" runat="server" Text="Usuario: "></asp:Label>
+                                    <asp:TextBox runat="server" ID="txtUsuario" CssClass="form-control" ></asp:TextBox>
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:Label runat="server" ID="Label1" ForeColor="White" Text="......" Font-Bold="true"></asp:Label>
+                                    <asp:Button runat="server" ID="btnFiltrar" OnClick="btnFiltrar_Click" Text="Filtrar" CssClass="btn btn-warning"/>
+                                
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:Label runat="server" ID="Label4" ForeColor="White" Text="." Font-Bold="true"></asp:Label>
+                                    <asp:Button runat="server" ID="btnLimpiarFiltros" OnClick="btnLimpiarFiltros_Click" Text="Limpiar Filtro" CssClass="btn btn-info"/>
+                                
+                                </div>
+                                </div>
+                            <br />
+                            <div class="row ml-5" >
+                                <div class="col-md-4">
+                            <asp:Label runat="server" ID="lblErrorFiltro" ForeColor="Red" Font-Bold="true"></asp:Label>
+                                    </div>
+                                </div>
                         </div>
 
                         <br /><p></p>
@@ -96,7 +100,7 @@
                         PageSize="50" CssClass="footable" Align="Center" OnRowCommand="gvReservasPendientes_RowCommand" OnRowEditing="gvReservasPendientes_RowEditing" OnPageIndexChanging="gvReservasPendientes_PageIndexChanging"  >
                         <Columns> 
 
-                            <asp:BoundField DataField="idReserva" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Reserva" />
+                            <asp:BoundField DataField="idReserva" ItemStyle-HorizontalAlign="Center" HeaderText="Id Reserva" />
                             
                             <asp:BoundField DataField="fechaDesde" HeaderText="Fecha Desde" DataFormatString="{0:dd/MM/yyyy}" />
                             <asp:BoundField DataField="fechaHasta" HeaderText="Fecha Hasta" DataFormatString="{0:dd/MM/yyyy}" />
@@ -104,11 +108,7 @@
 
                             <asp:BoundField DataField="calle" HeaderText="Calle" />
 
-                            <asp:BoundField DataField="altura" HeaderText="Altura" />
-
-                            <asp:BoundField DataField="datosAdicionales" HeaderText="Datos adicionales" />
-
-                            <asp:BoundField DataField="descBarrio" HeaderText="Barrio" />
+                            <asp:BoundField DataField="altura" HeaderText="Altura" />                           
 
                             <asp:BoundField DataField="UserName" ItemStyle-CssClass="filtro" HeaderText="Reservado por" />
 
@@ -132,34 +132,36 @@
                             <h4>Mis reservas pagas</h4>
                         <hr />
                         <div id="divFiltros2" runat="server">
-                        <table>
-                            <tr>
-                                <td>
+                            <div class="row ml-5" >
+                                <div class="col-md-2">
                                     <asp:Label ID="lblFechaDesde2" runat="server"  Text="Fecha Reserva Desde: "></asp:Label>
-                                </td>
-                                <td>
                                     <asp:TextBox runat="server" ID="txtFechaDesde2" CssClass="form-control" type="date" ></asp:TextBox>
-                                </td>
-                                <td>
+                                </div>
+                                <div class="col-md-2">
                                     <asp:Label ID="lblFechaHasta2" runat="server" Text="Hasta: "></asp:Label>
-                                </td>
-                                <td>
                                     <asp:TextBox runat="server" ID="txtFechaHasta2" type="date" CssClass="form-control" ></asp:TextBox>
-                                </td>
-                                </td>
-                                <td>
+                                </div>
+                                <div class="col-md-2">
                                     <asp:Label ID="lblUsuario2" runat="server" Text="Usuario: "></asp:Label>
-                                </td>
-                                <td>
                                     <asp:TextBox runat="server" ID="txtUsuario2" CssClass="form-control" ></asp:TextBox>
-                                </td>
-                                <td>
-                                    <asp:Button runat="server" ID="btnFiltrar2" OnClick="btnFiltrar2_Click" CssClass="form-control" Text="Filtrar" />
-                                <asp:Label runat="server" ID="lblErrorFiltro2" ForeColor="Red" Font-Bold="true"></asp:Label>
-                                </td>
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:Label runat="server" ID="Label2" ForeColor="White" Text="......" ></asp:Label>
+                                    <asp:Button runat="server" ID="btnFiltrar2" OnClick="btnFiltrar2_Click" CssClass="btn btn-warning"  Text="Filtrar" />
                                 
-                            </tr>
-                        </table>
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:Label runat="server" ID="Label3" ForeColor="White" Text="." ></asp:Label>
+                                    <asp:Button runat="server" ID="btnLimpiarFiltros2" OnClick="btnLimpiarFiltros2_Click" CssClass="btn btn-info" Text="Limpiar Filtro" />
+                                
+                                </div>
+                                </div>
+                            
+                            <div class="row ml-5" >
+                                <div class="col-md-4">
+                                    <asp:Label runat="server" ID="lblErrorFiltro2" ForeColor="Red" Font-Bold="true"></asp:Label>
+                                    </div>
+                                </div>
                         </div>
                         <br /><p></p>
                         <div>
@@ -169,13 +171,13 @@
                         OnRowDataBound="gvReserva_RowDataBound">
                         <Columns> 
 
-                            <asp:BoundField DataField="idReserva" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Reserva" />
+                            <asp:BoundField DataField="idReserva" ItemStyle-HorizontalAlign="Center" HeaderText="Id Reserva" />
                             <asp:BoundField DataField="fechaDesde" HeaderText="Fecha Desde" DataFormatString="{0:dd/MM/yyyy}" />
                             <asp:BoundField DataField="fechaHasta" HeaderText="Fecha Hasta" DataFormatString="{0:dd/MM/yyyy}" />
                             
                             <asp:TemplateField HeaderText="Fecha Pago">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblFechaPago"  Text='<%# Eval("fechaPago","{0:d}") %>' runat="server" ></asp:Label>
+                                    <asp:Label ID="lblFechaPago"  Text='<%# Eval("fechaPago","{0:dd/MM/yyyy}") %>' runat="server" ></asp:Label>
                                 </ItemTemplate> 
                                 <FooterTemplate>
                                   <asp:Label ID="lblTotalTexto" ForeColor="Red" Font-Bold="true" Text="Total:" runat="server" ></asp:Label>
@@ -194,13 +196,12 @@
 
                             <asp:BoundField DataField="altura" HeaderText="Altura" />
 
-                            <asp:BoundField DataField="datosAdicionales" HeaderText="Datos adicionales" />
 
                             <asp:BoundField DataField="descBarrio" HeaderText="Barrio" />
 
                             <asp:BoundField DataField="UserName" HeaderText="Reservado por" />
                             
-                            <asp:TemplateField HeaderText = "Reserva">
+                            <asp:TemplateField HeaderText = "Comprobante">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkImprimirReserva" CommandName="ImprimirReserva" CommandArgument='<%# Eval("idReserva")%>' Text="Descargar" runat="server" ></asp:LinkButton>
                                 </ItemTemplate>                    
@@ -290,8 +291,8 @@
                             
                             <div class="form-group">
 							    <div class="col-md-10">
-                                    <asp:Button ID="btnCancelar" CssClass="btn btn-default" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
-                                    <asp:Button ID="btnConfirmar" CssClass="btn btn-default" ValidationGroup="producto"  runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
+                                    <asp:Button ID="btnCancelar" CssClass="btn btn-danger" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
+                                    <asp:Button ID="btnConfirmar" CssClass="btn btn-success" ValidationGroup="producto"  runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
                                 </div>
                             </div>                        
                         <br />

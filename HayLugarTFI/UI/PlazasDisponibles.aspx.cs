@@ -104,19 +104,34 @@ namespace UI
 
         protected void ddlTipoAlquiler_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Request.Browser.Browser == "Chrome")
+            {
+                txtFecha.Text = DateTime.Today.ToString("yyyy-MM-dd");
+                txtFechaDesde.Text = DateTime.Today.ToString("yyyy-MM-dd");
+                txtFechaHasta.Text = DateTime.Today.ToString("yyyy-MM-dd");
+
+            }
+            else
+            {
+                txtFecha.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                txtFechaDesde.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                txtFechaHasta.Text = DateTime.Today.ToString("dd/MM/yyyy");
+
+            }
             if (ddlTipoAlquiler.SelectedValue == "1")
             {
 
                 divDiario.Visible = true;
                 divHora.Visible = false;
-                Filtrar();
+                
             }
             else
             {
                 divDiario.Visible = false;
                 divHora.Visible = true;
-                Filtrar();
+                
             }
+            Filtrar();
         }
 
         private void Filtrar()

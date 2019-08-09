@@ -99,13 +99,14 @@ namespace UI
         {
             try
             {
+                decimal saldoTotal =  Convert.ToDecimal(txtSaldoHoy.Text) - Convert.ToDecimal(txtSaldoNuevo.Text);
                 if (ddlUsuarios.Visible)
                 {
                     BIZCuentaCorriente.Insert(ddlUsuarios.SelectedValue, Convert.ToInt32(txtSaldoHoy.Text), DateTime.Now);
                 }
                 else
                 {
-                    BIZCuentaCorriente.UpdateSaldo(Convert.ToInt32(txtNroCuenta.Text), Convert.ToDecimal(txtSaldoNuevo.Text));
+                    BIZCuentaCorriente.UpdateSaldo(Convert.ToInt32(txtNroCuenta.Text), saldoTotal);
 
                 }
                 txtNroCuenta.Text = "";

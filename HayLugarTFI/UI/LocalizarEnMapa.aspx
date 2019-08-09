@@ -50,7 +50,7 @@
                 </div>
 
                         <br />
-                <asp:Button ID="btnCargarMapa" CssClass="btn btn-default" runat="server" Text="Cargar Mapa" OnClick="btnCargarMapa_Click"  />
+                <asp:Button ID="btnCargarMapa" CssClass="btn btn-secondary" runat="server" Text="Cargar Mapa" OnClick="btnCargarMapa_Click"  />
   
 
                         <br/><%-- Datos de contacto--%>

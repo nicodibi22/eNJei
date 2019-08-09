@@ -31,15 +31,6 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Panel pnlTab1;
         
         /// <summary>
-        /// gvPlaza control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPlaza;
-        
-        /// <summary>
         /// lblMensajeError control.
         /// </summary>
         /// <remarks>
@@ -47,6 +38,15 @@ namespace UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensajeError;
+        
+        /// <summary>
+        /// gvPlaza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvPlaza;
         
         /// <summary>
         /// upnlTotal2 control.

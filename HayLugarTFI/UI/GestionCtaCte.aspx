@@ -49,8 +49,7 @@
                             <h4>Gestión de Cuenta Corriente</h4>
                         <hr />
                         <br />
-                        <asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-default" Text="Agregar una cuenta" OnClick="btnAgregar_Click"/>
-                        <br /><p></p>
+                        
                         <div>
                     <asp:GridView ID="gvCC" runat="server" AutoGenerateColumns="False" AllowPaging="true"
                         PageSize="50" Align="Center" CssClass="footable" OnPageIndexChanging="gvCC_PageIndexChanging" OnRowEditing="gvCC_RowEditing">
@@ -129,9 +128,9 @@
 
                         <br /><br />                            
                         <div class="form-group">
-				            <div class="col-md-10">
-                                <asp:Button ID="btnCancelar" CssClass="btn btn-default" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
-                                <asp:Button ID="btnConfirmar" CssClass="btn btn-default" ValidationGroup="ValCuentaCorriente" runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
+				            <div class="col-md-10 ml-5">
+                                <asp:Button ID="btnCancelar" CssClass="btn btn-danger" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
+                                <asp:Button ID="btnConfirmar" CssClass="btn btn-success" ValidationGroup="ValCuentaCorriente" runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
                             </div>
                         </div>
                     </div>

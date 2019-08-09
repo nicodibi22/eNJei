@@ -23,9 +23,10 @@ namespace UI
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated == true)
             {
-                if (Context.User.IsInRole("Administrador"))
+                if (Context.User.IsInRole("Propietario") || Context.User.IsInRole("Cond_Prop") || Context.User.IsInRole("Administrador"))
                 {
-                    cargarEstacionamientos();
+                    if (!IsPostBack)
+                        cargarEstacionamientos();
                 }
                 else
                 {
@@ -41,6 +42,7 @@ namespace UI
 
         private void cargarMapa()
         {
+            lblErrorMapa.Visible = false;
             try
             {
                 string url = "https://maps.google.com/maps/api/geocode/xml?address=" + txtCalle.Text + " " + txtAltura.Text + "&sensor=false&key=AIzaSyBCJHG-OM17NkmG9kteZWkaMY2mvbY34rQ";
@@ -106,6 +108,7 @@ namespace UI
             {
                 rptMarkers.DataSource = null;
                 lblErrorMapa.Visible = true;
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
             }
         }
 
@@ -117,10 +120,15 @@ namespace UI
             ddlBarrios.DataTextField = "descripcion";
             ddlBarrios.DataBind();
 
+            ddlTipoAlquiler.DataSource = BIZTipoEstadia.SelectAll();
+            ddlTipoAlquiler.DataValueField = "idTipoEstadia";
+            ddlTipoAlquiler.DataTextField = "descripcion";
+            ddlTipoAlquiler.DataBind();
+
             try
             {
                 CultureInfo us = new CultureInfo("es-ES");
-                gvEstacionamiento.DataSource = BIZEstacionamiento.SelectAll();
+                gvEstacionamiento.DataSource = BIZEstacionamiento.SelectByIdUser(Context.User.Identity.GetUserId());
                 gvEstacionamiento.DataBind();
 
                 if (gvEstacionamiento.Rows.Count > 0)
@@ -188,13 +196,13 @@ namespace UI
             //txtDescripcion.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[1].Text.ToString();
             txtDescripcion.Text = ((Label)gvEstacionamiento.Rows[e.NewEditIndex].FindControl("lblDescripcion")).Text.Substring(1).Replace(".", "").Replace(",", ".");
 
-            txtCalle.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[2].Text.ToString();
-            txtAltura.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[3].Text.ToString();
-            txtDatosAdicionales.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[4].Text.ToString();
-            ddlBarrios.SelectedValue = gvEstacionamiento.Rows[e.NewEditIndex].Cells[8].Text.ToString();
-            txtLatitud.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[6].Text.ToString();
-            txtLongitud.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[7].Text.ToString();
-
+            txtCalle.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[3].Text.ToString();
+            txtAltura.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[4].Text.ToString();
+            txtDatosAdicionales.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[5].Text.ToString();
+            ddlBarrios.SelectedValue = gvEstacionamiento.Rows[e.NewEditIndex].Cells[9].Text.ToString();
+            txtLatitud.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[7].Text.ToString();
+            txtLongitud.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[8].Text.ToString();
+            ddlTipoAlquiler.SelectedValue = gvEstacionamiento.Rows[e.NewEditIndex].Cells[1].Text.ToString() == "Diario" ? "1" : "2";
 
             e.Cancel = true;
 
@@ -227,12 +235,15 @@ namespace UI
                 //txtLatitud.Text = mapDLatitud.Replace('.',',');
                 //txtLongitud.Text = mapLongitud.Replace('.', ',');
 
+                if (lblErrorMapa.Visible)
+                    return;
 
                 if (txtIdEstac.Text == string.Empty)
                 {
-                    BIZEstacionamiento.Insert(txtDescripcion.Text, txtCalle.Text, Convert.ToInt32(txtAltura.Text), txtDatosAdicionales.Text, Convert.ToInt32(ddlBarrios.SelectedValue), 
-                        Convert.ToDecimal(Session["latitud"].ToString().Replace('.', ',')), Convert.ToDecimal(Session["longitud"].ToString().Replace('.', ',')));
+                    int idEstacionamiento = BIZEstacionamiento.Insert(txtDescripcion.Text, txtCalle.Text, Convert.ToInt32(txtAltura.Text), txtDatosAdicionales.Text, Convert.ToInt32(ddlBarrios.SelectedValue),
+                        Convert.ToDecimal(Session["latitud"].ToString()), Convert.ToDecimal(Session["longitud"].ToString()));
 
+                    BIZPlaza.Insert(idEstacionamiento, Context.User.Identity.GetUserId(), Convert.ToInt32(ddlTipoAlquiler.SelectedValue), true);
                     //BIZEstacionamiento.Insert(txtDescripcion.Text, txtCalle.Text, Convert.ToInt32(txtAltura.Text), txtDatosAdicionales.Text, Convert.ToInt32(ddlBarrios.SelectedValue),
                     //Convert.ToDecimal(Session["latitud"].ToString().Replace('.', ',')), Convert.ToDecimal(Session["longitud"].ToString().Replace('.', ',')));
 

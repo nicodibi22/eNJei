@@ -22,8 +22,9 @@ namespace UI.Account
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
+            
             var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
-            IdentityResult result = manager.Create(user, Password.Text);
+            IdentityResult result = manager.Create(user, txtPassword.Text);
             if (result.Succeeded)
             {
 
@@ -118,7 +119,7 @@ namespace UI.Account
 
                 string body = string.Empty;
 
-                string urlFinal = @"http://haylugar.somee.com/Account/CS_Activation.aspx?ActivationCode=" + activationCode;
+                string urlFinal = @"http://tfi.somee.com/Account/CS_Activation.aspx?ActivationCode=" + activationCode;
 
                 body += "<br /><br />Ingresa al siguiente enlace para activar tu cuenta:";
                 body += "<br /><br />";
@@ -130,9 +131,9 @@ namespace UI.Account
                 {
                     body += reader.ReadToEnd();
                 }
-                string url = "www.haylugar.somee.com";
+                string url = "www.tfi.somee.com";
                 body = body.Replace("{UserName}", Email.Text);
-                body = body.Replace("{UserPass}", Password.Text);
+                body = body.Replace("{UserPass}", txtPassword.Text);
                 body = body.Replace("{Url}", url);
                 body = body.Replace("{activationCode}", activationCode);
 
@@ -146,7 +147,7 @@ namespace UI.Account
                 //mail.Attachments.Add(new Attachment(@"C:\Documentos\carta.docx"));
 
                 //Configuracion del SMTP
-                SmtpServer.Port = 25; //Puerto que utiliza Gmail para sus servicios 587
+                SmtpServer.Port = 587; //Puerto que utiliza Gmail para sus servicios 587
                                       //Especificamos las credenciales con las que enviaremos el mail
                 SmtpServer.Credentials = new System.Net.NetworkCredential("haylugararg@gmail.com", "sandra2017");
                 SmtpServer.EnableSsl = true;

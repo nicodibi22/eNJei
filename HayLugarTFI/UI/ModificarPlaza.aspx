@@ -42,13 +42,13 @@
                         <hr />
                             <h4>Listado de plazas disponibles</h4>
                         <hr />
-                        <br /><p></p>
+                        <br /><p><asp:Label ID="lblMensajeError" ForeColor="Red" runat="server"></asp:Label></p>
                         <div>
                     <asp:GridView ID="gvPlaza" runat="server" AutoGenerateColumns="False" AllowPaging="true"
                         PageSize="50" CssClass="footable" Align="Center" OnPageIndexChanging="gvPlaza_PageIndexChanging" OnRowEditing="gvPlaza_RowEditing">
                         <Columns> 
 
-                            <asp:BoundField DataField="idPlaza" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Plaza" />
+                            <asp:BoundField DataField="idPlaza" ItemStyle-HorizontalAlign="Center" HeaderText="Plaza Nº" />
 
 <%--                            <asp:BoundField DataField="descEstacionamiento" HeaderText="Tarifa" />--%>
                             <asp:BoundField DataField="tipoAlquiler" HeaderText="Tipo Alquiler" />
@@ -78,7 +78,7 @@
                     </asp:GridView>
                         </div>
                         <br />
-                        <asp:Label ID="lblMensajeError" runat="server"></asp:Label>
+                        
                     </asp:Panel>
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -92,7 +92,7 @@
                         <br />
                         <div class="form-horizontal">
 							    <hr />
-							    <h4 id="titleProdAccion" runat="server">Modificar Plaza</h4>
+							    <h4 id="titleProdAccion" runat="server">Reservar Plaza</h4>
 							    <hr />
 
 							    <div class="form-group">
@@ -191,13 +191,12 @@
              <div ID="divBotones" style="display:none">            
             <br /><br />
             <asp:Label ID="lblMensaje" runat="server" ForeColor="Red"></asp:Label>
-
-                            <br /><br />
+                            
                             
                             <div class="form-group">
 							    <div class="col-md-10">
-                                    <asp:Button ID="btnCancelar" CssClass="btn btn-default" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
-                                    <asp:Button ID="btnConfirmar" CssClass="btn btn-default" ValidationGroup="producto"  runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
+                                    <asp:Button ID="btnCancelar" CssClass="btn btn-danger" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
+                                    <asp:Button ID="btnConfirmar" CssClass="btn btn-success" ValidationGroup="producto"  runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
                                 </div>
                             </div>                        
                         <br />

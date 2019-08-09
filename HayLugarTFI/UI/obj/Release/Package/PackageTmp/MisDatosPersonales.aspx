@@ -51,14 +51,20 @@
                         <div>
                     <asp:GridView ID="gvDatosPersonales" runat="server" AutoGenerateColumns="False" AllowPaging="true"
                         PageSize="50" Align="Center" CssClass="footable" OnPageIndexChanging="gvDatosPersonales_PageIndexChanging" 
-                        OnRowEditing="gvDatosPersonales_RowEditing">
+                        OnRowEditing="gvDatosPersonales_RowEditing" OnRowDataBound="gvDatosPersonales_RowDataBound">
                     <Columns>
-
+                        <asp:BoundField DataField="email" HeaderText="EMail" />
+                        <asp:TemplateField HeaderText="Perfil">
+                            <ItemTemplate>
+                                <asp:Label runat="server"  ID="lblPerfil"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="telefono" HeaderText="Nro Telefono" />
                         <asp:BoundField DataField="apellido" ItemStyle-CssClass="filtro" HeaderText="Apellido" />
                         <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                        <asp:BoundField DataField="tipoDoc" HeaderText="Tipo Documento" />
+                        <asp:BoundField DataField="tipoDoc" HeaderText="Tipo Doc." />
                         <asp:BoundField DataField="nroDoc" HeaderText="Nro Documento" />
-                        <asp:BoundField DataField="email" HeaderText="EMail" />
+                        
                         <asp:TemplateField HeaderText="Tipo Telefono">
                             <ItemTemplate>
                                 <asp:Label runat="server" Text='<%#Eval("tipoTelefono")%>' ID="lblTipoTelefono"></asp:Label>
@@ -139,6 +145,12 @@
 									    <asp:TextBox runat="server" Visible="false" ID="txtAliasEmp" size="80" CssClass="textAreaBoxInputs" />
 								    </div>
 							    </div>
+                            <div class="form-group">
+								    <asp:Label runat="server" ID="lblEmail" CssClass="col-md-2 control-label">Email</asp:Label>
+								    <div class="col-md-10">
+									    <asp:TextBox runat="server" Enabled="false" ID="txtEmail" size="80" CssClass="form-control" />
+								    </div>
+							    </div>
                                 <div class="form-group">
 								    <asp:Label runat="server" ID="lblApellido" CssClass="col-md-2 control-label">Apellido</asp:Label>
 								    <div class="col-md-10">
@@ -173,12 +185,7 @@
                                     </div>
                                 </div>		
 
-							    <div class="form-group">
-								    <asp:Label runat="server" ID="lblEmail" CssClass="col-md-2 control-label">Email</asp:Label>
-								    <div class="col-md-10">
-									    <asp:TextBox runat="server" Enabled="false" ID="txtEmail" size="80" CssClass="form-control" />
-								    </div>
-							    </div>
+							    
 
 				                <div class="form-group">
                                         <asp:Label runat="server" ID="lblTipoTelefono" CssClass="col-md-2 control-label">Tipo Telefono</asp:Label>
@@ -201,8 +208,8 @@
                         <br /><br />                            
                         <div class="form-group">
 				            <div class="col-md-10">
-                                <asp:Button ID="btnCancelar" CssClass="btn btn-default" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
-                                <asp:Button ID="btnConfirmar" CssClass="btn btn-default" ValidationGroup="ValCuentaCorriente" runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
+                                <asp:Button ID="btnCancelar" CssClass="btn btn-danger" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelar_Click" />
+                                <asp:Button ID="btnConfirmar" CssClass="btn btn-success" ValidationGroup="ValCuentaCorriente" runat="server" Text=" : Confirmar :" OnClick="btnConfirmar_Click" />
                             </div>
                         </div>
                     </div>
@@ -255,8 +262,8 @@
                         <br /><br />                            
                         <div class="form-group">
 				            <div class="col-md-10">
-                                <asp:Button ID="btnCancelarVehiculo" CssClass="btn btn-default" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelarVehiculo_Click" />
-                                <asp:Button ID="btnConfirmarVehiculo" CssClass="btn btn-default" ValidationGroup="ValCuentaCorriente" runat="server" Text=" : Confirmar :" OnClick="btnConfirmarVehiculo_Click" />
+                                <asp:Button ID="btnCancelarVehiculo" CssClass="btn btn-danger" formnovalidate runat="server" Text=" : Cancelar : " OnClick="btnCancelarVehiculo_Click" />
+                                <asp:Button ID="btnConfirmarVehiculo" CssClass="btn btn-success" ValidationGroup="ValCuentaCorriente" runat="server" Text=" : Confirmar :" OnClick="btnConfirmarVehiculo_Click" />
                             </div>
                         </div>
                     </div>

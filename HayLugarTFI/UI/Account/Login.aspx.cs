@@ -37,13 +37,14 @@ namespace UI.Account
 
                 // Esto no cuenta los errores de inicio de sesión hacia el bloqueo de cuenta
                 // Para habilitar los errores de contraseña para desencadenar el bloqueo, cambie a shouldLockout: true
+                
                 var result = signinManager.PasswordSignIn(Email.Text, txtPassword.Text, RememberMe.Checked, shouldLockout: false);
-
+                
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                        Response.Redirect("~/default.aspx");
+                        //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);                        
+                        Response.Redirect("~/default.aspx");                        
                         break;
                     case SignInStatus.LockedOut:
                         Response.Redirect("/Account/Lockout");
@@ -56,11 +57,30 @@ namespace UI.Account
                         break;
                     case SignInStatus.Failure:
                     default:
-                        FailureText.Text = "Intento de inicio de sesión no válido";
+
+                        var res = manager.FindByEmail(Email.Text);
+                        string mensaje = string.Empty;
+                        if (res == null) 
+                        {
+                            mensaje = "No existe un usuario con el correo electrónico ingresado.";
+                        }
+                        else
+                        {
+                            mensaje = "La contraseña ingresada no es correcta.";
+                        }
+                        
+                        FailureText.Text = mensaje;
                         ErrorMessage.Visible = true;
                         break;
                 }
             }
         }
+
+        protected void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Register.aspx");
+        }
+        
+
     }
 }

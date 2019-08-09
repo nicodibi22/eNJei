@@ -14,9 +14,22 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <style>
+        
+        .MessagePanelDiv 
+        {
+            position:fixed;
+            left: 35%;
+            top:15%;
+            width:35%;
+            z-index:1000;
+        }
+    
+    </style>
 </head>
 <body>
+    
+    
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -42,37 +55,41 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                    
                     <a class="navbar-brand" runat="server" href="~/">Hay lugar!</a>
 <%--                        <a id="navHelper" class="navbar-brand" runat="server" href="~/">
                           <img id="navHelperImage" style="width: 75px;" runat="server" src="~/images/logoHL.png" /></a>--%>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Inicio</a></li>
+                        
                         <li><a runat="server" visible="false" id="pestaniaPlazasDisponibles" href="~/PlazasDisponibles">Plazas disponibles</a></li>
                         <li> 
                             <a id="pestaniaMiCuenta" visible="false" runat="server">Mi Cuenta:
-                                <asp:DropDownList ID="ddlMiCuenta" OnSelectedIndexChanged="ddlMiCuenta_SelectedIndexChanged" 
+                                <asp:DropDownList ID="ddlMiCuenta" OnSelectedIndexChanged="ddlMiCuenta_SelectedIndexChanged" Width="100px"
                                     AutoPostBack="true" runat="server">
                                         <asp:ListItem Text="" Value="0" />
                                         <asp:ListItem Text="Reservas" Value="1" />
                                         <asp:ListItem Text="Gestión Cta Cte." Value="2" />
-                                        <asp:ListItem Text="Calcular envío" Value="3" />
                                         <asp:ListItem Text="Mis datos" Value="4" />
                                 </asp:DropDownList> 
                             </a> 
                         </li>
-
-                        <li><a runat="server" visible="false" id="pestaniaCalcDistancia" href="~/CalcularDistanciaMapa">Cómo llego</a></li>
+                        <li> 
+                            <a id="pestaniaMisViajes" visible="false" runat="server">Mis Viajes:
+                                <asp:DropDownList ID="ddlMisViajes" OnSelectedIndexChanged="ddlMisViajes_SelectedIndexChanged" Width="100px"
+                                    AutoPostBack="true" runat="server">
+                                        <asp:ListItem Text="" Value="0" />
+                                        <asp:ListItem Text="Cómo Llego" Value="1" />
+                                        <asp:ListItem Text="Calcular envío" Value="2" />
+                                        
+                                </asp:DropDownList> 
+                            </a> 
+                        </li>
 
                         <li> 
                             <a id="pestaniaAdm" visible="false" runat="server">ADM:
-                                <asp:DropDownList ID="ddlAdm" OnSelectedIndexChanged="ddlAdm_SelectedIndexChanged" 
+                                <asp:DropDownList ID="ddlAdm" OnSelectedIndexChanged="ddlAdm_SelectedIndexChanged"  Width="100px"
                                     AutoPostBack="true" runat="server">
                                         <asp:ListItem Text="" Value="0" />
                                         <asp:ListItem Text="Zonas" Value="1" />
@@ -84,29 +101,47 @@
                                 </asp:DropDownList> 
                             </a> 
                         </li>
+                        <li><a runat="server" visible="false" id="pestaniaEstacionamiento" href="~/Estacionamiento">Mis Cocheras</a></li>
+                        <li><a runat="server" visible="false" id="pestaniaRendimiento" href="~/Rendimiento">Rendimiento</a></li>
 
                     </ul>
 
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                    <asp:LoginView runat="server" ViewStateMode="Disabled" ID="loginView">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Registrarse</a></li>
+                                
                                 <li><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account"><%: (Context.User.Identity.GetUserName().Split('@'))[0]  %></a></li>
+                                <li style="margin-top:12px">
+                                    <asp:Image runat="server" ImageAlign="Right" ID="imgCar" ImageUrl="~/images/car.png" ToolTip="Conductor" Visible="false" />
+                                    <asp:Image runat="server" ImageAlign="Right" ID="imgStar" ImageUrl="~/images/star.png" ToolTip="Administrador" Visible="false" />
+                                
+                                    <asp:Image runat="server" ImageAlign="Right" ID="imgKey" ImageUrl="~/images/key.png" ToolTip="Propietario" Visible="false" />
+                                </li>
+                                
+                                
+                                <li><a runat="server" href="~/Account/Manage" title="Cambiar Contraseña"><%: (Context.User.Identity.GetUserName().Split('@'))[0]  %></a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Cerrar sesión" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>
+      
                             </ul>
+      
                         </LoggedInTemplate>
                     </asp:LoginView>
                 </div>
             </div>
         </div>
         <div >
+            <div class="MessagePanelDiv">
+                <asp:Panel ID="Message" runat="server" Visible="False">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <asp:Label ID="labelMessage" runat="server" />
+                </asp:Panel>
+            </div>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />

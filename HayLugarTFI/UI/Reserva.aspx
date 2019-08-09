@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:Image ImageAlign="Middle" Width="50%" Height="50%"  ImageUrl="http://www.haylugar.somee.com/images/reserva.png" ID="im" runat="server" />
+        <asp:Image ImageAlign="Middle" Width="50%" Height="50%"  ImageUrl="http://www.tfi.somee.com/images/logoHL.png" ID="im" runat="server" />
                         <br />
                         <hr />
                             <h4>HAY LUGAR! - Mi reserva</h4>
@@ -21,7 +21,7 @@
                         PageSize="50" CssClass="footable" Align="Center">
                         <Columns> 
 
-                            <asp:BoundField DataField="idPlaza" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Reserva" />
+                            <asp:BoundField DataField="idReserva" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Reserva" />
 
                             <asp:BoundField DataField="descEstacionamiento" HeaderText="Estacionamiento" />
 

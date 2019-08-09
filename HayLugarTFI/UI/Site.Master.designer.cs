@@ -40,13 +40,22 @@ namespace UI {
         protected global::System.Web.UI.WebControls.DropDownList ddlMiCuenta;
         
         /// <summary>
-        /// pestaniaCalcDistancia control.
+        /// pestaniaMisViajes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor pestaniaCalcDistancia;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor pestaniaMisViajes;
+        
+        /// <summary>
+        /// ddlMisViajes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMisViajes;
         
         /// <summary>
         /// pestaniaAdm control.
@@ -67,6 +76,15 @@ namespace UI {
         protected global::System.Web.UI.WebControls.DropDownList ddlAdm;
         
         /// <summary>
+        /// pestaniaEstacionamiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor pestaniaEstacionamiento;
+        
+        /// <summary>
         /// pestaniaRendimiento control.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,15 @@ namespace UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor pestaniaRendimiento;
+        
+        /// <summary>
+        /// loginView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginView loginView;
         
         /// <summary>
         /// Message control.

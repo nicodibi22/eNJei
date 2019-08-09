@@ -260,6 +260,33 @@ namespace BIZ
             }
         }
 
+        public static DataSet SelectDisponibilidadDiario(DateTime fecha)
+        {
+            try
+            {
+                //PlazaSelectAllHoraAvailable
+                return DALPlaza.SelectDisponibilidadDiario(fecha);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static DataSet SelectDisponibilidadHora(DateTime fecha, string hora)
+        {
+            try
+            {
+                //PlazaSelectAllHoraAvailable
+                return DALPlaza.SelectDisponibilidadHora(fecha, hora);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
 
     }
 }

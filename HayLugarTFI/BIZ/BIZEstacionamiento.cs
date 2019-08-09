@@ -172,5 +172,18 @@ namespace BIZ
                 throw;
             }
         }
+
+        public static DataSet SelectByIdUser(string idUser)
+        {
+            try
+            {
+                return DALEstacionamiento.SelectByIdUser(idUser);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
