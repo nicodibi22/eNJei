@@ -114,6 +114,7 @@ namespace UI
 
             if (HttpContext.Current.User.Identity.IsAuthenticated == true)
             {
+
                 pestaniaMisViajes.Visible = true;
                 pestaniaPlazasDisponibles.Visible = true;
 
@@ -128,7 +129,7 @@ namespace UI
                 {
                     pestaniaMiCuenta.Visible = true;
                 }
-
+                
                 if (Context.User.IsInRole("Propietario") || Context.User.IsInRole("Cond_Prop"))
                 {
                     pestaniaRendimiento.Visible = true;
@@ -184,7 +185,10 @@ namespace UI
 
             if (ddlMiCuenta.SelectedValue == "2")
             { Response.Redirect("~/CtaCte.aspx"); }
-           
+
+            if (ddlMiCuenta.SelectedValue == "3")
+            { Response.Redirect("~/Reclamo.aspx"); }
+
             if (ddlMiCuenta.SelectedValue == "4")
             { Response.Redirect("~/MisDatosPersonales.aspx"); }
 

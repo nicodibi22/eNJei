@@ -71,6 +71,7 @@
                                         <asp:ListItem Text="" Value="0" />
                                         <asp:ListItem Text="Reservas" Value="1" />
                                         <asp:ListItem Text="Gestión Cta Cte." Value="2" />
+                                        <asp:ListItem Text="Reclamos" Value="3" />
                                         <asp:ListItem Text="Mis datos" Value="4" />
                                 </asp:DropDownList> 
                             </a> 

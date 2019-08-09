@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using System.IO;
+using System.Data;
 
 namespace UI
 {
@@ -206,15 +207,43 @@ namespace UI
             {
                 int idReclamo = int.Parse(e.CommandArgument.ToString().Split(',')[0]);
                 int idReserva = int.Parse(e.CommandArgument.ToString().Split(',')[1]);
-                BIZReserva.MisReservasSelectByIdReserva(idReserva);
+                DataSet dsReserva = BIZReserva.MisReservasSelectByIdReserva(idReserva);
+                
+                DataSet dsCC = BIZCuentaCorriente.Select(User.Identity.GetUserId());
+                String nroCuenta = dsCC.Tables[0].Rows[0]["nroCuenta"].ToString();
+                String importe = dsReserva.Tables[0].Rows[0]["tarifa"].ToString();
+                BIZCuentaCorriente.UpdateSaldo(Convert.ToInt32(nroCuenta), Convert.ToDecimal(importe) * (-1));
+                BIZReclamo.UpdateStatus(idReclamo, 2);
+                if (Context.User.IsInRole("Administrador"))
+                    gvReclamo.DataSource = BIZReclamo.SelectAll();
+                else
+                    gvReclamo.DataSource = BIZReclamo.SelectByIdUser(Context.User.Identity.GetUserId());
+                gvReclamo.DataBind();
             }
             else if (e.CommandName == "Descargar")
             {
 
                 string filePath = e.CommandArgument.ToString();
-                Response.ContentType = ContentType;
+                /*Response.ContentType = ContentType;
                 Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
-                Response.WriteFile(filePath);
+                Response.TransmitFile(filePath);
+                Response.End();*/
+
+                /*byte[] Content = File.ReadAllBytes(filePath); //missing ;
+                Response.Clear();
+                
+                Response.AddHeader("content-disposition", "attachment; filename=" + Path.GetFileName(filePath));
+                Response.ContentType = "application/octet-stream";
+                Response.WriteFile(filePath); 
+                Response.End();*/
+
+
+                FileInfo ObjArchivo = new System.IO.FileInfo(filePath);
+                Response.Clear();
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+                Response.AddHeader("Content-Length", ObjArchivo.Length.ToString());
+                Response.ContentType = "application/octet-stream";
+                Response.WriteFile(ObjArchivo.FullName);
                 Response.End();
             }
         }

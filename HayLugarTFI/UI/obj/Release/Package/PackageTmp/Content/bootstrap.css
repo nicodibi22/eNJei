@@ -926,6 +926,15 @@ pre code {
 }
 
 @media (min-width: 768px) {
+  #imgCar {
+    display: none;
+  }
+  #imgStar {
+    display: none;
+  }
+  #imgKey {
+    display: none;
+  }
   .container {
     max-width: 750px;
   }
@@ -1274,7 +1283,7 @@ pre code {
   .col-lg-5 {
     width: 41.66666666666667%;
   }
-  .col-lg-6 {
+  .col-lg-6 -{
     width: 50%;
   }
   .col-lg-7 {

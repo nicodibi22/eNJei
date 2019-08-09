@@ -62,12 +62,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblPathImagen"   Text='<%# Eval("pathImagen") %>' runat="server" ></asp:Label>
                                 </ItemTemplate>                    
-                            </asp:TemplateField> 
-                            <asp:TemplateField HeaderText = "">
-                                <ItemTemplate>
-                                    <asp:LinkButton ID="lnkDescargar" CommandName="Descargar" CommandArgument='<%# Eval("pathImagen") %>' Text="Descargar" runat="server" ></asp:LinkButton>
-                                </ItemTemplate>                    
-                            </asp:TemplateField>   
+                            </asp:TemplateField>                                
                             <asp:TemplateField HeaderText = "">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkPagarReclamo" CommandName="Pagar" CommandArgument='<%# Eval("idReclamo")+ "," + Eval("idReserva")%>' Text="Pagar" runat="server" ></asp:LinkButton>
