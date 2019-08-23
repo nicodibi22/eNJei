@@ -29,7 +29,7 @@ namespace BIZ
             {
                 DALVehiculo.Update(idVehiculo, userId, marca, modelo, patente);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;
