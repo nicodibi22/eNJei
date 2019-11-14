@@ -46,7 +46,7 @@ namespace DAL
             Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
 
             DbCommand myCommand = myDatabase.GetStoredProcCommand("ReclamoSelectByIdUsuario");
-            myDatabase.AddInParameter(myCommand, "@idUsuario", DbType.Int32, idUsuario);
+            myDatabase.AddInParameter(myCommand, "@idUsuario", DbType.String, idUsuario);
 
             return myDatabase.ExecuteDataSet(myCommand);
         }

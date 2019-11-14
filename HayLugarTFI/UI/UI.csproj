@@ -169,6 +169,7 @@
     <Content Include="CalculoEnvio.aspx" />
     <Content Include="images\car.png" />
     <Content Include="images\key.png" />
+    <Content Include="images\landpage.jpg" />
     <Content Include="images\star.png" />
     <Content Include="Reclamo.aspx" />
     <Content Include="Rendimiento.aspx" />

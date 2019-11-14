@@ -49,7 +49,11 @@ namespace UI
                 if (Context.User.IsInRole("Administrador"))
                     gvReclamo.DataSource = BIZReclamo.SelectAll();
                 else
+                {
                     gvReclamo.DataSource = BIZReclamo.SelectByIdUser(Context.User.Identity.GetUserId());
+                    gvReclamo.Columns[gvReclamo.Columns.Count - 1].Visible = false;
+                    gvReclamo.Columns[gvReclamo.Columns.Count - 2].Visible = false;
+                }
                 gvReclamo.DataBind();
                 
                 if (gvReclamo.Rows.Count > 0)
@@ -120,7 +124,7 @@ namespace UI
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Estacionamiento.aspx");
+            Response.Redirect("~/Reclamo.aspx");
 
         }
 
@@ -199,7 +203,12 @@ namespace UI
                 if (Context.User.IsInRole("Administrador"))
                     gvReclamo.DataSource = BIZReclamo.SelectAll();
                 else
+                {
                     gvReclamo.DataSource = BIZReclamo.SelectByIdUser(Context.User.Identity.GetUserId());
+                    gvReclamo.Columns[gvReclamo.Columns.Count - 1].Visible = false;
+                    gvReclamo.Columns[gvReclamo.Columns.Count - 2].Visible = false;
+                }
+                    
                 gvReclamo.DataBind();
                 
             }
@@ -217,7 +226,11 @@ namespace UI
                 if (Context.User.IsInRole("Administrador"))
                     gvReclamo.DataSource = BIZReclamo.SelectAll();
                 else
+                {
                     gvReclamo.DataSource = BIZReclamo.SelectByIdUser(Context.User.Identity.GetUserId());
+                    gvReclamo.Columns[gvReclamo.Columns.Count - 1].Visible = false;
+                    gvReclamo.Columns[gvReclamo.Columns.Count - 2].Visible = false;
+                }
                 gvReclamo.DataBind();
             }
             else if (e.CommandName == "Descargar")

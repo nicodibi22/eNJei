@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
+using System.Data;
 
 namespace UI
 {
@@ -118,6 +119,18 @@ namespace UI
                 pestaniaMisViajes.Visible = true;
                 pestaniaPlazasDisponibles.Visible = true;
 
+                DataSet dsUsuario = BIZ.BIZDatosPersonales.SelectByIdUsr(Context.User.Identity.GetUserId());
+                if (dsUsuario != null && dsUsuario.Tables.Count > 0 && dsUsuario.Tables[0].Rows.Count > 0
+                    && dsUsuario.Tables[0].Rows[0]["nombre"] != null && dsUsuario.Tables[0].Rows[0]["nombre"].ToString() != string.Empty)
+                {
+                    string nombre = dsUsuario.Tables[0].Rows[0]["nombre"].ToString();                    
+                    (this.loginView.FindControl("lblNombre") as Label).Text = nombre;
+                }
+                else
+                {
+                    (this.loginView.FindControl("lblNombre") as Label).Text = Context.User.Identity.GetUserName().Split('@')[0];
+                }
+
                 if (Context.User.IsInRole("Administrador"))
                 {
                     pestaniaMiCuenta.Visible = true;
@@ -135,6 +148,7 @@ namespace UI
                     pestaniaRendimiento.Visible = true;
                     
                     (this.loginView.FindControl("imgKey") as Image).Visible = true;
+                    
                     
                 }
 

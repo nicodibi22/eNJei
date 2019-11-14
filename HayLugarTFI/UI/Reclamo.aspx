@@ -40,7 +40,9 @@
                             <h4>Listado de Reclamos</h4>
                         <hr />
                         <br />
-                        <asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-default" Text="Agregar" OnClick="btnAgregar_Click"/>
+                        <div class="row">
+                        <asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-secondary" Text="Agregar" OnClick="btnAgregar_Click"/>
+                            </div>
                         <br /><p></p>
                         <br />
 
@@ -65,6 +67,11 @@
                             </asp:TemplateField>                                
                             <asp:TemplateField HeaderText = "">
                                 <ItemTemplate>
+                                    <asp:LinkButton ID="lnkDescargar" CommandName="Descargar" CommandArgument='<%# Eval("pathImagen")%>' Text="Decargar" runat="server" ></asp:LinkButton>
+                                </ItemTemplate>                    
+                            </asp:TemplateField> 
+                            <asp:TemplateField HeaderText = "">
+                                <ItemTemplate>
                                     <asp:LinkButton ID="lnkPagarReclamo" CommandName="Pagar" CommandArgument='<%# Eval("idReclamo")+ "," + Eval("idReserva")%>' Text="Pagar" runat="server" ></asp:LinkButton>
                                 </ItemTemplate>                    
                             </asp:TemplateField>   
@@ -82,6 +89,9 @@
                         <br />
                     </asp:Panel>
                 </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID = "gvReclamo" />
+                </Triggers>
             </asp:UpdatePanel>
         </div>
 

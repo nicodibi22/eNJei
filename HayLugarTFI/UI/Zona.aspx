@@ -43,7 +43,7 @@
                             <h4>ABM Zonas</h4>
                         <hr />
                         <br />
-                        <div class="row ml-5" >
+                        <div class="row" >
                     <div class="col-md-2">
                         <asp:Button runat="server" ID="btnAgregar" CssClass="btn btn-secondary" Text="Agregar" OnClick="btnAgregar_Click"/>
                         </div>

@@ -8,7 +8,7 @@
                             <h4 >Plazas Disponibles</h4>
                         <hr />
                         <br />
-                <div class="row ml-5" >
+                <div class="row" >
                     <div class="col-md-2">
                         <asp:Label ID="lblTipoAlquiler" Text="Tipo Alquiler" runat="server"></asp:Label>
                         <asp:DropDownList ID="ddlTipoAlquiler" runat="server" AutoPostBack="true"  CssClass="form-control" OnSelectedIndexChanged="ddlTipoAlquiler_SelectedIndexChanged" >

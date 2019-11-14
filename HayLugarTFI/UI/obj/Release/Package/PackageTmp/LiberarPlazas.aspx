@@ -7,7 +7,7 @@
             runat="server">
             <ContentTemplate>
                 <br />
-                <div class="row ml-5" >
+                <div class="row" >
                     <div class="col-md-2">
                 <asp:Label ID="lblFechaActual" Text="Fecha Actual" runat="server"
                     Font-Size="Large" ></asp:Label>
@@ -38,7 +38,7 @@
         </div>
     <br /><p></p>
     <br />
-    <div class="row ml-5" >
+    <div class="row" >
                     <div class="col-md-2">
     <asp:Button runat="server" ID="btnAjustarHora" CssClass="btn btn-secondary" Text="Ajustar Hora" OnClick="btnAjustarHora_Click"/>
                         </div>

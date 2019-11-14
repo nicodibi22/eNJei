@@ -11,28 +11,32 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:Image ImageAlign="Middle" Width="50%" Height="50%"  ImageUrl="http://www.tfi.somee.com/images/logoHL.png" ID="im" runat="server" />
+        <asp:Image ImageAlign="Middle" Width="50%" Height="50%"  ImageUrl="http://www.haylugartfi.somee.com/images/logoHL.png" ID="im" runat="server" />
                         <br />
                         <hr />
                             <h4>HAY LUGAR! - Mi reserva</h4>
                         <hr />
                         <br /><p></p>
                     <asp:GridView ID="gvReserva" runat="server" AutoGenerateColumns="False" AllowPaging="true"
-                        PageSize="50" CssClass="footable" Align="Center">
+                        PageSize="50" CssClass="footable" Align="Center" Width="300px">
                         <Columns> 
 
                             <asp:BoundField DataField="idReserva" ItemStyle-HorizontalAlign="Center" HeaderText="Identificador de la Reserva" />
 
-                            <asp:BoundField DataField="descEstacionamiento" HeaderText="Estacionamiento" />
+                            <asp:BoundField DataField="fechaDesde" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Fecha Desde" />
 
-                            <asp:BoundField DataField="calle" HeaderText="Calle" />
+                            <asp:BoundField DataField="fechaHasta" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Fecha Hasta" />
 
-                            <asp:BoundField DataField="altura" HeaderText="Altura" />
+                            <asp:BoundField DataField="horaDesde" HeaderText="Hora Desde" />
 
-                            <asp:BoundField DataField="datosAdicionales" HeaderText="Datos adicionales" />
+                            <asp:BoundField DataField="horaHasta" HeaderText="Hora Hasta" />
 
-                            <asp:BoundField DataField="descBarrio" HeaderText="Barrio" />
 
+                            <asp:BoundField DataField="tarifa" DataFormatString="{0:F}" HeaderText="Tarifa" />
+
+                            <asp:BoundField DataField="domicilio" HeaderText="Domicilio" />                            
+
+                            
                             <asp:BoundField DataField="UserName" HeaderText="Reservado por" />
                             
                         </Columns>

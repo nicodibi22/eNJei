@@ -156,7 +156,7 @@
     <br />
     <br />
 
-    <div class="row ml-5" >
+    <div class="row" >
                     <div class="col-md-2">
                 Seleccione el lugar de despacho:
 <%--                <input type="text" id="txtSource" value="Bandra, Mumbai, India" style="width: 200px" />--%>
@@ -165,7 +165,7 @@
                                 </asp:DropDownList> 
                         </div>
         </div>
-    <div class="row ml-5" >
+    <div class="row" >
                     <div class="col-md-2">
                 &nbsp; Ingrese la dirección de envío:
                 <asp:TextBox runat="server" placeholder="Destino" ID="txtDestination" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
@@ -173,7 +173,7 @@
                 <br />
                         </div>
         </div>
-    <div class="row ml-5" >
+    <div class="row" >
                     <div class="col-md-2">
                     <input type="button" value="Calcular costo de envío" onclick="GetRoute()" class="btn btn-secondary" />
 <%--                <asp:Button runat="server" ID="btnCalcular" ClientIDMode="Static" Text="Obtener Distancia" CssClass="btn btn-default" OnClientClick="GetRoute()" />--%>

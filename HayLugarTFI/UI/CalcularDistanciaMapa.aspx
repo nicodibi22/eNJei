@@ -84,7 +84,7 @@
         }
     </script>
     <br />
-    <div class="row ml-5" >
+    <div class="row" >
         <div class="col-md-4">
                 Origen:
 <%--                <input type="text" id="txtSource" value="Bandra, Mumbai, India" style="width: 200px" />--%>
@@ -98,13 +98,13 @@
                 <hr />
             </div>
         </div>
-        <div class="row ml-5" >
+        <div class="row" >
             <div class="col-md-2">
                 <div id="dvDistance">
                 </div>
             </div>
         </div>
-        <div class="row ml-5" >
+        <div class="row" >
             <div class="col-sm-5" >
                 <div id="dvMap" style="width: 100%; height: 500px">
                 </div>

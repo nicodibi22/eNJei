@@ -60,7 +60,7 @@
                         <hr />
                         <div id="divFiltros1" runat="server">
                         
-                            <div class="row ml-5" >
+                            <div class="row" >
                                 <div class="col-md-2">
                                     <asp:Label ID="lblFechaDesde" runat="server" Text="Fecha Reserva Desde: "></asp:Label>
                                 
@@ -86,7 +86,7 @@
                                 </div>
                                 </div>
                             <br />
-                            <div class="row ml-5" >
+                            <div class="row" >
                                 <div class="col-md-4">
                             <asp:Label runat="server" ID="lblErrorFiltro" ForeColor="Red" Font-Bold="true"></asp:Label>
                                     </div>
@@ -104,7 +104,7 @@
                             
                             <asp:BoundField DataField="fechaDesde" HeaderText="Fecha Desde" DataFormatString="{0:dd/MM/yyyy}" />
                             <asp:BoundField DataField="fechaHasta" HeaderText="Fecha Hasta" DataFormatString="{0:dd/MM/yyyy}" />
-                            <asp:BoundField DataField="descEstacionamiento" HeaderText="Tarifa" />
+                            <asp:BoundField DataField="descEstacionamiento" DataFormatString="{0:F}" HeaderText="Tarifa" />
 
                             <asp:BoundField DataField="calle" HeaderText="Calle" />
 
@@ -132,7 +132,7 @@
                             <h4>Mis reservas pagas</h4>
                         <hr />
                         <div id="divFiltros2" runat="server">
-                            <div class="row ml-5" >
+                            <div class="row" >
                                 <div class="col-md-2">
                                     <asp:Label ID="lblFechaDesde2" runat="server"  Text="Fecha Reserva Desde: "></asp:Label>
                                     <asp:TextBox runat="server" ID="txtFechaDesde2" CssClass="form-control" type="date" ></asp:TextBox>
@@ -157,7 +157,7 @@
                                 </div>
                                 </div>
                             
-                            <div class="row ml-5" >
+                            <div class="row" >
                                 <div class="col-md-4">
                                     <asp:Label runat="server" ID="lblErrorFiltro2" ForeColor="Red" Font-Bold="true"></asp:Label>
                                     </div>
@@ -185,7 +185,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Tarifa">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblTarifa" Text='<%# Eval("descEstacionamiento")%>' runat="server" ></asp:Label>
+                                    <asp:Label ID="lblTarifa" Text='<%# Eval("descEstacionamiento", "{0:F}")%>' runat="server" ></asp:Label>
                                 </ItemTemplate> 
                                 <FooterTemplate>
                                   <asp:Label ID="lblTotal" ForeColor="Red" Font-Bold="true"  runat="server" ></asp:Label>
