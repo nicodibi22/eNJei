@@ -171,6 +171,10 @@
     <Content Include="images\key.png" />
     <Content Include="images\landpage.jpg" />
     <Content Include="images\star.png" />
+    <Content Include="js\bootstrap-dialog.min.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery-1.10.2.min.js" />
+    <Content Include="Bitacora.aspx" />
     <Content Include="Reclamo.aspx" />
     <Content Include="Rendimiento.aspx" />
     <Content Include="LiberarPlazas.aspx" />
@@ -498,6 +502,13 @@
     </Compile>
     <Compile Include="CalculoEnvio.aspx.designer.cs">
       <DependentUpon>CalculoEnvio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bitacora.aspx.cs">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bitacora.aspx.designer.cs">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomUserValidator.cs" />
     <Compile Include="Reclamo.aspx.cs">

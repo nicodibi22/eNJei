@@ -9,6 +9,7 @@ using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
 using BIZ;
+using Microsoft.AspNet.Identity;
 
 namespace UI
 {
@@ -41,6 +42,7 @@ namespace UI
         protected void btnAjustarHora_Click(object sender, EventArgs e)
         {
             BIZReserva.ReservaUpdateFinalizado(Convert.ToDateTime(txtFecha.Text), txtHoraDesde.Text);
+            BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Liberación Plazas");
             ((SiteMaster)this.Master).ShowMessage("<strong>Se ajustó la fecha correctamente</strong>", SiteMaster.WarningType.Success);
         }
     }

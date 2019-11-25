@@ -84,6 +84,7 @@ namespace UI
                                         BIZVehiculo.Insert(user.Id, values[8], values[9], values[10]);
                                     }
 
+                                    BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "ALTA", "Carga Masiva Usuarios");
 
                                     //envio mail
                                     Send_Account_Activation_Link(values[0], user.Id, values[2]);

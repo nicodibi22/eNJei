@@ -119,7 +119,7 @@ namespace UI.Account
 
                 string body = string.Empty;
 
-                string urlFinal = @"http://tfi.somee.com/Account/CS_Activation.aspx?ActivationCode=" + activationCode;
+                string urlFinal = @"http://www.haylugartfi.somee.com/Account/CS_Activation.aspx?ActivationCode=" + activationCode;
 
                 body += "<br /><br />Ingresa al siguiente enlace para activar tu cuenta:";
                 body += "<br /><br />";

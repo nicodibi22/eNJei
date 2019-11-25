@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using UI.Models;
+using BIZ;
 
 namespace UI.Account
 {
@@ -43,7 +44,8 @@ namespace UI.Account
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);                        
+                        //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);   
+                        BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "INGRESO", "Login");
                         Response.Redirect("~/default.aspx");                        
                         break;
                     case SignInStatus.LockedOut:

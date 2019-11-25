@@ -171,6 +171,7 @@ namespace UI
                 else
                     BIZReserva.Insert(Convert.ToDateTime(txtFecha.Text), Convert.ToDateTime(txtFecha.Text), txtHoraDesde.Text, txtHoraHasta.Text, int.Parse(txtIdPlaza.Text), User.Identity.GetUserId());
                 //envio mail
+                BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "ALTA", "Reserva");
                 try
                 {
                     Send_Info_Reserva(User.Identity.GetUserId());

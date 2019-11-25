@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using System.Data;
+using BIZ;
 
 namespace UI
 {
@@ -131,6 +132,18 @@ namespace UI
                     (this.loginView.FindControl("lblNombre") as Label).Text = Context.User.Identity.GetUserName().Split('@')[0];
                 }
 
+                DataSet dsCuentaCorriente = BIZ.BIZCuentaCorriente.Select(Context.User.Identity.GetUserId());
+
+                if (dsCuentaCorriente != null && dsCuentaCorriente.Tables != null && dsCuentaCorriente.Tables.Count > 0 && dsCuentaCorriente.Tables[0].Rows.Count > 0)
+                {
+                    (this.loginView.FindControl("lblCuentaCorriente") as Label).Text = "$" + dsCuentaCorriente.Tables[0].Rows[0]["saldo"].ToString();
+                }
+                else
+                {
+                    (this.loginView.FindControl("lblCuentaCorriente") as Label).Text = "$0,00";
+                }
+                                
+
                 if (Context.User.IsInRole("Administrador"))
                 {
                     pestaniaMiCuenta.Visible = true;
@@ -168,6 +181,7 @@ namespace UI
         }
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
+            BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "FIN SESIÓN", "Logout");
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
 
@@ -190,6 +204,9 @@ namespace UI
 
             if (ddlAdm.SelectedValue == "6")
             { Response.Redirect("~/LiberarPlazas.aspx"); }
+
+            if (ddlAdm.SelectedValue == "7")
+            { Response.Redirect("~/Bitacora.aspx"); }
         }
 
         protected void ddlMiCuenta_SelectedIndexChanged(object sender, EventArgs e)

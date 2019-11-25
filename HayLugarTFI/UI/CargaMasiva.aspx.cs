@@ -8,6 +8,8 @@ using System.IO;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
+using Microsoft.AspNet.Identity;
+using BIZ;
 
 namespace UI
 {
@@ -40,6 +42,7 @@ namespace UI
                     }
                 }
                 lblMje.Text = "El archivo se ha procesado exitosamente!";
+                BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "ALTA", "Carga Masiva Estacionamiento");
             }
             catch (Exception)
             {

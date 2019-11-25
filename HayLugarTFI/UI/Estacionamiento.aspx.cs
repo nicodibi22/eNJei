@@ -247,12 +247,15 @@ namespace UI
                     //BIZEstacionamiento.Insert(txtDescripcion.Text, txtCalle.Text, Convert.ToInt32(txtAltura.Text), txtDatosAdicionales.Text, Convert.ToInt32(ddlBarrios.SelectedValue),
                     //Convert.ToDecimal(Session["latitud"].ToString().Replace('.', ',')), Convert.ToDecimal(Session["longitud"].ToString().Replace('.', ',')));
 
+                    BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "ALTA", "Estacionamiento");
 
                 }
                 else
                 {
                     BIZEstacionamiento.Update(Convert.ToInt32(txtIdEstac.Text), txtDescripcion.Text, txtCalle.Text, 
                         Convert.ToInt32(txtAltura.Text), txtDatosAdicionales.Text, Convert.ToInt32(ddlBarrios.SelectedValue), Convert.ToDecimal(txtLatitud.Text), Convert.ToDecimal(txtLongitud.Text));
+
+                    BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Estacionamiento");
 
                 }
                 txtIdEstac.Text = "";
@@ -298,6 +301,29 @@ namespace UI
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "alert('No se pudo eliminar la zona');", true);
             }
 
+        }
+
+        protected void gvEstacionamiento_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                if (e.CommandName == "Delete")
+                {
+                    LinkButton lnkView = (LinkButton)e.CommandSource;
+                    string dealId = lnkView.CommandArgument;
+                    int idEstacionamiento = int.Parse(dealId);
+                    BIZEstacionamiento.Delete(idEstacionamiento);
+                    cargarEstacionamientos();
+                    System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "BootstrapDialog.alert('Registro eliminado correctamente.');", true);
+                    //data.
+                }
+            }
+            catch (Exception ex)
+            {
+
+                System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "BootstrapDialog.alert('No se pudo eliminar el registro. Error: " + ex.Message + "');", true);
+            }
+            
         }
 
    }

@@ -103,6 +103,7 @@
                                         <asp:ListItem Text="Reservas" Value="4" />
                                         <asp:ListItem Text="Usuarios" Value="5" />
                                         <asp:ListItem Text="Liberar Plazas" Value="6" />
+                                        <asp:ListItem Text="Bitácora" Value="7" />
                                 </asp:DropDownList> 
                             </a> 
                         </li>
@@ -129,6 +130,7 @@
                                 
                                 
                                 <li><a runat="server" href="~/Account/Manage" title="Cambiar Contraseña"> <asp:Label runat="server" ID="lblNombre"></asp:Label> </a></li>
+                                <li><a><asp:Label runat="server" ID="lblCuentaCorriente"></asp:Label> </a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Cerrar sesión" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>

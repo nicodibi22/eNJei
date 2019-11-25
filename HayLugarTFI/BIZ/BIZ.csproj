@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BIZAspNetUserRoles.cs" />
     <Compile Include="BIZAspNetUsers.cs" />
+    <Compile Include="BIZBitacora.cs" />
     <Compile Include="BIZBarrio.cs" />
     <Compile Include="BIZCuentaCorriente.cs" />
     <Compile Include="BIZDatosPersonales.cs" />

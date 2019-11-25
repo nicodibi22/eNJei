@@ -63,6 +63,7 @@
     <Compile Include="DALPago.cs" />
     <Compile Include="DALPlaza.cs" />
     <Compile Include="DALReclamo.cs" />
+    <Compile Include="DALBitacora.cs" />
     <Compile Include="DALReserva.cs" />
     <Compile Include="DALTarifa.cs" />
     <Compile Include="DALTipoEstadia.cs" />

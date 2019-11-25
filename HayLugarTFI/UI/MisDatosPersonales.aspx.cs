@@ -91,6 +91,7 @@ namespace UI
             try
             {
                 BIZDatosPersonales.Update(User.Identity.GetUserId(), ddlTipoDocumento.SelectedValue, txtNumeroDocumento.Text, txtEmail.Text, txtNroTelefono.Text, ddltipotelefono.SelectedValue, string.Empty, txtNombre.Text, txtApellido.Text, string.Empty, string.Empty);
+                BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Datos Personales");
                 txtNumeroDocumento.Text = "";
                 txtEmail.Text = "";
                 txtNroTelefono.Text = "";
@@ -148,6 +149,7 @@ namespace UI
             try
             {
                 BIZVehiculo.Update(int.Parse(txtIdVehiculo.Text), User.Identity.GetUserId(), txtMarca.Text, txtModelo.Text, txtPatente.Text);
+                BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Vehículo");
                 txtNumeroDocumento.Text = "";
                 txtEmail.Text = "";
                 txtNroTelefono.Text = "";

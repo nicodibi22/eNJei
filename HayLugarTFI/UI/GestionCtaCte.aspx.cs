@@ -103,11 +103,12 @@ namespace UI
                 if (ddlUsuarios.Visible)
                 {
                     BIZCuentaCorriente.Insert(ddlUsuarios.SelectedValue, Convert.ToInt32(txtSaldoHoy.Text), DateTime.Now);
+                    BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "ALTA", "Cuenta Corriente");
                 }
                 else
                 {
                     BIZCuentaCorriente.UpdateSaldo(Convert.ToInt32(txtNroCuenta.Text), saldoTotal);
-
+                    BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Cuenta Corriente");
                 }
                 txtNroCuenta.Text = "";
                 txtSaldoHoy.Text = "";
