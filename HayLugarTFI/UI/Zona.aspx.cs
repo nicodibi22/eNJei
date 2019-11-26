@@ -149,5 +149,38 @@ namespace UI
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "alert('No se pudo eliminar la zona');", true);
             }
         }
+
+        protected void gvZona_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                if (e.CommandName == "Delete")
+                {
+                    LinkButton lnkView = (LinkButton)e.CommandSource;
+
+                    string dealId = hiddenRow.Value;
+                    int idZona = int.Parse(dealId);
+                    BIZZona.Delete(idZona);
+                    cargarZonas();
+                    //System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "BootstrapDialog.alert('Registro eliminado correctamente.');", true);
+                    //data.
+                    Response.Redirect("~/Zona.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "BootstrapDialog.alert('No se pudo eliminar el registro. Error: " + ex.Message + "');", true);
+            }
+        }
+
+        protected void gvZona_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkView = (LinkButton)e.Row.FindControl("lnkDelete");
+                lnkView.OnClientClick = string.Concat("if(!popup(this.id", ",", e.Row.Cells[0].Text, ",\"", e.Row.Cells[0].Text, "\"))return false; ");
+            }
+        }
     }
 }

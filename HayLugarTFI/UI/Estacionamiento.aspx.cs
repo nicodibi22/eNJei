@@ -45,7 +45,7 @@ namespace UI
             lblErrorMapa.Visible = false;
             try
             {
-                string url = "https://maps.google.com/maps/api/geocode/xml?address=" + txtCalle.Text + " " + txtAltura.Text + "&sensor=false&key=AIzaSyBCJHG-OM17NkmG9kteZWkaMY2mvbY34rQ";
+                string url = "https://maps.google.com/maps/api/geocode/xml?address=" + txtCalle.Text + " " + txtAltura.Text + txtDatosAdicionales.Text + "&sensor=false&key=AIzaSyBCJHG-OM17NkmG9kteZWkaMY2mvbY34rQ";
                 WebRequest request = WebRequest.Create(url);
                 using (WebResponse response = (HttpWebResponse)request.GetResponse())
                 {
@@ -115,7 +115,7 @@ namespace UI
         private void cargarEstacionamientos()
         {
 
-            ddlBarrios.DataSource = BIZBarrio.SelectAll();
+            ddlBarrios.DataSource = BIZBarrio.SelectByIdZona(7);
             ddlBarrios.DataValueField = "idBarrio";
             ddlBarrios.DataTextField = "descripcion";
             ddlBarrios.DataBind();
@@ -310,12 +310,14 @@ namespace UI
                 if (e.CommandName == "Delete")
                 {
                     LinkButton lnkView = (LinkButton)e.CommandSource;
-                    string dealId = lnkView.CommandArgument;
+
+                    string dealId = hiddenRow.Value;
                     int idEstacionamiento = int.Parse(dealId);
                     BIZEstacionamiento.Delete(idEstacionamiento);
                     cargarEstacionamientos();
-                    System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "BootstrapDialog.alert('Registro eliminado correctamente.');", true);
+                    //System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "BootstrapDialog.alert('Registro eliminado correctamente.');", true);
                     //data.
+                    Response.Redirect("~/Estacionamiento.aspx");
                 }
             }
             catch (Exception ex)
@@ -324,6 +326,22 @@ namespace UI
                 System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "BootstrapDialog.alert('No se pudo eliminar el registro. Error: " + ex.Message + "');", true);
             }
             
+        }
+
+        protected void gvEstacionamiento_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkView = (LinkButton)e.Row.FindControl("lnkDelete");
+                lnkView.OnClientClick = string.Concat("if(!popup(this.id", ",", e.Row.Cells[0].Text, ",\"", e.Row.Cells[0].Text, "\"))return false; ");
+            }
+        }
+
+        protected void btnActualizarMapa_Click(object sender, EventArgs e)
+        {
+            cargarMapa();
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
         }
 
    }

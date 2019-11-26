@@ -7,6 +7,9 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/0.1.0/css/footable.min.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/0.1.0/js/footable.min.js"></script>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-dialog.min.js"></script>
         <script type="text/javascript">
             $(function () {
                 $('[id*=gvZona]').footable();
@@ -51,7 +54,8 @@
                         <br /><p></p>
                         <div>
                     <asp:GridView ID="gvZona" runat="server" AutoGenerateColumns="False" AllowPaging="true"
-                        PageSize="50" CssClass="footable" Align="Center" OnRowDeleting="gvZona_RowDeleting" DataKeyNames="idZona"  OnPageIndexChanging="gvZona_PageIndexChanging" OnRowEditing="gvZona_RowEditing">
+                        PageSize="50" CssClass="footable" Align="Center" OnRowDeleting="gvZona_RowDeleting" DataKeyNames="idZona"  OnPageIndexChanging="gvZona_PageIndexChanging" OnRowEditing="gvZona_RowEditing"
+                        OnRowCommand="gvZona_RowCommand" OnRowDataBound="gvZona_RowDataBound">
                         <Columns> 
 
                             <asp:BoundField DataField="idZona" ItemStyle-HorizontalAlign="Center" HeaderText="Id Zona" />
@@ -61,7 +65,13 @@
                             <asp:BoundField DataField="direccion" HeaderText="Detalle" />
                             
                             <asp:CommandField HeaderText="Modificar" EditText="Modificar" ShowEditButton="true" ShowCancelButton="false" />
-                            <asp:CommandField HeaderText="Eliminar" EditText="Eliminar" ShowEditButton="false" ShowDeleteButton="true" />
+                            <asp:TemplateField HeaderText="Action">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkDelete" runat="server"
+                             CssClass=""                              
+                            Text="Eliminar" CommandArgument='<%# Eval("idZona") %>' CommandName="Delete" ></asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
 
                         </Columns>
                     <PagerStyle CssClass="GridView" HorizontalAlign="Center" />
@@ -125,4 +135,38 @@
                         <br />
                     </div>            
         </div>
+    <input type="hidden" id="hiddenRow" runat="server" />
+    <script>
+
+
+
+        function popup(lnk, id, Name) {
+
+            var div = document.getElementById('MainContent_hiddenRow');
+            div.value = id;
+
+            BootstrapDialog.confirm({
+                title: 'WARNING',
+                message: '¿Seguro desea eliminar el registro con ID <b>' + id + '</b>?',
+                type: BootstrapDialog.TYPE_WARNING, // <-- Default value is BootstrapDialog.TYPE_PRIMARY
+                closable: true, // <-- Default value is false
+                draggable: true, // <-- Default value is false
+                btnCancelLabel: 'Cancel', // <-- Default value is 'Cancel',
+                btnOKLabel: 'Ok', // <-- Default value is 'OK',
+                btnOKClass: 'btn-warning', // <-- If you didn't specify it, dialog type will be used,
+                callback: function (result) {
+                    // result will be true if button was click, while it will be false if users close the dialog directly.
+                    if (result) {
+                        javascript: __doPostBack('ctl00$MainContent$gvZona$ctl02$lnkDelete', '');
+                        __doPostBack('<%=upnlTotal.ClientID%>', '');
+                    } else {
+                        BootstrapDialog.closeAll();
+                    }
+                }
+            });
+
+        }
+
+
+        </script>
 </asp:Content>

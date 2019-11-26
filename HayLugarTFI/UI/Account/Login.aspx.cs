@@ -6,6 +6,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using UI.Models;
 using BIZ;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace UI.Account
 {
@@ -38,15 +40,23 @@ namespace UI.Account
 
                 // Esto no cuenta los errores de inicio de sesión hacia el bloqueo de cuenta
                 // Para habilitar los errores de contraseña para desencadenar el bloqueo, cambie a shouldLockout: true
-                
+                string query = "select * from aspnetusers, UserActivation where email  = '" + Email.Text + "' and id = UserId";
+
+                if(GetData(query).Rows.Count > 0)
+                    Response.Redirect("/Account/ActivacionPendiente");
+
                 var result = signinManager.PasswordSignIn(Email.Text, txtPassword.Text, RememberMe.Checked, shouldLockout: false);
                 
                 switch (result)
                 {
                     case SignInStatus.Success:
                         //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);   
-                        BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "INGRESO", "Login");
+                        
+                        
                         Response.Redirect("~/default.aspx");                        
+                        
+                        
+                        
                         break;
                     case SignInStatus.LockedOut:
                         Response.Redirect("/Account/Lockout");
@@ -82,7 +92,30 @@ namespace UI.Account
         {
             Response.Redirect("Register.aspx");
         }
-        
+
+        private DataTable GetData(string query)
+        {
+            //string conString = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+            string conString = BIZUtilites.getConnection();
+            //string conString = @"workstation id=haylugardbnew.mssql.somee.com;packet size=4096;user id=sbiondini_SQLLogin_2;pwd=z9j9uo7kaq;data source=haylugardbnew.mssql.somee.com;persist security info=False;initial catalog=haylugardbnew";
+
+
+            SqlCommand cmd = new SqlCommand(query);
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    cmd.Connection = con;
+
+                    sda.SelectCommand = cmd;
+                    using (DataTable dt = new DataTable())
+                    {
+                        sda.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
 
     }
 }

@@ -23,8 +23,9 @@ namespace UI
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated == true)
             {
-                BIZReserva.ReservaUpdateFinalizado(DateTime.Today, DateTime.Today.Hour.ToString().PadLeft(2, '0'));
-                cargarReservas();
+                //BIZReserva.ReservaUpdateFinalizado(DateTime.Today, DateTime.Today.Hour.ToString().PadLeft(2, '0'));
+                //cargarReservas();
+                cargarBitacora();
             }
             else
             {
@@ -34,15 +35,15 @@ namespace UI
 
         }
 
-        private void cargarReservas()
+        private void cargarBitacora()
         {
             try
             {
                 if (Context.User.IsInRole("Administrador"))
                 {
-                    
-                    
-                    gvReservasPendientes.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(false, null, null, "");
+
+
+                    gvReservasPendientes.DataSource = BIZBitacora.Select(DateTime.Now, DateTime.Now, null, 0);
                     gvReservasPendientes.DataBind();
 
 
@@ -76,16 +77,12 @@ namespace UI
         {
             fechaDesde = DateTime.MinValue;
             fechaHasta = DateTime.MinValue;
-            if (string.IsNullOrEmpty(txtFechaDesde.Text) && !string.IsNullOrEmpty(txtFechaHasta.Text))
+            if (string.IsNullOrEmpty(txtFechaDesde.Text) || string.IsNullOrEmpty(txtFechaHasta.Text))
             {
-                lblErrorFiltro.Text = "Debe completar la Fecha Desde";
+                lblErrorFiltro.Text = "Debe completar los filtros de fecha.";
                 return false;
             }
-            if (!string.IsNullOrEmpty(txtFechaDesde.Text) && string.IsNullOrEmpty(txtFechaHasta.Text))
-            {
-                lblErrorFiltro.Text = "Debe completar la Fecha Hasta";
-                return false;
-            }
+
             if (!string.IsNullOrEmpty(txtFechaDesde.Text))
             {
                 DateTime result;
@@ -108,56 +105,13 @@ namespace UI
             return true;
         }
 
-
-        protected void gvReservasPendientes_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            string[] valores = e.CommandArgument.ToString().Split(new char[] { ',' });
-            Session["Nro_Reserva"] = valores[0];
-                
-            if (e.CommandName == "Pagar")
-            {
-
-                //string[] valores = e.CommandArgument.ToString().Split(new char[] { ',' });
-                //string pNroReserva = valores[0];
-                //string pPrecio = valores[1];
-                //Response.Redirect("PagoReserva.aspx?pnr=" + pNroReserva + "?ppr=" + pPrecio);
-
-                double importe = Convert.ToDouble(valores[1]);
-                Session["Importe_Reserva"] = importe;
-                Response.Redirect("PagoReserva");
-
-
-
-            }
-            
-        }
-
         protected void gvReservasPendientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvReservasPendientes.PageIndex = e.NewPageIndex;
-            cargarReservas();
+            cargarBitacora();
 
         }
 
-        protected void gvReservasPendientes_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            //pnlTab1.Visible = false;
-            //pnlTab2.Visible = true;
-
-            //txtIdReserva.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[0].Text.ToString();
-            //txtdescEstacionamiento.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[1].Text.ToString();
-            //txtCalle.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[2].Text.ToString();
-            //txtAltura.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[3].Text.ToString();
-            //txtdatosAdicionales.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[4].Text.ToString();
-            //txtdescBarrio.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[5].Text.ToString();
-            //txtUser.Text = gvReservasPendientes.Rows[e.NewEditIndex].Cells[6].Text.ToString();
-
-            //e.Cancel = true;
-            //ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
-            BIZReserva.MisReservasCancelar(int.Parse(gvReservasPendientes.Rows[e.NewEditIndex].Cells[0].Text.ToString()));
-            cargarReservas();
-
-        }
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
@@ -169,8 +123,9 @@ namespace UI
                 DateTime? fechaDesdeFiltro = fechaDesde != DateTime.MinValue ? fechaDesde : (DateTime?)null;
                 DateTime? fechaHastaFiltro = fechaHasta != DateTime.MinValue ? fechaHasta : (DateTime?)null;
 
-                
-                gvReservasPendientes.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(false, fechaDesdeFiltro, fechaHastaFiltro, txtUsuario.Text.Trim());
+                string usuario = string.IsNullOrEmpty(txtUsuario.Text) ? null : txtUsuario.Text;
+                int perfil = int.Parse(ddlPerfil.SelectedValue);
+                gvReservasPendientes.DataSource = BIZBitacora.Select(fechaDesdeFiltro.Value, fechaHastaFiltro.Value, txtUsuario.Text, perfil);
                 gvReservasPendientes.DataBind();
             }            
         }
