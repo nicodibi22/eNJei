@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using BIZ;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -50,7 +51,10 @@ namespace UI.Account
                 if (user != null)
                 {
                     signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                    //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                    Context.Session["loginGoogle"] = true;
+                    IdentityHelper.RedirectToReturnUrl("~/default.aspx", Response);
+                    
                 }
                 else if (User.Identity.IsAuthenticated)
                 {
@@ -65,7 +69,8 @@ namespace UI.Account
                     var result = manager.AddLogin(User.Identity.GetUserId(), verifiedloginInfo.Login);
                     if (result.Succeeded)
                     {
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                        Context.Session["loginGoogle"] = true;
+                        IdentityHelper.RedirectToReturnUrl("~/default.aspx", Response);
                     }
                     else
                     {
@@ -97,6 +102,7 @@ namespace UI.Account
             IdentityResult result = manager.Create(user);
             if (result.Succeeded)
             {
+
                 var loginInfo = Context.GetOwinContext().Authentication.GetExternalLoginInfo();
                 if (loginInfo == null)
                 {
@@ -106,13 +112,22 @@ namespace UI.Account
                 result = manager.AddLogin(user.Id, loginInfo.Login);
                 if (result.Succeeded)
                 {
+
+                    //inserto el ROL para el usuario
+                    BIZAspNetUserRoles.Insert(user.Id, "2");
+
+                    //agregado para crear cuenta corriente cuando se registra
+                    AltaCuentaCorriente(user.Id);
+
+                    AltaDatosPersonales(user.Id, email.Text);
+
                     signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
 
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite http://go.microsoft.com/fwlink/?LinkID=320771
                     // var code = manager.GenerateEmailConfirmationToken(user.Id);
                     // Enviar este vínculo por correo electrónico: IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id)
-
-                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                    Context.Session["loginGoogle"] = true;
+                    IdentityHelper.RedirectToReturnUrl("~/default.aspx", Response);
                     return;
                 }
             }
@@ -125,6 +140,32 @@ namespace UI.Account
             {
                 ModelState.AddModelError("", error);
             }
+        }
+
+        private void AltaDatosPersonales(string id, string email)
+        {
+            try
+            {
+                BIZDatosPersonales.Insert(id, "DNI", "00000000", email, "9999999999", "MOVIL", "Nombre Apellido", string.Empty, string.Empty, string.Empty, string.Empty);
+                BIZVehiculo.Insert(id, "MARCA", "MODELO", "XXX XXX");
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
+        private void AltaCuentaCorriente(string id)
+        {
+            try
+            {
+                BIZCuentaCorriente.Insert(id, 100, Utils.GetDateTimeLocal());
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
         }
     }
 }

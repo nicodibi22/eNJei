@@ -56,13 +56,13 @@
 
                         <br />
                         <hr />
-                            <h4>Mis reservas pendientes de pago</h4>
+                            <h4>Bitácora</h4>
                         <hr />
                         <div id="divFiltros1" runat="server">
                         
                             <div class="row" >
                                 <div class="col-md-2">
-                                    <asp:Label ID="lblFechaDesde" runat="server" Text="Fecha Reserva Desde: "></asp:Label>
+                                    <asp:Label ID="lblFechaDesde" runat="server" Text="Fecha Desde: "></asp:Label>
                                 
                                     <asp:TextBox runat="server" ID="txtFechaDesde" type="date" CssClass="form-control" ></asp:TextBox>
                                 </div>
@@ -113,11 +113,11 @@
 
                             
                             
-                            <asp:BoundField DataField="fechaHora" HeaderText="Fecha y Hora" DataFormatString="{0:dd/MM/yyyy}" />
+                            <asp:BoundField DataField="fechaHora" HeaderText="Fecha y Hora" DataFormatString="{0:dd/MM/yyyy HH:mm:ss}" />
                             
                             
 
-                            <asp:BoundField DataField="idUsuario" HeaderText="Id Usuario" />
+                            <asp:BoundField DataField="Email" HeaderText="Email" />
 
                             <asp:BoundField DataField="accion" HeaderText="Acción" />                           
 

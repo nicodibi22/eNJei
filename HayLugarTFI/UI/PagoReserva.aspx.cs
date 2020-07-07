@@ -138,7 +138,7 @@ namespace UI
                             if (Convert.ToDecimal(Session["Importe_Reserva"].ToString()) < SaldoCuentaCorriente)
                             {
                                 BIZCuentaCorriente.UpdateSaldo(Convert.ToInt32(lblCCNro.Text), Convert.ToDecimal(Session["Importe_Reserva"].ToString()));
-                                BIZOperacionesCtaCte.Insert(Convert.ToInt32(lblCCNro.Text), Convert.ToDecimal(Session["Importe_Reserva"].ToString()), DateTime.Now, "Pago de la reserva Nro: " + Session["Nro_Reserva"].ToString(), "DEBITO");
+                                BIZOperacionesCtaCte.Insert(Convert.ToInt32(lblCCNro.Text), Convert.ToDecimal(Session["Importe_Reserva"].ToString()), Utils.GetDateTimeLocal(), "Pago de la reserva Nro: " + Session["Nro_Reserva"].ToString(), "DEBITO");
                                 pagoReserva = true;
                             }
                             else
@@ -159,12 +159,9 @@ namespace UI
                 }
                 if (pagoReserva)
                 {
-                    DateTime MyDateTime = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
-
-                    TimeZoneInfo JOTZ = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");//Jordan
-                    MyDateTime = TimeZoneInfo.ConvertTime(MyDateTime.AddHours(4), JOTZ);
+                    
                     //BIZReserva.PlazaUpdateStatePayment(Convert.ToInt32(Session["Nro_Reserva"].ToString()), true);
-                    BIZReserva.ReservaUpdateStatePayment(Convert.ToInt32(Session["Nro_Reserva"].ToString()), MyDateTime, true);
+                    BIZReserva.ReservaUpdateStatePayment(Convert.ToInt32(Session["Nro_Reserva"].ToString()), Utils.GetDateTimeLocal(), true);
                     panelTotal.Visible = false;
                     lblPyEconfirmado.Visible = true;
                     btnContinuar.Visible = true;
@@ -184,17 +181,12 @@ namespace UI
         private bool TarjetaValida()
         {
 
-            DateTime MyDateTime = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
-
-            TimeZoneInfo JOTZ = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");//Jordan
-            MyDateTime = TimeZoneInfo.ConvertTime(MyDateTime.AddHours(4), JOTZ);
             
-
             try
             {
-                if (int.Parse(txtAnio.Text) < MyDateTime.Year)
+                if (int.Parse(txtAnio.Text) < Utils.GetDateTimeLocal().Year)
                     return false;
-                if (int.Parse(txtAnio.Text) == MyDateTime.Year && int.Parse(txtMes.Text) > MyDateTime.Month)
+                if (int.Parse(txtAnio.Text) == Utils.GetDateTimeLocal().Year && int.Parse(txtMes.Text) > Utils.GetDateTimeLocal().Month)
                     return false;
                 return true;
             }

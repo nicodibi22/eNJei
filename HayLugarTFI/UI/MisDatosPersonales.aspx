@@ -58,8 +58,7 @@
                             <ItemTemplate>
                                 <asp:Label runat="server"  ID="lblPerfil"></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:BoundField DataField="telefono" HeaderText="Nro Telefono" />
+                        </asp:TemplateField>                        
                         <asp:BoundField DataField="apellido" ItemStyle-CssClass="filtro" HeaderText="Apellido" />
                         <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="tipoDoc" HeaderText="Tipo Doc." />

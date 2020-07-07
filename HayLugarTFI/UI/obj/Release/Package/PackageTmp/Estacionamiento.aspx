@@ -48,6 +48,11 @@
             <br />
             <asp:UpdatePanel ID="upnlTotal" runat="server" ChildrenAsTriggers="true" UpdateMode="conditional">
                 <ContentTemplate>
+
+                    <asp:Panel runat="server" id="divEliminado" class="alert alert-warning alert-dismissible fade show" role="alert" Width="75%" >
+      <asp:Label runat="server" ID="lblPlazasHora" CssClass="alert alert-warning alert-dismissable" Text="Registro eliminado."></asp:Label>
+    </asp:Panel>
+
                     <asp:Panel ID="pnlTab1" runat="server">
                         <br />
                         <hr />
@@ -309,7 +314,7 @@
                     // result will be true if button was click, while it will be false if users close the dialog directly.
                     if (result) {
                         javascript: __doPostBack('ctl00$MainContent$gvEstacionamiento$ctl02$lnkDelete', '');
-                        __doPostBack('<%=upnlTotal.ClientID%>', '');
+                        //__doPostBack('<%=upnlTotal.ClientID%>', '');
                     } else {
                         BootstrapDialog.closeAll();
                     }

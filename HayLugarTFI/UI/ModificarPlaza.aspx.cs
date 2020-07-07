@@ -171,7 +171,7 @@ namespace UI
                 else
                     BIZReserva.Insert(Convert.ToDateTime(txtFecha.Text), Convert.ToDateTime(txtFecha.Text), txtHoraDesde.Text, txtHoraHasta.Text, int.Parse(txtIdPlaza.Text), User.Identity.GetUserId());
                 //envio mail
-                BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "ALTA", "Reserva");
+                BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "ALTA", "Reserva");
                 try
                 {
                     Send_Info_Reserva(User.Identity.GetUserId());
@@ -300,6 +300,10 @@ namespace UI
                     return false;
 
                 if (int.Parse(txtHoraDesde.Text.Substring(0, 2)) >= int.Parse(txtHoraHasta.Text.Substring(0, 2)))
+                    return false;
+                
+
+                if (Utils.GetDateTimeLocal().Hour > int.Parse(txtHoraDesde.Text.Substring(0, 2)))
                     return false;
             }
             return true;

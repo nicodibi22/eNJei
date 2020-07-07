@@ -156,7 +156,7 @@
                                 
                                 </div>
                                 </div>
-                            
+                            <br />
                             <div class="row" >
                                 <div class="col-md-4">
                                     <asp:Label runat="server" ID="lblErrorFiltro2" ForeColor="Red" Font-Bold="true"></asp:Label>

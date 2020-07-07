@@ -67,12 +67,12 @@ namespace UI
             pnlTab2.Visible = true;
 
             txtAliasEmp.Text = ((Label)gvDatosPersonales.Rows[e.NewEditIndex].FindControl("lblNroReg")).Text; //gvDatosPersonales.Rows[e.NewEditIndex].Cells[0].Text.ToString();
-            txtApellido.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[3].Text.ToString().Replace("&nbsp;", "");
-            txtNombre.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[4].Text.ToString().Replace("&nbsp;", "");
-            ddlTipoDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[5].Text.ToString();
-            txtNumeroDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[6].Text.ToString().Replace("&nbsp;", "");
+            txtApellido.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[2].Text.ToString().Replace("&nbsp;", "");
+            txtNombre.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[3].Text.ToString().Replace("&nbsp;", "");
+            ddlTipoDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[4].Text.ToString();
+            txtNumeroDocumento.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[5].Text.ToString().Replace("&nbsp;", "");
             txtEmail.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[0].Text.ToString().Replace("&nbsp;", "");
-            txtNroTelefono.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[2].Text.ToString().Replace("&nbsp;", "");
+            txtNroTelefono.Text = gvDatosPersonales.Rows[e.NewEditIndex].Cells[7].Text.ToString().Replace("&nbsp;", "");
             ddltipotelefono.SelectedValue = ((Label)gvDatosPersonales.Rows[e.NewEditIndex].FindControl("lblTipoTelefono")).Text;
             //txtAliasEmp.Text = ((Label)gvDatosPersonales.Rows[e.NewEditIndex].FindControl("lblAliasEmp")).Text;
 
@@ -91,7 +91,7 @@ namespace UI
             try
             {
                 BIZDatosPersonales.Update(User.Identity.GetUserId(), ddlTipoDocumento.SelectedValue, txtNumeroDocumento.Text, txtEmail.Text, txtNroTelefono.Text, ddltipotelefono.SelectedValue, string.Empty, txtNombre.Text, txtApellido.Text, string.Empty, string.Empty);
-                BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Datos Personales");
+                BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Datos Personales");
                 txtNumeroDocumento.Text = "";
                 txtEmail.Text = "";
                 txtNroTelefono.Text = "";
@@ -149,7 +149,7 @@ namespace UI
             try
             {
                 BIZVehiculo.Update(int.Parse(txtIdVehiculo.Text), User.Identity.GetUserId(), txtMarca.Text, txtModelo.Text, txtPatente.Text);
-                BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Vehículo");
+                BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Vehículo");
                 txtNumeroDocumento.Text = "";
                 txtEmail.Text = "";
                 txtNroTelefono.Text = "";

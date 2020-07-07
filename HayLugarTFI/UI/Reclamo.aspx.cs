@@ -134,12 +134,21 @@ namespace UI
             try
             {
                 lblMensaje.Text = string.Empty;
+                int reserva;
+                if (!int.TryParse(ddlReserva.SelectedValue, out reserva) || reserva <= 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
+                    lblMensaje.Text = "Ingrese una reserva.";
+                    lblMensaje.Visible = true;
+                    return;
+                }
+
                 if (txtIdReclamo.Text == string.Empty)
                 {
                     
                     int idReclamo = BIZReclamo.Insert(int.Parse(ddlReserva.SelectedValue), txtPatenteInfractor.Text, Context.User.Identity.GetUserId());
 
-                    BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "ALTA", "Reclamo");
+                    BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "ALTA", "Reclamo");
 
                     /*string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
                     string filePath = Server.MapPath("~/Uploads/") + fileName;
@@ -202,7 +211,7 @@ namespace UI
                 int idReclamo = int.Parse(e.CommandArgument.ToString().Split(',')[0]);
                 int idReserva = int.Parse(e.CommandArgument.ToString().Split(',')[1]);
                 BIZReclamo.UpdateStatus(idReclamo, 3);
-                BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "RECHAZO", "Reclamo");
+                BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "RECHAZO", "Reclamo");
                 if (Context.User.IsInRole("Administrador"))
                     gvReclamo.DataSource = BIZReclamo.SelectAll();
                 else
@@ -226,7 +235,7 @@ namespace UI
                 String importe = dsReserva.Tables[0].Rows[0]["tarifa"].ToString();
                 BIZCuentaCorriente.UpdateSaldo(Convert.ToInt32(nroCuenta), Convert.ToDecimal(importe) * (-1));
                 BIZReclamo.UpdateStatus(idReclamo, 2);
-                BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "CONFIRMACION", "Reclamo");
+                BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "CONFIRMACION", "Reclamo");
                 if (Context.User.IsInRole("Administrador"))
                     gvReclamo.DataSource = BIZReclamo.SelectAll();
                 else

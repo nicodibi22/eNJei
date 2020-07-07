@@ -53,7 +53,7 @@
         </asp:ScriptManager>
 
         <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
+            <div class="container" style="margin-left:15px;margin-right:15px;max-width:1270px">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
@@ -104,11 +104,23 @@
                                         <asp:ListItem Text="Usuarios" Value="5" />
                                         <asp:ListItem Text="Liberar Plazas" Value="6" />
                                         <asp:ListItem Text="Bitácora" Value="7" />
+                                        <asp:ListItem Text="Reclamos" Value="8" />
                                 </asp:DropDownList> 
                             </a> 
                         </li>
-                        <li><a runat="server" visible="false" id="pestaniaEstacionamiento" href="~/Estacionamiento">Mis Cocheras</a></li>
-                        <li><a runat="server" visible="false" id="pestaniaRendimiento" href="~/Rendimiento">Rendimiento</a></li>
+
+                        <li> 
+                            <a id="pestaniaMisCocheras" visible="false" runat="server">Mis Cocheras:
+                                <asp:DropDownList ID="ddlMisCocheras" OnSelectedIndexChanged="ddlMisCocheras_SelectedIndexChanged"  Width="100px"
+                                    AutoPostBack="true" runat="server">
+                                        <asp:ListItem Text="" Value="0" />                                                                                
+                                        <asp:ListItem Text="Estacionamamiento" Value="1" />
+                                        <asp:ListItem Text="Rendimiento" Value="2" />
+                                        
+                                </asp:DropDownList> 
+                            </a> 
+                        </li>
+
 
                     </ul>
 
@@ -129,10 +141,10 @@
                                 </li>
                                 
                                 
-                                <li><a runat="server" href="~/Account/Manage" title="Cambiar Contraseña"> <asp:Label runat="server" ID="lblNombre"></asp:Label> </a></li>
+                                <li><a runat="server" href="~/Account/Manage" id="lnkCambiarPassword" title="Cambiar Contraseña"> <asp:Label runat="server" ID="lblNombre"></asp:Label> </a></li>
                                 <li><a><asp:Label runat="server" ID="lblCuentaCorriente"></asp:Label> </a></li>
                                 <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Cerrar sesión" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Salir" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>
       
                             </ul>

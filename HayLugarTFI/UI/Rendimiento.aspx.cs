@@ -61,6 +61,10 @@ namespace UI
             int nroCuenta = Convert.ToInt32( dsCuentaCorriente.Tables[0].Rows[0]["nroCuenta"]);
 
             BIZCuentaCorriente.UpdateSaldo(nroCuenta, SaldoTotal*(-1));
+
+            BIZOperacionesCtaCte.Insert(nroCuenta, SaldoTotal, Utils.GetDateTimeLocal(), "Acreditación en Cuenta Corriente", "CRÉDITO");
+
+            BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Acreditación en Cuenta Corriente");
             cargarGrillaCC();
         }
 

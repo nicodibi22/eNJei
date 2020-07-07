@@ -76,7 +76,7 @@ namespace UI
                                     BIZAspNetUserRoles.Insert(user.Id, values[7]);
 
                                     //agregado para crear cuenta corriente cuando se registra                        
-                                    BIZCuentaCorriente.Insert(user.Id, 100, DateTime.Now);
+                                    BIZCuentaCorriente.Insert(user.Id, 100, Utils.GetDateTimeLocal());
 
                                     BIZDatosPersonales.Insert(user.Id, values[1], values[2], values[0], values[5], string.Empty, string.Empty, values[4], values[3], values[6], string.Empty);
                                     if (values[7] == "2" || values[7] == "4")
@@ -84,7 +84,7 @@ namespace UI
                                         BIZVehiculo.Insert(user.Id, values[8], values[9], values[10]);
                                     }
 
-                                    BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "ALTA", "Carga Masiva Usuarios");
+                                    BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "ALTA", "Carga Masiva Usuarios");
 
                                     //envio mail
                                     Send_Account_Activation_Link(values[0], user.Id, values[2]);

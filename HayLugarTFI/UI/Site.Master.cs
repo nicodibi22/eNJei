@@ -29,6 +29,13 @@ namespace UI
             Danger
         }
 
+        public void UpdateSaldo(string saldo)
+        {
+            
+            (this.loginView.FindControl("lblCuentaCorriente") as Label).Text = "$" + saldo;
+            
+        }
+
         public void ShowMessage(string mensaje, WarningType type)
         {
             //gets the controls from the page
@@ -131,7 +138,8 @@ namespace UI
                 {
                     (this.loginView.FindControl("lblNombre") as Label).Text = Context.User.Identity.GetUserName().Split('@')[0];
                 }
-
+                
+                
                 DataSet dsCuentaCorriente = BIZ.BIZCuentaCorriente.Select(Context.User.Identity.GetUserId());
 
                 if (dsCuentaCorriente != null && dsCuentaCorriente.Tables != null && dsCuentaCorriente.Tables.Count > 0 && dsCuentaCorriente.Tables[0].Rows.Count > 0)
@@ -146,7 +154,8 @@ namespace UI
 
                 if (Context.User.IsInRole("Administrador"))
                 {
-                    pestaniaMiCuenta.Visible = true;
+                    pestaniaMiCuenta.Visible = false;
+                    pestaniaMisViajes.Visible = false;
                     pestaniaAdm.Visible = true;
                     
                     (this.loginView.FindControl("imgStar") as Image).Visible = true;
@@ -158,30 +167,31 @@ namespace UI
                 
                 if (Context.User.IsInRole("Propietario") || Context.User.IsInRole("Cond_Prop"))
                 {
-                    pestaniaRendimiento.Visible = true;
+                    pestaniaMisCocheras.Visible = true;
                     
                     (this.loginView.FindControl("imgKey") as Image).Visible = true;
                     
                     
-                }
-
-                if (Context.User.IsInRole("Propietario") || Context.User.IsInRole("Cond_Prop"))
-                {
-                    pestaniaEstacionamiento.Visible = true;
-                }
+                }                
 
                 if (Context.User.IsInRole("Conductor") || Context.User.IsInRole("Cond_Prop"))
                 {
+                    
                     (this.loginView.FindControl("imgCar") as Image).Visible = true;
                 }
-                
+
+                if (!IsPostBack)
+                {
+                    if (Context.User.IsInRole("Propietario"))
+                        ddlMiCuenta.Items.RemoveAt(3);
+                }
                 
             }
 
         }
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
-            BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "FIN SESIÓN", "Logout");
+            BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "FIN SESIÓN", "Logout");
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
 
@@ -207,6 +217,9 @@ namespace UI
 
             if (ddlAdm.SelectedValue == "7")
             { Response.Redirect("~/Bitacora.aspx"); }
+
+            if (ddlAdm.SelectedValue == "8")
+            { Response.Redirect("~/Reclamo.aspx"); }
         }
 
         protected void ddlMiCuenta_SelectedIndexChanged(object sender, EventArgs e)
@@ -232,6 +245,15 @@ namespace UI
 
             if (ddlMisViajes.SelectedValue == "2")
             { Response.Redirect("~/CalculoEnvio.aspx"); }
+        }
+
+        protected void ddlMisCocheras_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlMisCocheras.SelectedValue == "1")
+            { Response.Redirect("~/Estacionamiento.aspx"); }
+
+            if (ddlMisCocheras.SelectedValue == "2")
+            { Response.Redirect("~/Rendimiento.aspx"); }
         }
     }
 

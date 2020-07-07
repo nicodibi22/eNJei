@@ -165,7 +165,7 @@ namespace UI
                         BIZAspNetUserRoles.Insert(user.Id, ddlRol.SelectedValue);
 
                         //agregado para crear cuenta corriente cuando se registra                        
-                        BIZCuentaCorriente.Insert(user.Id, 100, DateTime.Now);
+                        BIZCuentaCorriente.Insert(user.Id, 100, Utils.GetDateTimeLocal());
 
                         BIZDatosPersonales.Insert(user.Id, ddlTipoDocumento.SelectedValue, txtNroDocumento.Text, txtMail.Text, txtTelefono.Text, string.Empty, string.Empty, txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtCuil.Text);
                         BIZVehiculo.Insert(user.Id, txtMarca.Text, txtModelo.Text, txtPatente.Text);

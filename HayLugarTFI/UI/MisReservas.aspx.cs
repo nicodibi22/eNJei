@@ -115,6 +115,12 @@ namespace UI
                     lblErrorFiltro.Text = "El formato de la Fecha Hasta no es correcto";
                     return false;
                 }
+
+                if (fechaDesde > fechaHasta)
+                {
+                    lblErrorFiltro.Text = "La Fecha Hasta no debe ser menor a la Fecha Desde.";
+                    return false;
+                }
             }
             
 
@@ -148,6 +154,12 @@ namespace UI
                 if (fechaHasta.Equals(DateTime.MinValue))
                 {
                     lblErrorFiltro2.Text = "El formato de la Fecha Hasta no es correcto";
+                    return false;
+                }
+
+                if (fechaDesde > fechaHasta)
+                {
+                    lblErrorFiltro2.Text = "La Fecha Hasta no debe ser menor a la Fecha Desde.";
                     return false;
                 }
             }

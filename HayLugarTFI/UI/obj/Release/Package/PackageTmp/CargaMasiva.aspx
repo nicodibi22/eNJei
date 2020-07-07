@@ -12,8 +12,8 @@
         </div>
     <div class="row" >
                     <div class="col-md-2">
-    <asp:Button ID="Button1" Text="Cargar XML" runat="server" OnClick="UploadXML" />
-    <asp:Label ID="lblMje" runat="server" Font-Size="X-Large" ForeColor="Green"></asp:Label>
+    <asp:Button ID="Button1" Text="Cargar CSV" runat="server" OnClick="UploadXML" /><br />
+    <asp:Label ID="lblMje" runat="server" Font-Size="X-Large" ForeColor="Green" Width="300px"></asp:Label>
                         </div>
         </div>
     <br /><p></p>

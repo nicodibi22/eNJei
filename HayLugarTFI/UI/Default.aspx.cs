@@ -17,16 +17,12 @@ namespace UI
         {
             if (!Page.IsPostBack)
             {
-                DateTime MyDateTime = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
 
-                TimeZoneInfo JOTZ = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");//Jordan
-                MyDateTime = TimeZoneInfo.ConvertTime(MyDateTime, JOTZ);
-                MyDateTime = TimeZoneInfo.ConvertTimeToUtc(MyDateTime.AddHours(4), JOTZ);
+                BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "INGRESO", "Login");
 
-                BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "INGRESO", "Login");
 
-                int diario = Convert.ToInt32(BIZPlaza.SelectDisponibilidadDiario(MyDateTime).Tables[0].Rows[0][0]);
-                int hora = Convert.ToInt32(BIZPlaza.SelectDisponibilidadHora(MyDateTime, MyDateTime.ToString("HH:mm")).Tables[0].Rows[0][0]);
+                int diario = Convert.ToInt32(BIZPlaza.SelectDisponibilidadDiario(Utils.GetDateTimeLocal()).Tables[0].Rows[0][0]);
+                int hora = Convert.ToInt32(BIZPlaza.SelectDisponibilidadHora(Utils.GetDateTimeLocal(), Utils.GetDateTimeLocal().ToString("HH:mm")).Tables[0].Rows[0][0]);
 
                 lblPlazasDia.Text = string.Format(lblPlazasDia.Text, diario);
                 lblPlazasHora.Text = string.Format(lblPlazasHora.Text, hora);

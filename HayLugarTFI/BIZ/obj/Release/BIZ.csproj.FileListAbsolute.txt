@@ -7,3 +7,14 @@ C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\bin\Release\DAL.pdb
 C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.csprojResolveAssemblyReference.cache
 C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.dll
 C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.pdb
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\BIZ\bin\Release\BIZ.dll
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\BIZ\bin\Release\BIZ.pdb
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\BIZ\bin\Release\DAL.dll
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\BIZ\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\BIZ\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\BIZ\bin\Release\DAL.pdb
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.csprojAssemblyReference.cache
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.csproj.CoreCompileInputs.cache
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.csproj.CopyComplete
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.dll
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\BIZ\obj\Release\BIZ.pdb

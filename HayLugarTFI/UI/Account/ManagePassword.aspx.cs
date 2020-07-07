@@ -55,7 +55,7 @@ namespace UI.Account
             {
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-                IdentityResult result = manager.ChangePassword(User.Identity.GetUserId(), CurrentPassword.Text, NewPassword.Text);
+                IdentityResult result = manager.ChangePassword(User.Identity.GetUserId(), CurrentPassword.Text, txtNewPassword.Text);
                 if (result.Succeeded)
                 {
                     var user = manager.FindById(User.Identity.GetUserId());
@@ -75,7 +75,7 @@ namespace UI.Account
             {
                 // Crear la información de inicio de sesión local y vincular la cuenta local al usuario
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                IdentityResult result = manager.AddPassword(User.Identity.GetUserId(), password.Text);
+                IdentityResult result = manager.AddPassword(User.Identity.GetUserId(), txtPasswordOriginal.Text);
                 if (result.Succeeded)
                 {
                     Response.Redirect("~/Account/Manage?m=SetPwdSuccess");

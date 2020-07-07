@@ -26,7 +26,27 @@ namespace UI
                 if (Context.User.IsInRole("Propietario") || Context.User.IsInRole("Cond_Prop") || Context.User.IsInRole("Administrador"))
                 {
                     if (!IsPostBack)
+                    {
+                        divEliminado.CssClass = string.Format("alert alert-{0} alert-dismissable", UI.SiteMaster.WarningType.Warning.ToString().ToLower());
+
                         cargarEstacionamientos();
+
+                        if (Request.QueryString["delete"] != null)
+                        {
+                            if (Convert.ToBoolean(Request.QueryString["delete"]) == true)
+                            {
+                                lblPlazasHora.Text = "Registro eliminado.";
+                            }
+                            else
+                            {
+                                lblPlazasHora.Text = "No se pudo eliminar el estacionamiento. Verifique que no tenga reservas o reclamos activos.";
+                            }
+                            divEliminado.Visible = true;
+                        }
+                        else
+                            divEliminado.Visible = false;
+                    }
+                        
                 }
                 else
                 {
@@ -128,7 +148,10 @@ namespace UI
             try
             {
                 CultureInfo us = new CultureInfo("es-ES");
-                gvEstacionamiento.DataSource = BIZEstacionamiento.SelectByIdUser(Context.User.Identity.GetUserId());
+                if (Context.User.IsInRole("Administrador"))
+                    gvEstacionamiento.DataSource = BIZEstacionamiento.SelectAll();
+                else
+                    gvEstacionamiento.DataSource = BIZEstacionamiento.SelectByIdUser(Context.User.Identity.GetUserId());
                 gvEstacionamiento.DataBind();
 
                 if (gvEstacionamiento.Rows.Count > 0)
@@ -158,7 +181,7 @@ namespace UI
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             titleProdAccion.InnerText = "Agregar Estacionamiento";
-
+            divEliminado.Visible = false;
             pnlTab1.Visible = false;
             pnlTab2.Visible = true;
 
@@ -247,7 +270,7 @@ namespace UI
                     //BIZEstacionamiento.Insert(txtDescripcion.Text, txtCalle.Text, Convert.ToInt32(txtAltura.Text), txtDatosAdicionales.Text, Convert.ToInt32(ddlBarrios.SelectedValue),
                     //Convert.ToDecimal(Session["latitud"].ToString().Replace('.', ',')), Convert.ToDecimal(Session["longitud"].ToString().Replace('.', ',')));
 
-                    BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "ALTA", "Estacionamiento");
+                    BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "ALTA", "Estacionamiento");
 
                 }
                 else
@@ -255,7 +278,7 @@ namespace UI
                     BIZEstacionamiento.Update(Convert.ToInt32(txtIdEstac.Text), txtDescripcion.Text, txtCalle.Text, 
                         Convert.ToInt32(txtAltura.Text), txtDatosAdicionales.Text, Convert.ToInt32(ddlBarrios.SelectedValue), Convert.ToDecimal(txtLatitud.Text), Convert.ToDecimal(txtLongitud.Text));
 
-                    BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Estacionamiento");
+                    BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Estacionamiento");
 
                 }
                 txtIdEstac.Text = "";
@@ -289,17 +312,7 @@ namespace UI
 
         protected void gvEstacionamiento_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            try
-            {
-                int idEstacionamiento = (int)gvEstacionamiento.DataKeys[e.RowIndex].Value;
-                BIZEstacionamiento.Delete(idEstacionamiento);
-                cargarEstacionamientos();
-            }
-            catch (Exception)
-            {
-
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "alert('No se pudo eliminar la zona');", true);
-            }
+            
 
         }
 
@@ -317,13 +330,17 @@ namespace UI
                     cargarEstacionamientos();
                     //System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "BootstrapDialog.alert('Registro eliminado correctamente.');", true);
                     //data.
-                    Response.Redirect("~/Estacionamiento.aspx");
+                    Response.Redirect("~/Estacionamiento.aspx?delete=true");
                 }
+            }
+            catch (SqlException)
+            {
+                Response.Redirect("~/Estacionamiento.aspx?delete=false");
+                //System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "BootstrapDialog.alert('No se pudo eliminar el registro. Error: " + ex.Message + "');", true);
             }
             catch (Exception ex)
             {
-
-                System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "BootstrapDialog.alert('No se pudo eliminar el registro. Error: " + ex.Message + "');", true);
+                
             }
             
         }

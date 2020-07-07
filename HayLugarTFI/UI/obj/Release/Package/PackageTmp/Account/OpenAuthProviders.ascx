@@ -8,8 +8,8 @@
         <ItemTemplate>
             <p>
                 <button type="submit" class="btn btn-default" name="provider" value="<%#: Item %>"
-                    title="Inicie sesión con su <%#: Item %> cuenta.">
-                    <%#: Item %>
+                    title="Inicie sesión con su <%#: Item %> cuenta." >                    
+                    <img src="../images/google_logo.jpg" width="100" height="30" />
                 </button>
             </p>
         </ItemTemplate>

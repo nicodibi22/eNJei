@@ -64,6 +64,12 @@
                             <th style="text-align: left;">
                                 <br />
                                 <asp:Label ID="lblErrorMapa" runat="server" Visible="false" ForeColor="Red" Font-Bold="true" Text="No se ha podido cargar el mapa. Verifique su dirección"></asp:Label>
+                                <span>
+                                    <img src="http://maps.google.com/mapfiles/ms/icons/red.png" /> <asp:Label runat="server" ID="lblEstadiaDia" Text="Estadía Diaria"></asp:Label>
+                                </span>
+                                <span>
+                                    <img src="http://maps.google.com/mapfiles/ms/icons/blue.png" /> <asp:Label runat="server" ID="Label1" Text="Estadía por Hora"></asp:Label>
+                                </span>
                                 <div id="divShowMapa">
                                     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyBCJHG-OM17NkmG9kteZWkaMY2mvbY34rQ"
                                                         type="text/javascript">

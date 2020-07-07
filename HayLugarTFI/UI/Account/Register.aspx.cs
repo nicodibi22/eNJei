@@ -72,7 +72,7 @@ namespace UI.Account
         {
             try
             {
-                BIZCuentaCorriente.Insert(id, 100, DateTime.Now);
+                BIZCuentaCorriente.Insert(id, 100, Utils.GetDateTimeLocal());
             }
             catch (Exception)
             {

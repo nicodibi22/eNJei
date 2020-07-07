@@ -89,14 +89,20 @@ namespace UI
                 DateTime.TryParse(txtFechaDesde.Text, out fechaDesde);
                 if (fechaDesde.Equals(DateTime.MinValue))
                 {
-                    lblErrorFiltro.Text = "El formato de la Fecha Desde no es correcto";
+                    lblErrorFiltro.Text = "El formato de la Fecha Desde no es correcto.";
                     return false;
                 }
 
                 DateTime.TryParse(txtFechaHasta.Text, out fechaHasta);
                 if (fechaHasta.Equals(DateTime.MinValue))
                 {
-                    lblErrorFiltro.Text = "El formato de la Fecha Hasta no es correcto";
+                    lblErrorFiltro.Text = "El formato de la Fecha Hasta no es correcto.";
+                    return false;
+                }
+
+                if (fechaDesde > fechaHasta)
+                {
+                    lblErrorFiltro.Text = "La fecha hasta no debe ser menor a la fecha desde.";
                     return false;
                 }
             }

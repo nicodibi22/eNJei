@@ -3,3 +3,10 @@ C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\DAL\bin\Release\DAL.pdb
 C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
 C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\DAL\obj\Release\DAL.dll
 C:\Users\Nico\Desktop\TFI\eNJei\HayLugarTFI\DAL\obj\Release\DAL.pdb
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\DAL\bin\Release\DAL.dll
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\DAL\bin\Release\DAL.pdb
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\DAL\obj\Release\DAL.csprojAssemblyReference.cache
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\DAL\obj\Release\DAL.csproj.CopyComplete
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\DAL\obj\Release\DAL.dll
+C:\Users\nidibiase\git\eNJei\HayLugarTFI\DAL\obj\Release\DAL.pdb

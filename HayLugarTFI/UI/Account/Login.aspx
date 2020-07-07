@@ -31,7 +31,7 @@
     <h2> Ingresar </h2>
 
     <div class="row"> 
-        <div class="col-md-8">
+        <div class="col-md-6">
             <section id="loginForm">
                     <h4>Use su cuenta para ingresar.</h4>
                     <hr />
@@ -74,6 +74,13 @@
                             <asp:Button runat="server" OnClick="btnRegistrar_Click" Text="Registrarse" CausesValidation="false" CssClass="btn btn-secondary" />
                         </div>
                     </div>
+            
+            </section>
+            
+        </div>
+        <div class="col-md-4">
+            <section>
+                <uc:OpenAuthProviders runat="server" ID="proveider"/>
             </section>
         </div>
     </div>

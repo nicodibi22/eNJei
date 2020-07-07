@@ -36,7 +36,7 @@ namespace UI.Account
         protected void Page_Load()
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
+            
             HasPhoneNumber = String.IsNullOrEmpty(manager.GetPhoneNumber(User.Identity.GetUserId()));
 
             // Habilitar esta opción tras configurar autenticación de dos factores
@@ -48,8 +48,14 @@ namespace UI.Account
 
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
 
+            var loginEx = authenticationManager.GetExternalLoginInfo();
+
             if (!IsPostBack)
             {
+
+                if (!manager.HasPassword(User.Identity.GetUserId()))
+                    Response.Redirect("~/Default.aspx");
+
                 // Determine las secciones que se van a presentar
                 if (HasPassword(manager))
                 {

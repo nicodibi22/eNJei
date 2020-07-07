@@ -27,19 +27,26 @@
             div.style.display = '';
         }
     </script>
-        <script type="text/javascript">
-            var prm = Sys.WebForms.PageRequestManager.getInstance();
-            prm.add_endRequest(function () {
-                $(function () {
-                    $('[id*=gvZona]').footable();
-                });
-            });
-        </script>
-
+        
+<style>
+        
+        .MessagePanel
+        {
+            
+            width:55%;
+            z-index:1000;
+        }
+    
+    </style>
         <div id="tabs-1">
             <br />
-            <asp:UpdatePanel ID="upnlTotal" runat="server">
+            <asp:UpdatePanel ID="upnlTotal" runat="server" >
                 <ContentTemplate>
+
+                    <asp:Panel runat="server" id="divHora" class="alert alert-warning alert-dismissible fade show" role="alert" Width="75%" >
+      <asp:Label runat="server" ID="lblPlazasHora" CssClass="alert alert-warning alert-dismissable" Text="Registro eliminado."></asp:Label>
+    </asp:Panel>
+
                     <asp:Panel ID="pnlTab1" runat="server">
                         <br />
                         <hr />
@@ -54,8 +61,8 @@
                         <br /><p></p>
                         <div>
                     <asp:GridView ID="gvZona" runat="server" AutoGenerateColumns="False" AllowPaging="true"
-                        PageSize="50" CssClass="footable" Align="Center" OnRowDeleting="gvZona_RowDeleting" DataKeyNames="idZona"  OnPageIndexChanging="gvZona_PageIndexChanging" OnRowEditing="gvZona_RowEditing"
-                        OnRowCommand="gvZona_RowCommand" OnRowDataBound="gvZona_RowDataBound">
+                        PageSize="50" CssClass="footable" Align="Center" OnRowDeleted="gvZona_RowDeleted" DataKeyNames="idZona"  OnPageIndexChanging="gvZona_PageIndexChanging" OnRowEditing="gvZona_RowEditing"
+                        OnRowCommand="gvZona_RowCommand" OnRowDeleting="gvZona_RowDeleting" OnRowDataBound="gvZona_RowDataBound">
                         <Columns> 
 
                             <asp:BoundField DataField="idZona" ItemStyle-HorizontalAlign="Center" HeaderText="Id Zona" />
@@ -63,6 +70,7 @@
                             <asp:BoundField DataField="descripcion" HeaderText="Nombre" />
 
                             <asp:BoundField DataField="direccion" HeaderText="Detalle" />
+                            <asp:BoundField DataField="precioKm" HeaderText="Precio KM" />
                             
                             <asp:CommandField HeaderText="Modificar" EditText="Modificar" ShowEditButton="true" ShowCancelButton="false" />
                             <asp:TemplateField HeaderText="Action">
@@ -114,6 +122,12 @@
 									    <asp:TextBox runat="server" ID="txtDireccion" ValidationGroup="producto" required size="80" CssClass="form-control" />
 								    </div>
 							    </div>
+                                <div class="form-group">
+								    <asp:Label runat="server" ID="lblPrecio" CssClass="col-md-2 control-label">Precio KM</asp:Label>
+								    <div class="col-md-2">
+									    <asp:TextBox runat="server" ID="txtPrecio" ValidationGroup="producto" required type="number" size="80" CssClass="form-control" />
+								    </div>
+							    </div>
 
                         </div>
                     </asp:Panel>
@@ -158,7 +172,8 @@
                     // result will be true if button was click, while it will be false if users close the dialog directly.
                     if (result) {
                         javascript: __doPostBack('ctl00$MainContent$gvZona$ctl02$lnkDelete', '');
-                        __doPostBack('<%=upnlTotal.ClientID%>', '');
+                        //__doPostBack('<%=upnlTotal.ClientID%>', '');
+                        
                     } else {
                         BootstrapDialog.closeAll();
                     }

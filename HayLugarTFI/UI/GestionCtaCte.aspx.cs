@@ -102,13 +102,14 @@ namespace UI
                 decimal saldoTotal =  Convert.ToDecimal(txtSaldoHoy.Text) - Convert.ToDecimal(txtSaldoNuevo.Text);
                 if (ddlUsuarios.Visible)
                 {
-                    BIZCuentaCorriente.Insert(ddlUsuarios.SelectedValue, Convert.ToInt32(txtSaldoHoy.Text), DateTime.Now);
-                    BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "ALTA", "Cuenta Corriente");
+                    BIZCuentaCorriente.Insert(ddlUsuarios.SelectedValue, Convert.ToInt32(txtSaldoHoy.Text), Utils.GetDateTimeLocal());
+                    BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "ALTA", "Cuenta Corriente");
                 }
                 else
                 {
                     BIZCuentaCorriente.UpdateSaldo(Convert.ToInt32(txtNroCuenta.Text), saldoTotal);
-                    BIZBitacora.Insert(DateTime.Now, Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Cuenta Corriente");
+                    BIZOperacionesCtaCte.Insert(Convert.ToInt32(txtNroCuenta.Text), saldoTotal, Utils.GetDateTimeLocal(), "Actualización Saldo", "ACTUALIZACIÓN");
+                    BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Cuenta Corriente");
                 }
                 txtNroCuenta.Text = "";
                 txtSaldoHoy.Text = "";
@@ -116,6 +117,7 @@ namespace UI
                 txtTitular.Text = "";
                 pnlTab2.Visible = false;
                 pnlTab1.Visible = true;
+
                 cargarDatosCC();
             }
             catch (Exception)

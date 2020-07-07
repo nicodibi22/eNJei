@@ -52,7 +52,7 @@
                                                         <asp:BoundField DataField="horaHasta" HeaderText="Hora Hasta" />
                                                         <asp:TemplateField HeaderText="Total">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblTarifa" Text='<%# Eval("Importe")%>' runat="server" ></asp:Label>
+                                                                <asp:Label ID="lblTarifa" Text='<%# Eval("Importe", "{0:n2}")%>' runat="server" ></asp:Label>
                                                             </ItemTemplate> 
                                                             
                                                         </asp:TemplateField>
