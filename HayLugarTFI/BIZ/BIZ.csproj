@@ -56,6 +56,7 @@
     <Compile Include="BIZReclamo.cs" />
     <Compile Include="BIZReserva.cs" />
     <Compile Include="BIZTarifa.cs" />
+    <Compile Include="BIZTipoReclamo.cs" />
     <Compile Include="BIZTipoEstadia.cs" />
     <Compile Include="BIZTipoInfraccion.cs" />
     <Compile Include="BIZUtilities.cs" />

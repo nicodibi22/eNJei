@@ -75,7 +75,7 @@ namespace UI.Account
                     Form.Action = ResolveUrl("~/Account/Manage");
 
                     SuccessMessage =
-                        message == "ChangePwdSuccess" ? "Se cambió la contraseña."
+                        message == "ChangePwdSuccess" ? "La contraseña ha sido modificada con éxito."
                         : message == "SetPwdSuccess" ? "Se estableció la contraseña."
                         : message == "RemoveLoginSuccess" ? "La cuenta se quitó."
                         : message == "AddPhoneNumberSuccess" ? "Se ha agregado el número de teléfono"

@@ -55,7 +55,7 @@ namespace UI.Account
             {
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-                IdentityResult result = manager.ChangePassword(User.Identity.GetUserId(), CurrentPassword.Text, txtNewPassword.Text);
+                IdentityResult result = manager.ChangePassword(User.Identity.GetUserId(), txtCurrentPassword.Text, txtNewPassword.Text);
                 if (result.Succeeded)
                 {
                     var user = manager.FindById(User.Identity.GetUserId());

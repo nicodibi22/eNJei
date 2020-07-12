@@ -85,13 +85,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label lblUsuario;
         
         /// <summary>
-        /// Control txtUsuario.
+        /// Control ddlMail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuario;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMail;
         
         /// <summary>
         /// Control Label1.
@@ -202,13 +202,13 @@ namespace UI {
         protected global::System.Web.UI.WebControls.Label lblUsuario2;
         
         /// <summary>
-        /// Control txtUsuario2.
+        /// Control ddlMail2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuario2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMail2;
         
         /// <summary>
         /// Control Label2.

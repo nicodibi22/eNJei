@@ -335,7 +335,7 @@ namespace UI
                 DateTime? fechaHastaFiltro = fechaHasta != DateTime.MinValue ? fechaHasta : (DateTime?)null;
 
                 
-                gvReservasPendientes.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(false, fechaDesdeFiltro, fechaHastaFiltro, txtUsuario.Text.Trim());
+                gvReservasPendientes.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(false, fechaDesdeFiltro, fechaHastaFiltro, ddlMail.SelectedValue);
                 gvReservasPendientes.DataBind();
             }            
         }
@@ -351,7 +351,7 @@ namespace UI
                 DateTime? fechaDesdeFiltro = fechaDesde != DateTime.MinValue ? fechaDesde : (DateTime?)null;
                 DateTime? fechaHastaFiltro = fechaHasta != DateTime.MinValue ? fechaHasta : (DateTime?)null;
 
-                gvReserva.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(true, fechaDesdeFiltro, fechaHastaFiltro, txtUsuario2.Text.Trim());
+                gvReserva.DataSource = BIZReserva.MisReservasSelectAllByEstadoPago(true, fechaDesdeFiltro, fechaHastaFiltro, ddlMail2.SelectedValue);
                 gvReserva.DataBind();
             }
         }
@@ -398,14 +398,14 @@ namespace UI
         {
             txtFechaDesde.Text = string.Empty;
             txtFechaHasta.Text = string.Empty;
-            txtUsuario.Text = string.Empty;
+            ddlMail.SelectedIndex = 0;
         }
 
         protected void btnLimpiarFiltros2_Click(object sender, EventArgs e)
         {
             txtFechaDesde2.Text = string.Empty;
             txtFechaHasta2.Text = string.Empty;
-            txtUsuario2.Text = string.Empty;
+            ddlMail2.SelectedIndex = 0;
         }
     }
 }

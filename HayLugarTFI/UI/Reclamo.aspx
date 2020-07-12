@@ -54,7 +54,7 @@
 
                             <asp:BoundField DataField="idReclamo" ItemStyle-HorizontalAlign="Center" HeaderText="Id Reclamo" />
                             <asp:BoundField DataField="idReserva" ItemStyle-HorizontalAlign="Center" HeaderText="Id Reserva" />
-                            
+                            <asp:BoundField DataField="Nombre" ItemStyle-HorizontalAlign="Center" HeaderText="Usuario" />
                             <asp:BoundField DataField="fechaDesde" ItemStyle-HorizontalAlign="Center" HeaderText="Fecha Desde" DataFormatString="{0:dd/MM/yyyy}"  />
                             <asp:BoundField DataField="fechaHasta" ItemStyle-HorizontalAlign="Center" HeaderText="Fecha Hasta" DataFormatString="{0:dd/MM/yyyy}" />
                             <asp:BoundField DataField="Estado" HeaderText="Estado" />
@@ -65,7 +65,7 @@
                                     <asp:Label ID="lblPathImagen"   Text='<%# Eval("pathImagen") %>' runat="server" ></asp:Label>
                                 </ItemTemplate>                    
                             </asp:TemplateField>                                
-                            <asp:TemplateField HeaderText = "">
+                            <asp:TemplateField HeaderText = "Foto">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkDescargar" CommandName="Descargar" CommandArgument='<%# Eval("pathImagen")%>' Text="Decargar" runat="server" ></asp:LinkButton>
                                 </ItemTemplate>                    
@@ -126,13 +126,26 @@
 									    <asp:TextBox runat="server" ID="txtPatenteInfractor" ValidationGroup="producto" required size="80" CssClass="form-control" />
 								    </div>
 							    </div>
+                            <div class="form-group">
+								    <asp:Label runat="server" ID="lblTipoReclamo" CssClass="col-md-2 control-label">Tipificación</asp:Label>
+								    <div class="col-md-2">
+									    <asp:DropDownList ID="ddlTipoReclamo" AutoPostBack="false" runat="server" CssClass="form-control">
+                                        </asp:DropDownList> 
+								    </div>
+							    </div>
+                            
                                 <div class="form-group">
 								    <asp:Label runat="server" ID="lblImagenInfraccion" CssClass="col-md-2 control-label">Foto del infractor</asp:Label>
 								    <div class="col-xs-1">
 									    <asp:FileUpload ID="FileUpload1" runat="server" />
 								    </div>
 							    </div>
-							
+							    <div class="form-group">
+								    <asp:Label runat="server" ID="lblDetalle" CssClass="col-md-2 control-label">Detalle</asp:Label>
+								    <div class="col-md-2">
+									    <asp:TextBox runat="server" ID="txtDetalle" ValidationGroup="producto" size="100" TextMode="MultiLine" Rows="4" CssClass="form-control" />
+								    </div>
+							    </div>
 
                         </div>
                         <div ID="divBotones" style="display:none">            

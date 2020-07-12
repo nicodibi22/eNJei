@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <asp:Label ID="lblUsuario" runat="server" Text="Usuario: "></asp:Label>
-                                    <asp:TextBox runat="server" ID="txtUsuario" CssClass="form-control" ></asp:TextBox>
+                                    <asp:DropDownList runat="server" ID="ddlMail" DataTextField="email" DataValueField="idUsr" CssClass="form-control" ></asp:DropDownList>
                                 </div>
                                 <div class="col-md-1">
                                     <asp:Label runat="server" ID="Label1" ForeColor="White" Text="......" Font-Bold="true"></asp:Label>
@@ -143,7 +143,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <asp:Label ID="lblUsuario2" runat="server" Text="Usuario: "></asp:Label>
-                                    <asp:TextBox runat="server" ID="txtUsuario2" CssClass="form-control" ></asp:TextBox>
+                                    <asp:DropDownList runat="server" ID="ddlMail2" DataTextField="email" DataValueField="idUsr" CssClass="form-control" ></asp:DropDownList>
                                 </div>
                                 <div class="col-md-1">
                                     <asp:Label runat="server" ID="Label2" ForeColor="White" Text="......" ></asp:Label>

@@ -50,11 +50,11 @@ namespace BIZ
         /// <history>
         /// 	[JEISOLO]	23/09/2017 22:58:17
         /// </history>
-        public static void Update(int idEstacionamiento, string descripcion, string calle, int altura, string datosAdicionales, int idBarrio, decimal latitud, decimal longitud)
+        public static void Update(int idEstacionamiento, string descripcion, string calle, int altura, string datosAdicionales, int idBarrio, decimal latitud, decimal longitud, int idTarifa)
         {
             try
             {
-                DALEstacionamiento.Update(idEstacionamiento, descripcion, calle, altura, datosAdicionales, idBarrio, latitud, longitud);
+                DALEstacionamiento.Update(idEstacionamiento, descripcion, calle, altura, datosAdicionales, idBarrio, latitud, longitud, idTarifa);
             }
             catch (Exception)
             {

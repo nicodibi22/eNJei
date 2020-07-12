@@ -31,7 +31,14 @@ namespace UI
             {
                 Response.Redirect("~/Account/Login.aspx");
             }
-
+            if (!IsPostBack)
+            {
+                
+                ddlMail.DataSource = BIZDatosPersonales.SelectAll();
+                ddlMail.DataBind();
+                ddlMail.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                ddlMail.SelectedIndex = 0;
+            }
 
         }
 
@@ -41,8 +48,7 @@ namespace UI
             {
                 if (Context.User.IsInRole("Administrador"))
                 {
-
-
+                    
                     gvReservasPendientes.DataSource = BIZBitacora.Select(DateTime.Now, DateTime.Now, null, 0);
                     gvReservasPendientes.DataBind();
 
@@ -129,9 +135,9 @@ namespace UI
                 DateTime? fechaDesdeFiltro = fechaDesde != DateTime.MinValue ? fechaDesde : (DateTime?)null;
                 DateTime? fechaHastaFiltro = fechaHasta != DateTime.MinValue ? fechaHasta : (DateTime?)null;
 
-                string usuario = string.IsNullOrEmpty(txtUsuario.Text) ? null : txtUsuario.Text;
+                string usuario = string.IsNullOrEmpty(ddlMail.SelectedValue) ? null : ddlMail.SelectedValue;
                 int perfil = int.Parse(ddlPerfil.SelectedValue);
-                gvReservasPendientes.DataSource = BIZBitacora.Select(fechaDesdeFiltro.Value, fechaHastaFiltro.Value, txtUsuario.Text, perfil);
+                gvReservasPendientes.DataSource = BIZBitacora.Select(fechaDesdeFiltro.Value, fechaHastaFiltro.Value, usuario, perfil);
                 gvReservasPendientes.DataBind();
             }            
         }
@@ -178,7 +184,7 @@ namespace UI
         {
             txtFechaDesde.Text = string.Empty;
             txtFechaHasta.Text = string.Empty;
-            txtUsuario.Text = string.Empty;
+            ddlMail.SelectedIndex = 0;
         }
 
     }

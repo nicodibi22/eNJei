@@ -217,7 +217,7 @@ namespace UI
 
             txtIdEstac.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[0].Text.ToString();
             //txtDescripcion.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[1].Text.ToString();
-            txtDescripcion.Text = ((Label)gvEstacionamiento.Rows[e.NewEditIndex].FindControl("lblDescripcion")).Text.Substring(1).Replace(".", "").Replace(",", ".");
+            txtDescripcion.Text = ((Label)gvEstacionamiento.Rows[e.NewEditIndex].FindControl("lblDescripcion")).Text.Substring(1).Replace(",", ".");
 
             txtCalle.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[3].Text.ToString();
             txtAltura.Text = gvEstacionamiento.Rows[e.NewEditIndex].Cells[4].Text.ToString();
@@ -276,7 +276,7 @@ namespace UI
                 else
                 {
                     BIZEstacionamiento.Update(Convert.ToInt32(txtIdEstac.Text), txtDescripcion.Text, txtCalle.Text, 
-                        Convert.ToInt32(txtAltura.Text), txtDatosAdicionales.Text, Convert.ToInt32(ddlBarrios.SelectedValue), Convert.ToDecimal(txtLatitud.Text), Convert.ToDecimal(txtLongitud.Text));
+                        Convert.ToInt32(txtAltura.Text), txtDatosAdicionales.Text, Convert.ToInt32(ddlBarrios.SelectedValue), Convert.ToDecimal(txtLatitud.Text), Convert.ToDecimal(txtLongitud.Text), Convert.ToInt32(ddlTipoAlquiler.SelectedValue));
 
                     BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "MODIFICACIÓN", "Estacionamiento");
 

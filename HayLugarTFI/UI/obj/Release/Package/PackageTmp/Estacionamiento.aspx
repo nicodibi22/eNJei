@@ -149,7 +149,7 @@
 							    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								    <asp:Label runat="server" ID="lblDescripcion" CssClass="col-md-2 control-label">Tarifa</asp:Label>
 								    
-									    <asp:TextBox runat="server" ID="txtDescripcion" ValidationGroup="producto" required size="80" CssClass="form-control" />
+									    <asp:TextBox runat="server" ID="txtDescripcion" ValidationGroup="producto" required size="80" type="number" min="1" step="0.1" CssClass="form-control" />
 								    
 							    </div>
                                 <br />

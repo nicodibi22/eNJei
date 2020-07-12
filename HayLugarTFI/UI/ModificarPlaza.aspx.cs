@@ -235,7 +235,7 @@ namespace UI
                 txtdescBarrio.Text = gvPlaza.Rows[e.NewEditIndex].Cells[6].Text.ToString();
                 
 
-                if (Request.Browser.Browser == "Chrome")
+                /*if (Request.Browser.Browser == "Chrome")
                 {
                     txtFecha.Text = DateTime.Today.ToString("yyyy-MM-dd");
                     txtFechaDesde.Text = DateTime.Today.ToString("yyyy-MM-dd");
@@ -248,7 +248,7 @@ namespace UI
                     txtFechaDesde.Text = DateTime.Today.ToString("dd/MM/yyyy");
                     txtFechaHasta.Text = DateTime.Today.ToString("dd/MM/yyyy");
                 
-                }
+                }*/
 
                 if (ddlTipoAlquiler.SelectedValue == "1")
                 {

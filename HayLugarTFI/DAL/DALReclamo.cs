@@ -27,7 +27,7 @@ namespace DAL
 	{
 
 		
-		public static int Insert(int idReserva, string patente, string idUsuario)
+		public static int Insert(int idReserva, string patente, string idUsuario, int idTipoReclamo, string detalle)
 		{
 			Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
 			DbCommand myCommand = myDatabase.GetStoredProcCommand("ReclamoInsert");
@@ -35,9 +35,11 @@ namespace DAL
 			myDatabase.AddInParameter(myCommand,"@idReserva", DbType.Int32, idReserva);
             myDatabase.AddInParameter(myCommand, "@patente", DbType.String, patente);
 			myDatabase.AddInParameter(myCommand,"@idUsuario", DbType.String, idUsuario);
+            myDatabase.AddInParameter(myCommand, "@idTipoReclamo", DbType.Int32, idTipoReclamo);
+            myDatabase.AddInParameter(myCommand, "@Detalle", DbType.String, detalle);
 
-			//Ejecuta la consulta y retorna el nuevo identity.
-			int returnValue = Convert.ToInt32(myDatabase.ExecuteScalar(myCommand));
+            //Ejecuta la consulta y retorna el nuevo identity.
+            int returnValue = Convert.ToInt32(myDatabase.ExecuteScalar(myCommand));
 			return returnValue;
 		}
 

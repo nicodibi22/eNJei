@@ -11,11 +11,11 @@ namespace BIZ
     public static class BIZReclamo
     {
         
-        public static int Insert(int idReserva, string patente, string idUsuario)
+        public static int Insert(int idReserva, string patente, string idUsuario, int idTipoReclamo, string detalle)
         {
             try
             {
-                return DALReclamo.Insert(idReserva, patente, idUsuario);
+                return DALReclamo.Insert(idReserva, patente, idUsuario, idTipoReclamo, detalle);
             }
             catch (Exception)
             {

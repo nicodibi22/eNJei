@@ -72,7 +72,7 @@ namespace DAL
 		/// <history>
 		/// 	[JEISOLO]	23/09/2017 22:58:17
 		/// </history>
-		public static void Update(int idEstacionamiento, string descripcion, string calle, int altura, string datosAdicionales, int idBarrio, decimal latitud, decimal longitud)
+		public static void Update(int idEstacionamiento, string descripcion, string calle, int altura, string datosAdicionales, int idBarrio, decimal latitud, decimal longitud, int idTarifa)
 		{
 			Database myDatabase = new SqlDatabase(DALUtilities.getConnection());
 			DbCommand myCommand = myDatabase.GetStoredProcCommand("EstacionamientoUpdate");
@@ -85,7 +85,7 @@ namespace DAL
 			myDatabase.AddInParameter(myCommand,"@idBarrio", DbType.Int32, idBarrio);
             myDatabase.AddInParameter(myCommand, "@latitud", DbType.Decimal, latitud);
             myDatabase.AddInParameter(myCommand, "@longitud", DbType.Decimal, longitud);
-
+            myDatabase.AddInParameter(myCommand, "@idTarifa", DbType.Int32, idTarifa);
 
             myDatabase.ExecuteNonQuery(myCommand);
 		}

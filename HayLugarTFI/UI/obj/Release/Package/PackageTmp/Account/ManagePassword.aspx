@@ -8,6 +8,7 @@
 
     $(function () {
         $("#chkShowPassword").bind("click", function () {
+            var txtPasswordOriginal = $("[id*=txtCurrentPassword]");
             var txtPassword = $("[id*=txtNewPassword]");
             var txtPasswordConfirm = $("[id*=txtConfirmNewPassword]");
             if ($(this).is(":checked")) {
@@ -15,6 +16,8 @@
                 txtPassword.hide();
                 txtPasswordConfirm.after('<input onchange = "PasswordChanged(this);" id = "txt_' + txtPasswordConfirm.attr("id") + '" type = "text" class="form-control" value = "' + txtPasswordConfirm.val() + '" />');
                 txtPasswordConfirm.hide();
+                txtPasswordOriginal.after('<input onchange = "PasswordChanged(this);" id = "txt_' + txtPasswordOriginal.attr("id") + '" type = "text" class="form-control" value = "' + txtPasswordOriginal.val() + '" />');
+                txtPasswordOriginal.hide();
             } else {
                 txtPassword.val(txtPassword.next().val());
                 txtPassword.next().remove();
@@ -22,6 +25,9 @@
                 txtPasswordConfirm.val(txtPasswordConfirm.next().val());
                 txtPasswordConfirm.next().remove();
                 txtPasswordConfirm.show();
+                txtPasswordOriginal.val(txtPasswordOriginal.next().val());
+                txtPasswordOriginal.next().remove();
+                txtPasswordOriginal.show();
             }
         });
     });
@@ -85,10 +91,10 @@
                     <hr />
                     <asp:ValidationSummary runat="server" ShowModelStateErrors="true" CssClass="text-danger" />
                     <div class="form-group">
-                        <asp:Label runat="server" ID="CurrentPasswordLabel" AssociatedControlID="CurrentPassword" CssClass="col-md-2 control-label">Contraseña actual</asp:Label>
+                        <asp:Label runat="server" ID="CurrentPasswordLabel" AssociatedControlID="txtCurrentPassword" CssClass="col-md-2 control-label">Contraseña actual</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="CurrentPassword" TextMode="Password" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="CurrentPassword"
+                            <asp:TextBox runat="server" ID="txtCurrentPassword" TextMode="Password" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCurrentPassword"
                                 CssClass="text-danger" ErrorMessage="El campo de contraseña actual es obligatorio."
                                 ValidationGroup="ChangePassword" />
                         </div>

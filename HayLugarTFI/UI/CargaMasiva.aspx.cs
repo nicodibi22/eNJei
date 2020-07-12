@@ -88,7 +88,7 @@ namespace UI
                         if (values.Length == 8)
                         {
                             int idEstacionamiento = BIZEstacionamiento.Insert(values[0], values[1], Convert.ToInt32(values[2]), values[3], Convert.ToInt32(values[4]),
-                        Convert.ToDecimal(values[5]), Convert.ToDecimal(values[6]));
+                        Convert.ToDecimal(values[5].Replace(",", ".")), Convert.ToDecimal(values[6].Replace(",", ".")));
 
                             BIZPlaza.Insert(idEstacionamiento, Context.User.Identity.GetUserId(), int.Parse(values[7]), true);
                             

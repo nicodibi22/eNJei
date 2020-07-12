@@ -98,12 +98,20 @@
                                     AutoPostBack="true" runat="server">
                                         <asp:ListItem Text="" Value="0" />
                                         <asp:ListItem Text="Zonas" Value="1" />
-                                        <asp:ListItem Text="Gestión Cta Cte" Value="2" />
+                                        <asp:ListItem Text="Usuarios" Value="5" />                                            
                                         <asp:ListItem Text="Estacionam." Value="3" />
-                                        <asp:ListItem Text="Reservas" Value="4" />
-                                        <asp:ListItem Text="Usuarios" Value="5" />
+                                    <asp:ListItem Text="Cuenta Corriente" Value="2" />    
+                                    
+                                </asp:DropDownList> 
+                                Gestión:
+                                <asp:DropDownList ID="ddlGestion" OnSelectedIndexChanged="ddlGestion_SelectedIndexChanged"  Width="100px"
+                                    AutoPostBack="true" runat="server">
+                                        <asp:ListItem Text="" Value="0" />
+                                        
                                         <asp:ListItem Text="Liberar Plazas" Value="6" />
-                                        <asp:ListItem Text="Bitácora" Value="7" />
+                                        <asp:ListItem Text="Reservas" Value="4" />
+                                                                                
+                                        
                                         <asp:ListItem Text="Reclamos" Value="8" />
                                 </asp:DropDownList> 
                             </a> 
@@ -114,8 +122,8 @@
                                 <asp:DropDownList ID="ddlMisCocheras" OnSelectedIndexChanged="ddlMisCocheras_SelectedIndexChanged"  Width="100px"
                                     AutoPostBack="true" runat="server">
                                         <asp:ListItem Text="" Value="0" />                                                                                
-                                        <asp:ListItem Text="Estacionamamiento" Value="1" />
-                                        <asp:ListItem Text="Rendimiento" Value="2" />
+                                        <asp:ListItem Text="Estacionamiento" Value="1" />
+                                        <asp:ListItem Text="Cobros" Value="2" />
                                         
                                 </asp:DropDownList> 
                             </a> 
@@ -142,7 +150,7 @@
                                 
                                 
                                 <li><a runat="server" href="~/Account/Manage" id="lnkCambiarPassword" title="Cambiar Contraseña"> <asp:Label runat="server" ID="lblNombre"></asp:Label> </a></li>
-                                <li><a><asp:Label runat="server" ID="lblCuentaCorriente"></asp:Label> </a></li>
+                                <li><asp:HyperLink runat="server" ID="lblCuentaCorriente"></asp:HyperLink> </li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Salir" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>

@@ -58,13 +58,13 @@ namespace UI.Account {
         protected global::System.Web.UI.WebControls.Label CurrentPasswordLabel;
         
         /// <summary>
-        /// Control CurrentPassword.
+        /// Control txtCurrentPassword.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CurrentPassword;
+        protected global::System.Web.UI.WebControls.TextBox txtCurrentPassword;
         
         /// <summary>
         /// Control NewPasswordLabel.

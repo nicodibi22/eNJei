@@ -142,15 +142,24 @@ namespace UI
                 
                 DataSet dsCuentaCorriente = BIZ.BIZCuentaCorriente.Select(Context.User.Identity.GetUserId());
 
-                if (dsCuentaCorriente != null && dsCuentaCorriente.Tables != null && dsCuentaCorriente.Tables.Count > 0 && dsCuentaCorriente.Tables[0].Rows.Count > 0)
+                if (Context.User.IsInRole("Administrador"))
                 {
-                    (this.loginView.FindControl("lblCuentaCorriente") as Label).Text = "$" + dsCuentaCorriente.Tables[0].Rows[0]["saldo"].ToString();
+                    (this.loginView.FindControl("lblCuentaCorriente") as HyperLink).Text = "Bitácora";
+                    (this.loginView.FindControl("lblCuentaCorriente") as HyperLink).NavigateUrl = "~/Bitacora.aspx";
                 }
                 else
                 {
-                    (this.loginView.FindControl("lblCuentaCorriente") as Label).Text = "$0,00";
+                    if (dsCuentaCorriente != null && dsCuentaCorriente.Tables != null && dsCuentaCorriente.Tables.Count > 0 && dsCuentaCorriente.Tables[0].Rows.Count > 0)
+                    {
+                        (this.loginView.FindControl("lblCuentaCorriente") as HyperLink).Text = "$" + dsCuentaCorriente.Tables[0].Rows[0]["saldo"].ToString();
+                    }
+                    else
+                    {
+                        (this.loginView.FindControl("lblCuentaCorriente") as HyperLink).Text = "$0,00";
+                    }
                 }
-                                
+                
+                
 
                 if (Context.User.IsInRole("Administrador"))
                 {
@@ -254,6 +263,33 @@ namespace UI
 
             if (ddlMisCocheras.SelectedValue == "2")
             { Response.Redirect("~/Rendimiento.aspx"); }
+        }
+
+        protected void ddlGestion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlGestion.SelectedValue == "1")
+            { Response.Redirect("~/Zona.aspx"); }
+
+            if (ddlGestion.SelectedValue == "2")
+            { Response.Redirect("~/GestionCtaCte.aspx"); }
+
+            if (ddlGestion.SelectedValue == "3")
+            { Response.Redirect("~/Estacionamiento.aspx"); }
+
+            if (ddlGestion.SelectedValue == "4")
+            { Response.Redirect("~/MisReservas.aspx"); }
+
+            if (ddlGestion.SelectedValue == "5")
+            { Response.Redirect("~/Usuario.aspx"); }
+
+            if (ddlGestion.SelectedValue == "6")
+            { Response.Redirect("~/LiberarPlazas.aspx"); }
+
+            if (ddlGestion.SelectedValue == "7")
+            { Response.Redirect("~/Bitacora.aspx"); }
+
+            if (ddlGestion.SelectedValue == "8")
+            { Response.Redirect("~/Reclamo.aspx"); }
         }
     }
 

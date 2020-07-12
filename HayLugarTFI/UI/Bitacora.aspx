@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <asp:Label ID="lblUsuario" runat="server" Text="Usuario: "></asp:Label>
-                                    <asp:TextBox runat="server" ID="txtUsuario" CssClass="form-control" ></asp:TextBox>
+                                    <asp:DropDownList runat="server" ID="ddlMail" DataTextField="email" DataValueField="idUsr" CssClass="form-control" ></asp:DropDownList>
                                 </div>
                                 <div class="col-md-2">
                                     <asp:Label ID="lblPerfil" runat="server" Text="Perfil: "></asp:Label>

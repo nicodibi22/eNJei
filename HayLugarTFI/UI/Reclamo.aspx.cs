@@ -42,7 +42,12 @@ namespace UI
             ddlReserva.DataValueField = "idReserva";
             ddlReserva.DataTextField = "descripcion";
             ddlReserva.DataBind();
-            
+
+            ddlTipoReclamo.DataSource = BIZTipoReclamo.SelectAll();
+            ddlTipoReclamo.DataValueField = "idTipoReclamo";
+            ddlTipoReclamo.DataTextField = "descripcion";
+            ddlTipoReclamo.DataBind();
+
             try
             {
                 CultureInfo us = new CultureInfo("es-ES");
@@ -142,11 +147,17 @@ namespace UI
                     lblMensaje.Visible = true;
                     return;
                 }
-
+                if (string.IsNullOrEmpty(Path.GetFileName(FileUpload1.PostedFile.FileName)))
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "pepe", "mostrar();", true);
+                    lblMensaje.Text = "Ingrese una imagen.";
+                    lblMensaje.Visible = true;
+                    return;
+                }
                 if (txtIdReclamo.Text == string.Empty)
                 {
                     
-                    int idReclamo = BIZReclamo.Insert(int.Parse(ddlReserva.SelectedValue), txtPatenteInfractor.Text, Context.User.Identity.GetUserId());
+                    int idReclamo = BIZReclamo.Insert(int.Parse(ddlReserva.SelectedValue), txtPatenteInfractor.Text, Context.User.Identity.GetUserId(), Convert.ToInt32(ddlTipoReclamo.SelectedValue), txtDetalle.Text.Trim());
 
                     BIZBitacora.Insert(Utils.GetDateTimeLocal(), Context.User.Identity.GetUserId(), "ALTA", "Reclamo");
 
@@ -219,6 +230,7 @@ namespace UI
                     gvReclamo.DataSource = BIZReclamo.SelectByIdUser(Context.User.Identity.GetUserId());
                     gvReclamo.Columns[gvReclamo.Columns.Count - 1].Visible = false;
                     gvReclamo.Columns[gvReclamo.Columns.Count - 2].Visible = false;
+                    gvReclamo.Columns[2].Visible = false;
                 }
                     
                 gvReclamo.DataBind();

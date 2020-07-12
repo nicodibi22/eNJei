@@ -37,7 +37,7 @@
                           <tr>
                             <th style="text-align: left;">
 				                <hr />
-				                <h4>Rendimiento</h4>
+				                <h4>Cobros</h4>
 				                <hr />		
 				                <div class="form-group">
 					                <div class="col-md-10">
