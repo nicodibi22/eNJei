@@ -86,7 +86,7 @@
                                     AutoPostBack="true" runat="server">
                                         <asp:ListItem Text="" Value="0" />
                                         <asp:ListItem Text="Cómo Llego" Value="1" />
-                                        <asp:ListItem Text="Calcular envío" Value="2" />
+                                        <asp:ListItem Text="Calcular viaje" Value="2" />
                                         
                                 </asp:DropDownList> 
                             </a> 

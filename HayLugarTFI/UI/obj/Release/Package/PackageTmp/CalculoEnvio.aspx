@@ -83,16 +83,16 @@
                     var selectedText = skillsSelect.options[skillsSelect.selectedIndex].text;--%>
 
                     //var precio = distance.substr(0, distance.length - 2);
-                    var precio;
+                    var precio = document.getElementById("MainContent_hdPrecio").value;
                     var fechaEntrega;
                     var diasestimados;
 
                     var skillsSelect = document.getElementById("ddlDespacho");
                     var selectedText = skillsSelect.options[skillsSelect.selectedIndex].value;
-
-
                     
-                    switch (selectedText) {
+
+                    diasestimados = 3;
+                    /*switch (selectedText) {
                         case "0":
                             precio = 85; diasestimados = 3;
                             break;
@@ -110,7 +110,7 @@
                             break;
                         default:
                             precio = 80; diasestimados = 2;
-                    }
+                    }*/
 
                     var today = new Date();
                     var dd = today.getDate();
@@ -161,8 +161,9 @@
                 Seleccione el lugar de despacho:
 <%--                <input type="text" id="txtSource" value="Bandra, Mumbai, India" style="width: 200px" />--%>
 <%--                <asp:TextBox runat="server" placeholder="Origen" ID="txtSource" CssClass="form-control"  ClientIDMode="Static"></asp:TextBox>--%>
-                                <asp:DropDownList ID="ddlDespacho" ClientIDMode="Static" CssClass="form-control" style="width:auto;" runat="server">
+                                <asp:DropDownList ID="ddlDespacho" OnSelectedIndexChanged="ddlDespacho_SelectedIndexChanged" AutoPostBack="true" ClientIDMode="Static" CssClass="form-control" style="width:auto;" runat="server">
                                 </asp:DropDownList> 
+                        <asp:HiddenField ID="hdPrecio" runat="server" />
                         </div>
         </div>
     <div class="row" >

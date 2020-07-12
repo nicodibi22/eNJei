@@ -299,7 +299,7 @@ namespace UI
                 if (string.IsNullOrEmpty(txtHoraDesde.Text) || string.IsNullOrEmpty(txtHoraHasta.Text))
                     return false;
 
-                if (int.Parse(txtHoraDesde.Text.Substring(0, 2)) >= int.Parse(txtHoraHasta.Text.Substring(0, 2)))
+                if (int.Parse(txtHoraDesde.Text.Substring(0, 2)) >= int.Parse(txtHoraHasta.Text.Substring(0, 2)) && txtHoraHasta.Text.Substring(0, 2) != "00")
                     return false;
                 
 

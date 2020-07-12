@@ -30,7 +30,17 @@ namespace UI
             {
                 Response.Redirect("~/Account/Login.aspx");
             }
-
+            if (!IsPostBack)
+            {
+                ddlMail.DataSource = BIZDatosPersonales.SelectAll();
+                ddlMail.DataBind();
+                ddlMail.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                ddlMail.SelectedIndex = 0;
+                ddlMail2.DataSource = BIZDatosPersonales.SelectAll();
+                ddlMail2.DataBind();
+                ddlMail2.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                ddlMail2.SelectedIndex = 0;
+            }
 
         }
 

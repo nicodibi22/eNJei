@@ -166,6 +166,8 @@ namespace UI
                     lblPyEconfirmado.Visible = true;
                     btnContinuar.Visible = true;
                     btnMisReservas.Visible = true;
+                    lblErrorMensaje.Visible = true;
+                    lblErrorMensaje.Text = "Hemos registrado su pago. Le enviaremos el comprabante por email";
                 }
                 
             }
